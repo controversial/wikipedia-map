@@ -30,6 +30,7 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 - [ ] mobile optimization? Not sure how easy it is with `vis.js`. 
 - [x] `.gitignore`-ify the libraries directory, no reason for it to be in here when I didn't write that stuff. 
 - [ ] Remove dependance on wordwrap, jQuery, and tinycolor
+- [ ] Move JavaScript to a separate file from HTML
 
 #Credits
 Powered mainly by [vis.js](visjs.org) and [BeautifulSoup](crummy.com/software/BeautifulSoup/), with only minor usage of other libraries ([tinycolor](github.com/bgrins/TinyColor), [jQuery](jquery.com), and [wordwrap](phpjs.org/functions/wordwrap)).
