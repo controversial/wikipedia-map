@@ -13,27 +13,23 @@ def get_url(pagename):
 def get_page_title(url):
     #The last element of the URL is always the title. Allow for both URLs that
     #end with a slash and for URLs that don't.
-    a,b = [url.split("/")[-n] for n in 1,2]
-    return a if a else b
+    return url.rstrip('/').split('/')[-1]
 
 def get_page_name(page):
     #The title of the page before the hyphen.
-    title = get_wiki_soup(get_url(page)).title
-    return title.string.split("-")[0].strip()
+    return get_wiki_soup(get_url(page)).title.string.split("-")[0].strip()
 
 def get_wiki_soup(url):
     #Open the URL
     f=opener.open(url)
     #Return the data, ascii decoded.
-    data=f.read()
-    data=str(data.decode("ascii",errors="ignore"))
+    data=str(f.read().decode("ascii",errors="ignore"))
     f.close()
     #Specify parser to hide error message
     return bs4.BeautifulSoup(data,"html.parser")
 
-def p1_links(page):
-    url=get_url(page)
-    soup=get_wiki_soup(url)
+def first_paragraph_links(page):
+    soup=get_wiki_soup(get_url(page))
     #Div with content in it
     content=soup.find("div",id="mw-content-text")
     #First p tag directly under the content div
@@ -61,4 +57,4 @@ def p1_links(page):
 
 
 if __name__ == "__main__":
-    print p1_links("Wikimedia Foundation")
+    print first_paragraph_links("Wikimedia Foundation")
