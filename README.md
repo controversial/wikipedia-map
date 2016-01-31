@@ -28,7 +28,8 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 #To Do
 - [ ] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs. This will be accomplished by highlighting all nodes and edges taken in blues, instead of oranges. 
 - [ ] mobile optimization? Not sure how easy it is with `vis.js`. 
-- [ ] `.gitignore`-ify the libraries directory, no reason for it to be in here when I didn't write that stuff. 
+- [x] `.gitignore`-ify the libraries directory, no reason for it to be in here when I didn't write that stuff. 
+- [ ] Remove dependance on wordwrap, jQuery, and tinycolor
 
 #Credits
 Powered mainly by [vis.js](visjs.org) and [BeautifulSoup](crummy.com/software/BeautifulSoup/), with only minor usage of other libraries ([tinycolor](github.com/bgrins/TinyColor), [jQuery](jquery.com), and [wordwrap](phpjs.org/functions/wordwrap)).
