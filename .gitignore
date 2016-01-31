@@ -1,0 +1,5 @@
+# Don't include libraries
+libraries/*
+# Don't include compiled files
+*.py[cod]
+
