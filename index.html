@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Wikipedia Mapper</title>
+
+  <!--Load vis.js-->
+  <script type="text/javascript" src="./libraries/vis/vis.js"></script>
+  <link href="./libraries/vis/vis.css" rel="stylesheet" type="text/css" />
+
+  <!--Load jQuery-->
+  <script type="text/javascript" src="./libraries/jquery.js"></script>
+
+  <!--Load wordwrap-->
+  <script type="text/javascript" src="./libraries/wordwrap.js"></script>
+
+  <!-- Load tinycolor-->
+  <script type="text/javascript" src="./libraries/tinycolor.js"></script>
+
+  <style type="text/css">
+    #container {
+      width: 100vw;
+      height: 100vh;
+      border: 1px solid lightgray
+    }
+
+  </style>
+
+
+
+</head>
+
+<body>
+
+  <div id="container"></div>
+
+
+  <script type="text/javascript">
+    //Make a request to my flask Wikipedia API
+    function apiRequest(api,page) {
+      var url="api/".concat(api).concat("?page=").concat(page);
+
+      var data = null;
+
+      $.ajax({
+        url: url,async: false,dataType: 'json', success: function (json) {
+          data = json;
+        }
+      });
+
+      return data;
+    };
+
+    //Get the name of all pages linked to by a page
+    function getSubPages(page) {
+      return apiRequest("links",page);
+    };
+    //Get the name of the wikipedia article for a query
+    function getPageName(query) {
+      return apiRequest("pagename",query);
+    };
+
+    //Get the color for a node, lighten an orange based on level. Subtle.
+    function getColor(level) {
+      var color = tinycolor("fcb587");
+      return color.lighten(2*level).toString();
+    }
+
+    var startpage = getPageName(prompt("Name of page to start at:"));
+    startpage = wordwrap(startpage,20)
+    // create an array with nodes
+    var nodes = new vis.DataSet([{id:startpage,label:startpage,value:2,level:0,color:getColor(0)}]);
+    var edges = new vis.DataSet();
+
+    //Put the data in the container
+    var data = {nodes:nodes,edges:edges};
+    var container = document.getElementById('container');
+
+    var options = {
+      nodes: {
+        shape: 'dot',
+        scaling: { min: 20,max: 30,
+          label: { min: 14, max: 30, drawThreshold: 9, maxVisible: 20 }
+        },
+        font: {size: 12, face: 'Arial'}
+      },
+    };
+
+    var network = new vis.Network(container,data,options);
+
+    //Open a node when clicked
+    network.on("doubleClick", function (params) {
+      if (params.nodes.length) { //Was the click on a node?
+        var page = params.nodes[0]; //Name of the page
+        var node = nodes.get(page) //Node clicked
+        var level = node.level + 1 //Level for new nodes is one more than parent
+        var subpages = getSubPages(page); //Call python with Flask for subpages
+
+        var subnodes = [];
+        var newedges = [];
+        //Create node objects
+        for (var i=0; i<subpages.length; i++) {
+          var subpage = subpages[i];
+          if (nodes.getIds().indexOf(subpage) == -1) { //Don't add if node exists
+              subnodes.push({id:subpage, label:wordwrap(subpage,15), value:1,
+                             level:level, color:getColor(level), parent:page;});
+          };
+          newedges.push({from: page, to: subpage});
+        };
+        //Add the stuff to the nodes array
+        nodes.add(subnodes);
+        edges.add(newedges);
+      }
+    });
+
+  </script>
+
+
+</body>
+
+</html>
