@@ -46,7 +46,7 @@ def first_paragraph_links(page):
     #Exclude links that tag points later in the article, and return the page title.
     pagenames = [str(l.split("/")[-1]) for l in links if l.startswith("/wiki/")]
     #Remove files
-    pagenames = [pn for pn in pagenames if not pn.startswith("File:")]
+    pagenames = [pn for pn in pagenames if not pn.startswith(("File:","Wikipedia:","Help:"))]
     #Remove underscores
     pagenames = [pn.replace("_"," ") for pn in pagenames]
     #Remove fragment identifiers
