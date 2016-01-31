@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/links')
 def getSubPages():
     page=request.args.get("page")
-    return json.dumps(p1_links(page))
+    return json.dumps(first_paragraph_links(page))
 
 @app.route('/pagename')
 def getPageName():
