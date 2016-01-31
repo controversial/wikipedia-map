@@ -15,5 +15,11 @@ which are linked to from the first paragraph of the node. Links from the first p
 are generally directly related to the article. Only using links from the first paragraph also allows for
 a managable number of sub-nodes to be created (usually 5-10).
 
+Nodes that are less-directly connected to the central node have lighter color:
 ![](http://i.imgur.com/lnxGNR2.png)
+Titles disappear as you zoom out:
 ![](http://i.imgur.com/nXac2hX.png)
+
+TODO: 
+- [ ] single clicking on a node will show a traceback of how you arrived at that node
+- [ ] mobile optimization? Not sure how easy it is with vis.js
