@@ -4,11 +4,36 @@ function getColor(level) {
   return color.lighten(2*level).toString();
 }
 
+//Get the highlighted color for a node, lighten a blue based on level. Subtle.
 function getBlueColor(level) {
   var color = tinycolor("87b5fc"); //Note this is orange with RGB reversed.
   return color.lighten(2*level).toString();
 }
 
+//Expand the node for a page
+function expandNode(page) {
+    var node = nodes.get(page) //The node that was clicked
+    var level = node.level + 1 //Level for new nodes is one more than parent
+    var subpages = getSubPages(page); //Call python Flask API for subpages
+
+    var subnodes = [];
+    var newedges = [];
+    //Create node objects
+    for (var i=0; i<subpages.length; i++) {
+      var subpage = subpages[i];
+      if (nodes.getIds().indexOf(subpage) == -1) { //Don't add if node exists
+          subnodes.push({id:subpage, label:wordwrap(subpage,15), value:1,
+                         level:level, color:getColor(level), parent:page}); //Add node
+      }
+      newedges.push({from: page, to: subpage}); //TODO expanding a node twice repeats the connections.
+    }
+    //Add the stuff to the nodes array
+    nodes.add(subnodes);
+    edges.add(newedges);
+  }
+
+
+//Get all the nodes tracing back to the start node.
 function getTraceBackNodes(node) {
   var finished = false;
   var startnode = nodes.get(startpage);
@@ -23,7 +48,9 @@ function getTraceBackNodes(node) {
   return path;
 }
 
-//Coloring nodes
+
+
+//Reset the color of all nodes
 function orangeAllNodes() {
   var ids = nodes.getIds()
   for (var i=0; i<ids.length; i++) {
