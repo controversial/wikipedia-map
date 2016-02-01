@@ -4,7 +4,9 @@ startpage = wordwrap(startpage,20)
 
 // -- CREATE NETWORK -- //
 //Make a container
-var nodes = new vis.DataSet([{id:startpage,label:startpage,value:2,level:0,color:getColor(0)}]);
+var nodes = new vis.DataSet([{id:startpage,label:startpage,
+                              value:2,level:0,color:getColor(0),
+                              parent:startpage}]); //Parent is self
 var edges = new vis.DataSet();
 //Put the data in the container
 var data = {nodes:nodes,edges:edges};
@@ -28,9 +30,9 @@ var network = new vis.Network(container,data,options);
 network.on("doubleClick", function (params) {
   if (params.nodes.length) { //Was the click on a node?
     var page = params.nodes[0]; //Name of the page
-    var node = nodes.get(page) //Node clicked
+    var node = nodes.get(page) //The node that was clicked
     var level = node.level + 1 //Level for new nodes is one more than parent
-    var subpages = getSubPages(page); //Call python with Flask for subpages
+    var subpages = getSubPages(page); //Call python Flask API for subpages
 
     var subnodes = [];
     var newedges = [];
@@ -46,5 +48,30 @@ network.on("doubleClick", function (params) {
     //Add the stuff to the nodes array
     nodes.add(subnodes);
     edges.add(newedges);
-  }
+  };
+});
+
+//Highlight traceback on click
+network.on("click", function (params) {
+  if (params.nodes.length) { //Was the click on a node?
+    //Re-orange all nodes
+    var ids = nodes.getIds()
+    for (var i=0; i<ids.length; i++) {
+      var node = nodes.get(ids[i]);
+      var level = node.level;
+      node.color = getColor(level);
+      nodes.update(node);
+    };
+
+    //Highlight in blue all nodes tracing back to central node
+    var page = params.nodes[0]; //Name of the page
+    var trace = getTraceBackNodes(page);
+    for (var i=0; i<trace.length; i++) {
+      var pagename = trace[i];
+      var node = nodes.get(pagename); //The node we're iterating on
+      var level = node.level;
+      node.color = getBlueColor(level);
+      nodes.update(node);
+    };
+  };
 });
