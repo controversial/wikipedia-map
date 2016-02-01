@@ -43,7 +43,7 @@ network.on("doubleClick", function (params) {
           subnodes.push({id:subpage, label:wordwrap(subpage,15), value:1,
                          level:level, color:getColor(level), parent:page}); //Add node
       };
-      newedges.push({from: page, to: subpage}); //TODO expanding a node twice repeats the connections.
+      newedges.push({from: page, to: subpage, arrows:"to"}); //TODO expanding a node twice repeats the connections.
     };
     //Add the stuff to the nodes array
     nodes.add(subnodes);
