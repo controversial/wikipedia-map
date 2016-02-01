@@ -2,4 +2,5 @@
 libraries/*
 # Don't include compiled files
 *.py[cod]
-
+# Don't include fuse-hidden files
+.fuse_hidden*

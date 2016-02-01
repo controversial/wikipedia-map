@@ -28,13 +28,18 @@ The underlying script, in `wikipedia_parse.py`, uses `BeautifulSoup` to parse th
 ###The main page
 I suck at JavaScript, which is why I wrote a lot of the underlying code in Python. However, the main page is written mostly in JavaScript. It uses `vis.js` to display the graph. Every time a node is double-clicked, it uses `jQuery` to make an ajax request to the Flask API. The results are word-wrapped with [wordwrap](phpjs.org/functions/wordwrap)), and then stuck on nodes which are colored with [tinycolor](github.com/bgrins/TinyColor) (Honestly, the use of `jQuery`, `tinycolor` and `wordwrap` is *so* trivial that I'll probably just write it out in future versions. I used them temporarily to save me time writing it. :)
 
-#To Do
+#To Do (Sorted by priority)
+- [ ] Build an interface
+  - [ ] Change input method to something other than prompt
+  - [ ] Allow starting anew without refreshing page
+  - [ ] Create small info button that explains the project, controls, etc.
 - [x] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs. This will be accomplished by highlighting all nodes and edges taken in blues, instead of oranges.
 	- [ ] Only highlight edges directly in the path
 - [x] mobile optimization
 - [x] `.gitignore`-ify the libraries directory, no reason for it to be in here when I didn't write that stuff.
 - [ ] Remove dependance on wordwrap, jQuery, and tinycolor
 - [x] Move JavaScript to separate files from HTML
-- [ ] Make API requests asynchronous 
+- [ ] Make API requests asynchronous
+
 #Credits
 Powered mainly by [vis.js](visjs.org) and [BeautifulSoup](crummy.com/software/BeautifulSoup/), with only minor usage of other libraries ([tinycolor](github.com/bgrins/TinyColor), [jQuery](jquery.com), and [wordwrap](phpjs.org/functions/wordwrap)).
