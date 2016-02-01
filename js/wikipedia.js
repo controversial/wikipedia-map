@@ -42,26 +42,20 @@ network.on("doubleClick", function (params) {
       if (nodes.getIds().indexOf(subpage) == -1) { //Don't add if node exists
           subnodes.push({id:subpage, label:wordwrap(subpage,15), value:1,
                          level:level, color:getColor(level), parent:page}); //Add node
-      };
-      newedges.push({from: page, to: subpage, arrows:"to"}); //TODO expanding a node twice repeats the connections.
-    };
+      }
+      newedges.push({from: page, to: subpage}); //TODO expanding a node twice repeats the connections.
+    }
     //Add the stuff to the nodes array
     nodes.add(subnodes);
     edges.add(newedges);
-  };
+  }
 });
 
 //Highlight traceback on click
 network.on("click", function (params) {
   if (params.nodes.length) { //Was the click on a node?
     //Re-orange all nodes
-    var ids = nodes.getIds()
-    for (var i=0; i<ids.length; i++) {
-      var node = nodes.get(ids[i]);
-      var level = node.level;
-      node.color = getColor(level);
-      nodes.update(node);
-    };
+    orangeAllNodes();
 
     //Highlight in blue all nodes tracing back to central node
     var page = params.nodes[0]; //Name of the page
@@ -72,6 +66,9 @@ network.on("click", function (params) {
       var level = node.level;
       node.color = getBlueColor(level);
       nodes.update(node);
-    };
-  };
+    }
+  } else {
+    orangeAllNodes();
+  }
+  
 });
