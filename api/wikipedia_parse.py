@@ -52,7 +52,7 @@ def first_paragraph_links(page):
     #Remove fragment identifiers
     pagenames = [pn.rsplit("#")[0] for pn in pagenames]
     #Remove percent codes
-    return [urllib2.unquote(pn) for pn in pagenames]
+    return list(set([urllib2.unquote(pn) for pn in pagenames]))
 
 
 
