@@ -14,6 +14,9 @@ A map typically looks like this:
  ![](http://i.imgur.com/lnxGNR2.png)
  Note that nodes are lighter in color when they are farther away from the central node. If it took 5 steps to reach *Ancient Greek* from *Penguin*, it will be a lighter color than a node like *Birding*, which only took 2 steps to reach. Thus, in general, a node's color indicates how strongly related to the central topic an article is, with less-strongly related topics having lighter color.
 
+Single-clicking a node will highlight in blue the path back to the central node.
+![](http://i.imgur.com/QHduUCc.png)
+
 #How it works
 
 ###API
@@ -26,7 +29,8 @@ The underlying script, in `wikipedia_parse.py`, uses `BeautifulSoup` to parse th
 I suck at JavaScript, which is why I wrote a lot of the underlying code in Python. However, the main page is written mostly in JavaScript. It uses `vis.js` to display the graph. Every time a node is double-clicked, it uses `jQuery` to make an ajax request to the Flask API. The results are word-wrapped with [wordwrap](phpjs.org/functions/wordwrap)), and then stuck on nodes which are colored with [tinycolor](github.com/bgrins/TinyColor) (Honestly, the use of `jQuery`, `tinycolor` and `wordwrap` is *so* trivial that I'll probably just write it out in future versions. I used them temporarily to save me time writing it. :)
 
 #To Do
-- [ ] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs. This will be accomplished by highlighting all nodes and edges taken in blues, instead of oranges.
+- [x] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs. This will be accomplished by highlighting all nodes and edges taken in blues, instead of oranges.
+	- [ ] Only highlight edges directly in the path
 - [ ] mobile optimization? Not sure how easy it is with `vis.js`.
 - [x] `.gitignore`-ify the libraries directory, no reason for it to be in here when I didn't write that stuff.
 - [ ] Remove dependance on wordwrap, jQuery, and tinycolor
