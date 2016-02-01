@@ -31,7 +31,7 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 #To Do
 - [x] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs. This will be accomplished by highlighting all nodes and edges taken in blues, instead of oranges.
 	- [ ] Only highlight edges directly in the path
-- [ ] mobile optimization? Not sure how easy it is with `vis.js`.
+- [x] mobile optimization
 - [x] `.gitignore`-ify the libraries directory, no reason for it to be in here when I didn't write that stuff.
 - [ ] Remove dependance on wordwrap, jQuery, and tinycolor
 - [x] Move JavaScript to separate files from HTML
