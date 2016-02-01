@@ -1,4 +1,4 @@
-var startpage = getPageName(prompt("Name of page to start at:"));
+var startpage = getPageName(prompt("Name a wikipedia page:"));
 startpage = wordwrap(startpage,20)
 
 
@@ -26,28 +26,12 @@ var network = new vis.Network(container,data,options);
 
 
 // -- ACTIONS -- //
+
 //Open a node when clicked
 network.on("doubleClick", function (params) {
-  if (params.nodes.length) { //Was the click on a node?
+  if (params.nodes.length) { //Did the click occur on a node?
     var page = params.nodes[0]; //Name of the page
-    var node = nodes.get(page) //The node that was clicked
-    var level = node.level + 1 //Level for new nodes is one more than parent
-    var subpages = getSubPages(page); //Call python Flask API for subpages
-
-    var subnodes = [];
-    var newedges = [];
-    //Create node objects
-    for (var i=0; i<subpages.length; i++) {
-      var subpage = subpages[i];
-      if (nodes.getIds().indexOf(subpage) == -1) { //Don't add if node exists
-          subnodes.push({id:subpage, label:wordwrap(subpage,15), value:1,
-                         level:level, color:getColor(level), parent:page}); //Add node
-      }
-      newedges.push({from: page, to: subpage}); //TODO expanding a node twice repeats the connections.
-    }
-    //Add the stuff to the nodes array
-    nodes.add(subnodes);
-    edges.add(newedges);
+    expandNode(page);
   }
 });
 
@@ -70,5 +54,4 @@ network.on("click", function (params) {
   } else {
     orangeAllNodes();
   }
-  
 });
