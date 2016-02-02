@@ -32,6 +32,7 @@ function colorNode(node,color) {
   nodes.update(node);
 }
 
+
 //Expand the node for a page
 function expandNode(page) {
   var node = nodes.get(page) //The node that was clicked
@@ -52,7 +53,7 @@ function expandNode(page) {
           subnodes.push({id:subpage, label:wordwrap(subpage,15), value:1,
                          level:level, color:getColor(level), parent:page}); //Add node
       }
-      newedges.push({id:page+"-"+subpage, from: page, to: subpage}); //TODO expanding a node twice shouldn't repeat the connections
+      newedges.push({ id:page+"-"+subpage, from: page, to: subpage, color:{inherit:"to"} }); //TODO expanding a node twice shouldn't repeat the connections
     }
     //Add the stuff to the nodes array
     nodes.add(subnodes);
@@ -79,7 +80,7 @@ function getTraceBackNodes(node) {
 
 //Reset the color of all nodes
 function resetNodeColor() {
-  var ids = nodes.getIds()
+  var ids = nodes.getIds();
   for (var i=0; i<ids.length; i++) {
     var node = nodes.get(ids[i]);
     var level = node.level;
