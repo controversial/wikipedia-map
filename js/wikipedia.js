@@ -39,7 +39,7 @@ network.on("doubleClick", function (params) {
 network.on("click", function (params) {
   if (params.nodes.length) { //Was the click on a node?
     //Re-orange all nodes
-    orangeAllNodes();
+    resetNodeColor();
 
     //Highlight in blue all nodes tracing back to central node
     var page = params.nodes[0]; //Name of the page
@@ -52,6 +52,6 @@ network.on("click", function (params) {
       nodes.update(node);
     }
   } else {
-    orangeAllNodes();
+    resetNodeColor();
   }
 });

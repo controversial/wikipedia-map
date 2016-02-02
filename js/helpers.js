@@ -1,3 +1,7 @@
+// -- HELPER FUNCTIONS -- //
+
+
+
 //Get the color for a node, lighten an orange based on level. Subtle.
 function getColor(level) {
   var color = tinycolor("fcb587");
@@ -10,11 +14,34 @@ function getBlueColor(level) {
   return color.lighten(2*level).toString();
 }
 
+//Gray-out a node
+function grayOut(page) {
+  var node = nodes.get(page);
+  node.color="#bdbdbd";
+  node.gray=true;
+  nodes.update(node);
+}
+
+//Color a node
+function colorNode(node,color) {
+  if (!node.gray) {
+    node.color=color;
+  } else {
+    node.color="#bdbdbd"
+  }
+  nodes.update(node);
+}
+
 //Expand the node for a page
 function expandNode(page) {
-    var node = nodes.get(page) //The node that was clicked
-    var level = node.level + 1 //Level for new nodes is one more than parent
-    var subpages = getSubPages(page); //Call python Flask API for subpages
+  var node = nodes.get(page) //The node that was clicked
+  var level = node.level + 1 //Level for new nodes is one more than parent
+  var subpages = getSubPages(page); //Call python Flask API for subpages
+
+  if (!subpages) {
+    grayOut(page);
+
+  } else {
 
     var subnodes = [];
     var newedges = [];
@@ -25,12 +52,13 @@ function expandNode(page) {
           subnodes.push({id:subpage, label:wordwrap(subpage,15), value:1,
                          level:level, color:getColor(level), parent:page}); //Add node
       }
-      newedges.push({from: page, to: subpage}); //TODO expanding a node twice repeats the connections.
+      newedges.push({from: page, to: subpage}); //TODO expanding a node twice shouldn't repeat the connections
     }
     //Add the stuff to the nodes array
     nodes.add(subnodes);
     edges.add(newedges);
   }
+}
 
 
 //Get all the nodes tracing back to the start node.
@@ -49,14 +77,12 @@ function getTraceBackNodes(node) {
 }
 
 
-
 //Reset the color of all nodes
-function orangeAllNodes() {
+function resetNodeColor() {
   var ids = nodes.getIds()
   for (var i=0; i<ids.length; i++) {
     var node = nodes.get(ids[i]);
     var level = node.level;
-    node.color = getColor(level);
-    nodes.update(node);
+    colorNode(node,getColor(level));
   }
 }
