@@ -6,9 +6,16 @@ function apiRequest(api,page) {
   var data = null;
 
   $.ajax({
-    url: url,async: false,dataType: 'json', success: function (json) {
+    url: url,async: false, dataType: 'json',
+    success: function (json) {
       data = json;
-    }
+    },
+    error: function (jqXHR,Exception) {
+      if (jqXHR.status === 500) {
+        console.log("500")
+        data = null;
+      }
+    },
   });
 
   return data;
