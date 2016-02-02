@@ -3,15 +3,26 @@
 <head>
   <!-- iOS optimization -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  
   <script type="text/javascript">
   document.ontouchmove = function(event){
     event.preventDefault();
   }
   </script>
-  
+
+  <!-- Page title -->
   <title>Wikipedia Mapper</title>
 
+  <!-- Google Analytics -->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-72586531-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+  
   <!--Load vis.js & its css file-->
   <script type="text/javascript" src="./libraries/vis/vis.min.js"></script>
   <link href="./libraries/vis/vis.min.css" rel="stylesheet" type="text/css" />
@@ -27,7 +38,6 @@
       width: 100vw;
       height: 100vh;
     }
-
   </style>
 
 
@@ -44,7 +54,7 @@
   <script type="text/javascript" src="./js/helpers.js"> </script>
   <!-- Load the main script -->
   <script type="text/javascript" src="./js/wikipedia.js"> </script>
-  
+
 </body>
 
 </html>

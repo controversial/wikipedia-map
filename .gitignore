@@ -4,3 +4,5 @@ libraries/*
 *.py[cod]
 # Don't include fuse-hidden files
 .fuse_hidden*
+# Don't include .DS_Store files
+*.DS_Store
