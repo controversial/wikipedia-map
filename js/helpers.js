@@ -52,7 +52,7 @@ function expandNode(page) {
           subnodes.push({id:subpage, label:wordwrap(subpage,15), value:1,
                          level:level, color:getColor(level), parent:page}); //Add node
       }
-      newedges.push({from: page, to: subpage}); //TODO expanding a node twice shouldn't repeat the connections
+      newedges.push({id:page+"-"+subpage, from: page, to: subpage}); //TODO expanding a node twice shouldn't repeat the connections
     }
     //Add the stuff to the nodes array
     nodes.add(subnodes);
