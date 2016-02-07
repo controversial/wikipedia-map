@@ -53,7 +53,10 @@ function expandNode(page) {
           subnodes.push({id:subpage, label:wordwrap(subpage,15), value:1,
                          level:level, color:getColor(level), parent:page}); //Add node
       }
-      newedges.push({ id:page+"-"+subpage, from: page, to: subpage, color:{inherit:"to"} }); //TODO expanding a node twice shouldn't repeat the connections
+      var edgeID = page+"-"+subpage
+      if (edges.getIds().indexOf(edgeID) == -1) { //Don't create duplicate edges in same direction
+        newedges.push({ id:page+"-"+subpage, from: page, to: subpage, color:{inherit:"to"} });
+      }
     }
     //Add the stuff to the nodes array
     nodes.add(subnodes);
