@@ -34,7 +34,7 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
   - [ ] Allow starting anew without refreshing page
   - [ ] Create small info button that explains the project, controls, etc.
 - [x] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs. This will be accomplished by highlighting all nodes and edges taken in blues, instead of oranges.
-	- [ ] Only highlight edges directly in the path
+	- [x] Only highlight edges directly in the path
 - [x] mobile optimization
 - [x] `.gitignore`-ify the libraries directory, no reason for it to be in here when I didn't write that stuff.
 - [ ] Remove dependance on wordwrap, jQuery, and tinycolor
