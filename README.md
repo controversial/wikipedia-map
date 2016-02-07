@@ -30,8 +30,8 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 
 #To Do (Sorted by priority)
 - [ ] Build an interface
-  - [ ] Change input method to something other than prompt
-  - [ ] Allow starting anew without refreshing page
+  - [x] Change input method to something other than prompt
+  - [x] Allow starting anew without refreshing page
   - [ ] Create small info button that explains the project, controls, etc.
 - [x] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs. This will be accomplished by highlighting all nodes and edges taken in blues, instead of oranges.
 	- [x] Only highlight edges directly in the path
