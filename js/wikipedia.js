@@ -39,19 +39,27 @@ network.on("doubleClick", function (params) {
 network.on("click", function (params) {
   if (params.nodes.length) { //Was the click on a node?
     //Re-orange all nodes
-    resetNodeColor();
+    resetProperties();
 
     //Highlight in blue all nodes tracing back to central node
     var page = params.nodes[0]; //Name of the page
-    var trace = getTraceBackNodes(page);
-    for (var i=0; i<trace.length; i++) {
-      var pagename = trace[i];
+    var tracenodes = getTraceBackNodes(page);
+    var traceedges = getTraceBackEdges(tracenodes);
+    //Color nodes blue
+    for (var i=0; i<tracenodes.length; i++) {
+      var pagename = tracenodes[i];
       var node = nodes.get(pagename); //The node we're iterating on
       var level = node.level;
-      node.color = getBlueColor(level);
-      nodes.update(node);
+      colorNode(node, getBlueColor(level));
+    }
+    //Widen edges
+    for (var i=0; i<traceedges.length; i++) {
+      var edgeid = traceedges[i];
+      var edge = edges.get(edgeid); //The node we're iterating on
+      edge.width=5;
+      edges.update(edge);
     }
   } else {
-    resetNodeColor();
+    resetProperties();
   }
 });

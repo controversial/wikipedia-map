@@ -1,3 +1,5 @@
+// -- GLOBAL VARIABLES -- //
+var isReset = true;
 // -- HELPER FUNCTIONS -- //
 
 
@@ -30,6 +32,7 @@ function colorNode(node,color) {
     node.color="#bdbdbd"
   }
   nodes.update(node);
+  isReset = false;
 }
 
 
@@ -55,7 +58,8 @@ function expandNode(page) {
       }
       var edgeID = page+"-"+subpage
       if (edges.getIds().indexOf(edgeID) == -1) { //Don't create duplicate edges in same direction
-        newedges.push({ id:page+"-"+subpage, from: page, to: subpage, color:{inherit:"to"} });
+        newedges.push({id:page+"-"+subpage, from: page, to: subpage,
+                       color:{inherit:"to"}, selectionWidth:0});
       }
     }
     //Add the stuff to the nodes array
@@ -80,13 +84,32 @@ function getTraceBackNodes(node) {
   return path;
 }
 
+//Get all the edges tracing back to the start node.
+function getTraceBackEdges(tbnodes) {
+  tbnodes.reverse();
+  var path = [];
+  for (var i=0; i<tbnodes.length-1; i++) { //Don't iterate through the last node
+    path.push(tbnodes[i]+"-"+tbnodes[i+1]);
+  }
+  return path;
+}
 
-//Reset the color of all nodes
-function resetNodeColor() {
-  var ids = nodes.getIds();
-  for (var i=0; i<ids.length; i++) {
-    var node = nodes.get(ids[i]);
-    var level = node.level;
-    colorNode(node,getColor(level));
+//Reset the color of all nodes, and width of all edges.
+function resetProperties() {
+  if (!isReset) {
+    //Reset node color
+    var nodeids = nodes.getIds();
+    for (var i=0; i<nodeids.length; i++) {
+      var node = nodes.get(nodeids[i]);
+      var level = node.level;
+      colorNode(node,getColor(level));
+    }
+    //Reset edge width
+    var edgeids = edges.getIds();
+    for (var i=0; i<edgeids.length; i++) {
+      var edge = edges.get(edgeids[i]);
+      edge.width = 1;
+      edges.update(edge);
+    }
   }
 }
