@@ -67,7 +67,7 @@ function expandNode(page) {
       var edgeID = page+"-"+subpage
       if (edges.getIds().indexOf(edgeID) == -1) { //Don't create duplicate edges in same direction
         newedges.push({id:page+"-"+subpage, from: page, to: subpage,
-                       color:{inherit:"to"}, selectionWidth:0});
+                       color:"c9895f", selectionWidth:0});
       }
     }
     //Add the stuff to the nodes array
@@ -117,6 +117,7 @@ function resetProperties() {
     var edgeids = edges.getIds();
     for (var i=0; i<edgeids.length; i++) {
       var edge = edges.get(edgeids[i]);
+      edge.color = "c9895f";
       edgeWidth(edge,1);
     }
   }
@@ -139,6 +140,7 @@ function traceBack(node) {
   for (var i=0; i<traceedges.length; i++) {
     var edgeid = traceedges[i];
     var edge = edges.get(edgeid); //The node we're iterating on
+    edge.color = {inherit:"to"}
     edgeWidth(edge,5);
   }
 }
