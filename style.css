@@ -13,20 +13,34 @@
 
 /* The input box */
 input[type=text] {
-  /* Position */
-  position: absolute;
-  top:20;
-  left:20;
-  z-index:1;
-  font-size:18px;
   /* Border */
   outline: none;
   border: 1px solid #ccc;
   border-radius: 5px;
   /* Other */
   padding: 5px;
+  font-size:18px;
 }
 
-input[type=text]:focus {
+/* The submit button */
+button[type=button] {
+  font-size:18px;
+  color: #666;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #fff;
+}
+button[type=button]:active {
+  background-color: #f5f5f5;
+}
 
+/* The box that holds the button and input */
+#formbox {
+  padding:0px;
+  /* Position */
+  position: absolute;
+  top:20;
+  left:20;
+  z-index:1;
 }
