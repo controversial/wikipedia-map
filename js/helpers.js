@@ -36,6 +36,12 @@ function colorNode(node,color) {
 }
 
 
+function edgeWidth(edge,width) {
+  edge.width = width;
+  edges.update(edge);
+  isReset = false;
+}
+
 //Expand the node for a page
 function expandNode(page) {
   var node = nodes.get(page) //The node that was clicked
@@ -108,8 +114,7 @@ function resetProperties() {
     var edgeids = edges.getIds();
     for (var i=0; i<edgeids.length; i++) {
       var edge = edges.get(edgeids[i]);
-      edge.width = 1;
-      edges.update(edge);
+      edgeWidth(edge,1);
     }
   }
 }
