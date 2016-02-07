@@ -22,10 +22,10 @@
   ga('create', 'UA-72586531-1', 'auto');
   ga('send', 'pageview');
   </script>
-  
+
   <!--Load vis.js & its css file-->
   <script type="text/javascript" src="./libraries/vis/vis.min.js"></script>
-  <link href="./libraries/vis/vis.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="./libraries/vis/vis.min.css" type="text/css" />
   <!--Load jQuery-->
   <script type="text/javascript" src="./libraries/jquery.js"></script>
   <!--Load wordwrap-->
@@ -33,20 +33,18 @@
   <!-- Load tinycolor-->
   <script type="text/javascript" src="./libraries/tinycolor.js"></script>
 
-  <style type="text/css">
-    #container {
-      width: 100vw;
-      height: 100vh;
-    }
-  </style>
-
+  <!-- Load my CSS-->
+  <link rel="stylesheet" href="./style.css" type="text/css"/>
 
 
 </head>
 
 <body>
+  
+  <input id="pageName" type="text" placeholder="Name a wikipedia page"/>
 
   <div id="container"></div>
+
 
   <!-- Load API functions -->
   <script type="text/javascript" src="./js/api.js"> </script>
