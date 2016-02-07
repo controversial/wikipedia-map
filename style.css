@@ -20,16 +20,22 @@ input[type=text] {
   /* Other */
   padding: 5px;
   font-size:18px;
+  -webkit-appearance: none;
 }
 
 /* The submit button */
 button[type=button] {
-  font-size:18px;
+  /* Color */
   color: #666;
+  background-color: #fff;
+  /* Border */
+  outline: none;
   border: 1px solid #ccc;
   border-radius: 5px;
+  /* Other */
   padding: 5px;
-  background-color: #fff;
+  font-size:18px;
+
 }
 button[type=button]:active {
   background-color: #f5f5f5;
