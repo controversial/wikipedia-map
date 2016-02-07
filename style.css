@@ -1,34 +1,32 @@
 /* The network */
 #container {
+  /* Same size as window */
   width: 100vw;
   height: 100vh;
+  /* No space from top corner */
   position:absolute;
   top:0;
   left:0;
   z-index:0;
 }
 
+
 /* The input box */
 input[type=text] {
-  /* Stay above the network, floating */
+  /* Position */
   position: absolute;
   top:20;
   left:20;
   z-index:1;
-  /* Visual styles */
-  display: block;
-  border: solid 1px #ededed;
-  border-bottom: solid 3px #c9c9c9;
-  border-radius: 0;
+  font-size:18px;
+  /* Border */
   outline: none;
-  font-size: 18px;
-  -webkit-appearance: none; /* Hide top shadow on iOS */
-  /* The underline fades in */
-  -webkit-transition: border 0.3s;
-  -moz-transition: border 0.3s;
-  -o-transition: border 0.3s;
-  transition: border 0.3s;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  /* Other */
+  padding: 5px;
 }
+
 input[type=text]:focus {
-  border-bottom: solid 3px #969696;
+
 }
