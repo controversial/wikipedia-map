@@ -9,7 +9,7 @@
 }
 
 /* The input box */
-#pageName {
+input[type=text] {
   /* Stay above the network, floating */
   position: absolute;
   top:20;
@@ -19,14 +19,16 @@
   display: block;
   border: solid 1px #ededed;
   border-bottom: solid 3px #c9c9c9;
+  border-radius: 0;
   outline: none;
   font-size: 18px;
+  -webkit-appearance: none; /* Hide top shadow on iOS */
   /* The underline fades in */
   -webkit-transition: border 0.3s;
   -moz-transition: border 0.3s;
   -o-transition: border 0.3s;
   transition: border 0.3s;
 }
-#pageName:focus {
+input[type=text]:focus {
   border-bottom: solid 3px #969696;
 }
