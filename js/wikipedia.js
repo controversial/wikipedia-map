@@ -30,7 +30,7 @@ var network = new vis.Network(container,data,options);
 //Open a node when clicked
 network.on("doubleClick", function (params) {
   if (params.nodes.length) { //Did the click occur on a node?
-    var page = params.nodes[0]; //Name of the page
+    var page = params.nodes[0]; //The node clicked
     expandNode(page);
   }
 });
@@ -38,26 +38,12 @@ network.on("doubleClick", function (params) {
 //Highlight traceback on click
 network.on("click", function (params) {
   if (params.nodes.length) { //Was the click on a node?
+    //The node clicked
+    var page = params.nodes[0];
     //Re-orange all nodes
     resetProperties();
-
     //Highlight in blue all nodes tracing back to central node
-    var page = params.nodes[0]; //Name of the page
-    var tracenodes = getTraceBackNodes(page);
-    var traceedges = getTraceBackEdges(tracenodes);
-    //Color nodes blue
-    for (var i=0; i<tracenodes.length; i++) {
-      var pagename = tracenodes[i];
-      var node = nodes.get(pagename); //The node we're iterating on
-      var level = node.level;
-      colorNode(node, getBlueColor(level));
-    }
-    //Widen edges
-    for (var i=0; i<traceedges.length; i++) {
-      var edgeid = traceedges[i];
-      var edge = edges.get(edgeid); //The node we're iterating on
-      edgeWidth(edge,5);
-    }
+    traceBack(page);
   } else {
     resetProperties();
   }

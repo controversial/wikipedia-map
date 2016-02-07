@@ -1,7 +1,8 @@
 // -- GLOBAL VARIABLES -- //
 var isReset = true;
-// -- HELPER FUNCTIONS -- //
 
+
+// -- HELPER FUNCTIONS -- //
 
 
 //Get the color for a node, lighten an orange based on level. Subtle.
@@ -41,6 +42,7 @@ function edgeWidth(edge,width) {
   edges.update(edge);
   isReset = false;
 }
+
 
 //Expand the node for a page
 function expandNode(page) {
@@ -100,6 +102,7 @@ function getTraceBackEdges(tbnodes) {
   return path;
 }
 
+
 //Reset the color of all nodes, and width of all edges.
 function resetProperties() {
   if (!isReset) {
@@ -116,5 +119,26 @@ function resetProperties() {
       var edge = edges.get(edgeids[i]);
       edgeWidth(edge,1);
     }
+  }
+}
+
+
+//Highlight the path from a given node back to the central node.
+function traceBack(node) {
+  resetProperties();
+  var tracenodes = getTraceBackNodes(node);
+  var traceedges = getTraceBackEdges(tracenodes);
+  //Color nodes blue
+  for (var i=0; i<tracenodes.length; i++) {
+    var pagename = tracenodes[i];
+    var node = nodes.get(pagename); //The node we're iterating on
+    var level = node.level;
+    colorNode(node, getBlueColor(level));
+  }
+  //Widen edges
+  for (var i=0; i<traceedges.length; i++) {
+    var edgeid = traceedges[i];
+    var edge = edges.get(edgeid); //The node we're iterating on
+    edgeWidth(edge,5);
   }
 }
