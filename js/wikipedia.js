@@ -56,8 +56,7 @@ network.on("click", function (params) {
     for (var i=0; i<traceedges.length; i++) {
       var edgeid = traceedges[i];
       var edge = edges.get(edgeid); //The node we're iterating on
-      edge.width=5;
-      edges.update(edge);
+      edgeWidth(edge,5);
     }
   } else {
     resetProperties();
