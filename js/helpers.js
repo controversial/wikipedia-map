@@ -67,7 +67,7 @@ function expandNode(page) {
       var edgeID = page+"-"+subpage
       if (edges.getIds().indexOf(edgeID) == -1) { //Don't create duplicate edges in same direction
         newedges.push({id:page+"-"+subpage, from: page, to: subpage,
-                       color:"c9895f", selectionWidth:0});
+                       color:"#C9895F", selectionWidth:0});
       }
     }
     //Add the stuff to the nodes array
@@ -113,11 +113,11 @@ function resetProperties() {
       var level = node.level;
       colorNode(node,getColor(level));
     }
-    //Reset edge width
+    //Reset edge width and color
     var edgeids = edges.getIds();
     for (var i=0; i<edgeids.length; i++) {
       var edge = edges.get(edgeids[i]);
-      edge.color = "c9895f";
+      edge.color = "#C9895F";
       edgeWidth(edge,1);
     }
   }
@@ -144,3 +144,4 @@ function traceBack(node) {
     edgeWidth(edge,5);
   }
 }
+

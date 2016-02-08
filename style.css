@@ -55,3 +55,31 @@ button[type=button]:active {
   border-bottom: 1px solid #ccc;
   -webkit-backdrop-filter: blur(5px); /* Blur behind bar */
 }
+
+
+
+/* The modal about popup */
+.modal {
+  /* Positioning */
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Initially hide */
+  display: none;
+  /* Appearance */
+  background-color: rgba(0,0,0,0.2);
+}
+
+.modal-content {
+  /* Positioning */ 
+  margin: 15% auto;
+  padding: 20px;
+  width: 80%;
+  /* Appearance */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+}

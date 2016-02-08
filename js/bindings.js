@@ -20,3 +20,21 @@ submitButton.onclick = function() {
   startpage = getPageName(pagename);
   createNetwork(startpage);
 }
+
+
+
+
+
+//Bind modal events.
+var aboutButton = document.getElementById('about');
+var modal = document.getElementById("modal");
+
+aboutButton.onclick = function() {
+  modal.style.display = "block";
+}
+
+window.onclick = function(event) {
+  if (event.target.className == "modal") { //Clicked outside modal
+    modal.style.display = "none";
+  }
+}
