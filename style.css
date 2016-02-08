@@ -53,4 +53,5 @@ button[type=button]:active {
   /* Appearance */
   background:rgba(255,255,255,0.5);
   border-bottom: 1px solid #ccc;
+  -webkit-backdrop-filter: blur(5px); /* Blur behind bar */
 }
