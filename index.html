@@ -4,7 +4,7 @@
   <!-- iOS optimization -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <script type="text/javascript">
-  document.ontouchmove = function(event){
+  document.ontouchmove   = function(event){
     event.preventDefault();
   }
   </script>
@@ -42,7 +42,19 @@
   <div id="formbox">
     <input id="pageName" type="text" placeholder="Wikipedia"/>
     <button id="submit" type="button">Go</button>
+    <button id="about" type="button">?</button>
   </div>
+  
+  <!-- Modal about popup-->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <p>
+        Text here.
+      </p>
+    </div>
+  </div>
+  
+  
   <!-- Network container -->
   <div id="container"></div>
 

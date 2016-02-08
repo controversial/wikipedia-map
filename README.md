@@ -1,7 +1,7 @@
 # wikipedia-map
 See it at [luke.deentaylor.com/wikipedia](http://luke.deentaylor.com/wikipedia/)
 
-A web app for visualizing the connection of wikipedia pages. Start by entering a topic into the prompt, i.e. *Cats*. A single node will be generated, labeled *Cat*. Double-click this node to expand it.
+A web app for visualizing the connection of wikipedia pages. Start by entering a topic into the text box, i.e. *Cats*. A single node will be generated, labeled *Cat*. Double-click this node to expand it.
 
  Expanding a node creates a new node for each page that  is linked to from the first paragraph of the article. These nodes will be connected to the node from which they were expanded. For example, expanding *Cat* will create eight nodes, including *Fur*, *Mammal*, *Carnivore*, and *Domestication*, each of which will be connected to *Cat*. Each of these nodes can also be expanded in the same way.
 
