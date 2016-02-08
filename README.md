@@ -11,11 +11,11 @@ A web app for visualizing the connection of wikipedia pages. Start by entering a
  2. They tend to be more directly relevant to the article than links further down in the page.
 
 A map typically looks like this:
- ![](http://i.imgur.com/lnxGNR2.png)
+ ![](http://i.imgur.com/jCdlHo8.png)
  Note that nodes are lighter in color when they are farther away from the central node. If it took 5 steps to reach *Ancient Greek* from *Penguin*, it will be a lighter color than a node like *Birding*, which only took 2 steps to reach. Thus, in general, a node's color indicates how strongly related to the central topic an article is, with less-strongly related topics having lighter color.
 
 Single-clicking a node will highlight in blue the path back to the central node.
-![](http://i.imgur.com/QHduUCc.png)
+![](http://i.imgur.com/WyYP8LZ.png)
 
 #How it works
 
@@ -37,7 +37,7 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 	- [x] Only highlight edges directly in the path
 - [x] mobile optimization
 - [ ] Improve efficiency of highlighting the nodes
-    - This will allow for swapping events around, at least on desktop, so that single-clicking will expand and hovering will highlight the path back. 
+    - This will allow for swapping events around, at least on desktop, so that single-clicking will expand and hovering will highlight the path back.
 - [x] `.gitignore`-ify the libraries directory, no reason for it to be in here when I didn't write that stuff.
 - [ ] Remove dependance on wordwrap, jQuery, and tinycolor
 - [x] Move JavaScript to separate files from HTML

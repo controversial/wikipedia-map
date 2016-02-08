@@ -50,6 +50,7 @@ button[type=button]:active {
   left: 0;
   width: 100vw;
   z-index: 1;
-  /* Color */
+  /* Appearance */
   background:rgba(255,255,255,0.5);
+  border-bottom: 1px solid #ccc;
 }
