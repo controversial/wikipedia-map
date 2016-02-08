@@ -39,9 +39,13 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 - [ ] Improve efficiency of highlighting the nodes
     - This will allow for swapping events around, at least on desktop, so that single-clicking will expand and hovering will highlight the path back.
 - [x] `.gitignore`-ify the libraries directory, no reason for it to be in here when I didn't write that stuff.
-- [ ] Remove dependance on wordwrap, jQuery, and tinycolor
+- [ ] Remove dependance on libraries
+	- [x] jQuery
+	- [ ] wordwrap
+	- [ ] tinycolor 
 - [x] Move JavaScript to separate files from HTML
 - [ ] Make API requests asynchronous
 
 #Credits
 Powered mainly by [vis.js](visjs.org) and [BeautifulSoup](crummy.com/software/BeautifulSoup/), with only minor usage of other libraries ([tinycolor](github.com/bgrins/TinyColor), [jQuery](jquery.com), and [wordwrap](phpjs.org/functions/wordwrap)).
+Rendering of this document into the help modal is done via [marked](github.com/chjj/marked)

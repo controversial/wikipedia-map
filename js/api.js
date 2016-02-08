@@ -1,26 +1,24 @@
-
-//Generic function to make a request to my flask Wikipedia API
-function apiRequest(api,page) {
-  var url="api/".concat(api).concat("?page=").concat(page);
-
+//Make a synchronous request and return the response
+function requestPage(url) {
   var data = null;
-
-  $.ajax({
-    url: url,async: false, dataType: 'json',
-    success: function (json) {
-      data = json;
-    },
-    error: function (jqXHR,Exception) {
-      if (jqXHR.status === 500) {
-        console.log("500")
-        data = null;
-      }
-    },
-  });
-
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      data = xhttp.responseText;
+    }
+  }
+  xhttp.open("GET",url,false);
+  xhttp.send();
   return data;
 }
 
+//Make an AJAX request to the server
+function apiRequest(api,page) {
+  var url="api/"+api+"?page="+page;
+  var response = requestPage(url);
+  var data = JSON.parse(response);
+  return data;
+}
 
 
 //Get the name of all pages linked to by a page
