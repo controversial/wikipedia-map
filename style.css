@@ -43,10 +43,13 @@ button[type=button]:active {
 
 /* The box that holds the button and input */
 #formbox {
-  padding:0px;
+  padding: 10px;
   /* Position */
   position: absolute;
-  top:20;
-  left:20;
-  z-index:1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 1;
+  /* Color */
+  background:rgba(255,255,255,0.5);
 }

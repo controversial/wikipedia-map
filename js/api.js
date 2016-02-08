@@ -19,16 +19,16 @@ function apiRequest(api,page) {
   });
 
   return data;
-};
+}
 
 
 
 //Get the name of all pages linked to by a page
 function getSubPages(page) {
   return apiRequest("links",page);
-};
+}
 
 //Get the name of the wikipedia article for a query
 function getPageName(query) {
   return apiRequest("pagename",query);
-};
+}
