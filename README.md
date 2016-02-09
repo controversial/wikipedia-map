@@ -56,5 +56,5 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 - [ ] Make API requests asynchronous
 
 # Credits
-Powered mainly by [vis.js](visjs.org) and [BeautifulSoup](crummy.com/software/BeautifulSoup/), with only minor usage of other libraries ([tinycolor](github.com/bgrins/TinyColor) and [wordwrap](phpjs.org/functions/wordwrap)).
+Powered mainly by [vis.js](visjs.org) and [BeautifulSoup](crummy.com/software/BeautifulSoup/), with only minor usage of other libraries ([tinycolor](github.com/bgrins/TinyColor)).
 Rendering of this document into the help modal is done via a modified version of [marked](github.com/chjj/marked) that supports task lists.
