@@ -27,7 +27,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   z-index: 1;
   /* Appearance */
   background:rgba(255,255,255,0.5);
@@ -60,11 +60,14 @@ button[type=button] {
   padding: 5px;
   font-size:18px;
 }
-
 button[type=button]:active {
   background-color: #f5f5f5;
 }
-
+/* The about button should be pinned to the right side of the bar */
+#about {
+  float: right;
+  margin-right: 15px;
+}
 
 
 /* == MODAL HELP POPUP == */
