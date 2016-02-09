@@ -18,6 +18,8 @@ Single-clicking a node will highlight in blue the path back to the central node.
 ![](http://i.imgur.com/1xH3sri.png)
 Note that this is not necessarily the shortest path back, but the path that you took to reach the node. Regardless of whether a shorter path back exists, the path by which the node was created will be shown. This is by design.
 
+It has full support for touch devices and mobile browsers.
+
 # Cloning
 Note: If you want to clone this, you'll have to replace the `github-markdown.css` file with the file at the link, and you'll have to manually create the `libraries` folder. This repo is designed to reflect only the code that I've actually written, as much as possible.
 
@@ -42,7 +44,7 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 	- [x] Only highlight edges directly in the path
 - [x] mobile optimization
 - [x] Improve efficiency of highlighting the nodes
-    - [ ] This will allow for swapping events around, at least on desktop, so that single-clicking will expand and hovering will highlight the path back.
+    - [x] Single-click to expand, hover to highlight path back.
 - [x] `.gitignore`-ify the libraries directory, no reason for it to be in here when I didn't write that stuff.
 - [ ] Remove dependance on libraries
 	- [x] jQuery
