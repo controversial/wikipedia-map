@@ -1,3 +1,8 @@
+// This script contains the code necessary to make requests to the python API,
+// as well as a more general function which is also used to fetch the README
+// for rendering.
+
+
 //Make a synchronous request and return the response
 function requestPage(url) {
   var data = null;
