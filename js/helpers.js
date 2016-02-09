@@ -5,6 +5,8 @@
 // -- GLOBAL VARIABLES -- //
 var isReset = true;
 var selectedNode = null;
+var traceedges = [];
+var tracenodes = [];
 
 // -- HELPER FUNCTIONS -- //
 
@@ -112,14 +114,14 @@ function resetProperties() {
   if (!isReset) {
     selectedNode = null;
     //Reset node color
-    var nodeids = nodes.getIds();
+    var nodeids = tracenodes;
     for (var i=0; i<nodeids.length; i++) {
       var node = nodes.get(nodeids[i]);
       var level = node.level;
       colorNode(node,getColor(level));
     }
     //Reset edge width and color
-    var edgeids = edges.getIds();
+    var edgeids = traceedges;
     for (var i=0; i<edgeids.length; i++) {
       var edge = edges.get(edgeids[i]);
       edge.color = "#C9895F";
@@ -134,8 +136,8 @@ function traceBack(node) {
   if (node != selectedNode) {
     selectedNode = node;
     resetProperties();
-    var tracenodes = getTraceBackNodes(node);
-    var traceedges = getTraceBackEdges(tracenodes);
+    tracenodes = getTraceBackNodes(node);
+    traceedges = getTraceBackEdges(tracenodes);
     //Color nodes blue
     for (var i=0; i<tracenodes.length; i++) {
       var pagename = tracenodes[i];
