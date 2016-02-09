@@ -13,7 +13,7 @@ function expandEvent (params) { // Expand a node (with event handler)
   }
 }
 
-function traceEvent (params) { // Trace back a node (with event handler)
+function mobileTraceEvent (params) { // Trace back a node (with event handler)
   if (params.nodes.length) { //Was the click on a node?
     //The node clicked
     var page = params.nodes[0];
@@ -24,13 +24,19 @@ function traceEvent (params) { // Trace back a node (with event handler)
   }
 }
 
-if (isTouchDevice) { //Bind events for mobile
+
+if (isTouchDevice) { // Device has touchscreen
   network.on("hold", expandEvent);
   //Highlight traceback on click
-  network.on("click",traceEvent);
-} else {
-  network.on("doubleClick", expandEvent);
-  network.on("click",traceEvent);
+  network.on("click",mobileTraceEvent);
+} else { // Device does not have touchscreen
+  network.on("click", expandEvent);
+  network.on("hoverNode", function(params) {
+    console.log("hover");
+    var page = params.node;
+    traceBack(page);
+  });
+  network.on("blurNode", resetProperties);
 }
 
 

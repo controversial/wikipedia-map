@@ -14,6 +14,11 @@ var options = {
     },
     font: {size: 12, face: 'Arial'}
   },
+  interaction:{
+    hover: true,
+    hoverConnectedEdges: false,
+    selectConnectedEdges: false,
+  }
 };
 
 var nodes = new vis.DataSet();
