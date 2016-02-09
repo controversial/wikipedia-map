@@ -17,6 +17,9 @@ A map typically looks like this:
 Single-clicking a node will highlight in blue the path back to the central node.
 ![](http://i.imgur.com/WyYP8LZ.png)
 
+# Cloning
+Note: If you want to clone this, you'll have to replace the `github-markdown.css` file with the file at the link, and you'll have to manually create the `libraries` folder. This repo is designed to reflect only the code that I've actually written, as much as possible.
+
 # How it works
 
 ### API
