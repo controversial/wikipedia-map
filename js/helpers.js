@@ -132,7 +132,6 @@ function resetProperties() {
 //Highlight the path from a given node back to the central node.
 function traceBack(node) {
   if (node != selectedNode) {
-    console.log("highlighting");
     selectedNode = node;
     resetProperties();
     var tracenodes = getTraceBackNodes(node);
