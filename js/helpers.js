@@ -1,3 +1,7 @@
+// This script contains helper functions that are used by other scripts to
+// perform common actions.
+
+
 // -- GLOBAL VARIABLES -- //
 var isReset = true;
 
@@ -144,4 +148,3 @@ function traceBack(node) {
     edgeWidth(edge,5);
   }
 }
-
