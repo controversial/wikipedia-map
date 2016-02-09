@@ -23,8 +23,8 @@
   </script>
 
   <!-- Load my CSS-->
-  <link rel="stylesheet" href="./style.css" type="text/css"/>
-  
+  <link rel="stylesheet" href="./css/style.css" type="text/css"/>
+
 </head>
 
 <body>
@@ -33,20 +33,18 @@
     <button id="submit" type="button">Go</button>
     <button id="about" type="button">?</button>
   </div>
-  
+
   <!-- Modal about popup-->
   <div id="modal" class="modal">
-    <div class="modal-content">
-      
-    </div>
+    <div id="modal-content" class="modal-content markdown-body"></div>
   </div>
-  
-  
-  <!-- Network container -->
+
+
+  <!-- Will hold the network -->
   <div id="container"></div>
 
-  
-  
+
+
   <!-- 3rd Party -->
   <!--Load vis.js & its css file-->
   <script type="text/javascript" src="./libraries/vis/vis.min.js"></script>
@@ -59,8 +57,9 @@
   <script type="text/javascript" src="./libraries/tinycolor.js"></script>
   <!-- Load marked for rendering README.md -->
   <script type="text/javascript" src="./libraries/marked.js"></script>
+  <!-- Load github-markdown css -->
+  <link rel="stylesheet" href="./css/github-markdown.css" type="text/css"/>
 
-  
   <!-- My Stuff -->
   <!-- Load API functions -->
   <script type="text/javascript" src="./js/api.js"> </script>
@@ -74,8 +73,6 @@
   <script type="text/javascript" src="./js/markdown.js"> </script>
 
 
-
-  
 </body>
 
 </html>
