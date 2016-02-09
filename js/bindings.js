@@ -2,18 +2,18 @@
 // network, in the search bar, and for the modal popup.
 
 
+// Is the user on a touch device?
 
-// Bind actions within the network
-// Open a node when clicked
-network.on("doubleClick", function (params) {
+var isTouchDevice = 'ontouchstart' in document.documentElement;
+
+function expandEvent (params) { // Expand a node (with event handler)
   if (params.nodes.length) { //Did the click occur on a node?
     var page = params.nodes[0]; //The node clicked
     expandNode(page);
   }
-});
+}
 
-//Highlight traceback on click
-network.on("click", function (params) {
+function traceEvent (params) { // Trace back a node (with event handler)
   if (params.nodes.length) { //Was the click on a node?
     //The node clicked
     var page = params.nodes[0];
@@ -22,8 +22,16 @@ network.on("click", function (params) {
   } else {
     resetProperties();
   }
-});
+}
 
+if (isTouchDevice) { //Bind events for mobile
+  network.on("hold", expandEvent);
+  //Highlight traceback on click
+  network.on("click",traceEvent);
+} else {
+  network.on("doubleClick", expandEvent);
+  network.on("click",traceEvent);
+}
 
 
 
