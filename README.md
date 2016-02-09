@@ -17,22 +17,23 @@ A map typically looks like this:
 Single-clicking a node will highlight in blue the path back to the central node.
 ![](http://i.imgur.com/WyYP8LZ.png)
 
-#How it works
+# How it works
 
-###API
+### API
 When you double click a node, a request is made to a Flask server (under the `api` directory). The Flask server provides a wrapper around code from my Python script, `wikipedia_parse.py`. The API json-izes the results from `wikipedia_parse.py` and serves them. The resulting API is at [luke.deentaylor.com/wikipedia/api](http://luke.deentaylor.com/wikipedia/api). The main functionality is getting first paragraph links, by making a request like http://luke.deentaylor.com/wikipedia/api/links?page=Cats.
 
-###HTML Parsing
+### HTML Parsing
 The underlying script, in `wikipedia_parse.py`, uses `BeautifulSoup` to parse through the HTML of wikipedia pages. It looks for the `<div>` element with an `id` of `mw-content-text`, which contains page content. Then, it finds the first `<p>` tag directly under that, excluding the coordinates which are sometimes at the top right. Under this tag, it simply looks at all links, and extracts the page title from each of these links.
 
-###The main page
+### The main page
 I suck at JavaScript, which is why I wrote a lot of the underlying code in Python. However, the main page is written mostly in JavaScript. It uses `vis.js` to display the graph. Every time a node is double-clicked, it uses `jQuery` to make an ajax request to the Flask API. The results are word-wrapped with [wordwrap](phpjs.org/functions/wordwrap)), and then stuck on nodes which are colored with [tinycolor](github.com/bgrins/TinyColor) (Honestly, the use of `jQuery`, `tinycolor` and `wordwrap` is *so* trivial that I'll probably just write it out in future versions. I used them temporarily to save me time writing it. :)
 
-#To Do (Sorted by priority)
-- [ ] Build an interface
+# To Do (Sorted by priority)
+- [x] Build an interface
   - [x] Change input method to something other than prompt
   - [x] Allow starting anew without refreshing page
-  - [ ] Create small info button that explains the project, controls, etc.
+  - [x] Create small info button that explains the project, controls, etc.
+    - [x] Render this README into the help dialo
 - [x] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs. This will be accomplished by highlighting all nodes and edges taken in blues, instead of oranges.
 	- [x] Only highlight edges directly in the path
 - [x] mobile optimization
@@ -42,10 +43,10 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 - [ ] Remove dependance on libraries
 	- [x] jQuery
 	- [ ] wordwrap
-	- [ ] tinycolor 
+	- [ ] tinycolor
 - [x] Move JavaScript to separate files from HTML
 - [ ] Make API requests asynchronous
 
-#Credits
+# Credits
 Powered mainly by [vis.js](visjs.org) and [BeautifulSoup](crummy.com/software/BeautifulSoup/), with only minor usage of other libraries ([tinycolor](github.com/bgrins/TinyColor), [jQuery](jquery.com), and [wordwrap](phpjs.org/functions/wordwrap)).
-Rendering of this document into the help modal is done via [marked](github.com/chjj/marked)
+Rendering of this document into the help modal is done via a modified version of [marked](github.com/chjj/marked) that supports task lists.

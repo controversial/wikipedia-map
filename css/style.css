@@ -48,7 +48,7 @@ button[type=button]:active {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   z-index: 1;
   /* Appearance */
   background:rgba(255,255,255,0.5);
@@ -74,12 +74,24 @@ button[type=button]:active {
 }
 
 .modal-content {
-  /* Positioning */ 
-  margin: 15% auto;
+  /* Positioning */
+  margin: 0 auto;
+  margin-top: 10vh;
   padding: 20px;
-  width: 80%;
+  width: 50vw;
+  height: 75vh;
+  /* Allow scrolling */
+  overflow-y: auto;
+  overflow-x: hidden;
   /* Appearance */
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 15px;
+}
+
+img {
+  /* Auto-resize images to fit their container */
+  max-width: 100%;
+  height: auto;
+  width: auto\9; /*ie8*/
 }
