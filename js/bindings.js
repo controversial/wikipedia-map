@@ -6,10 +6,9 @@
 // Bind actions within the network
 // Open a node when clicked
 network.on("doubleClick", function (params) {
-  console.log("doubleclick!")
+  console.log("doubleclick!");
   if (params.nodes.length) { //Did the click occur on a node?
     var page = params.nodes[0]; //The node clicked
-    console.log("expanding "+page);
     expandNode(page);
   }
 });
@@ -19,8 +18,6 @@ network.on("click", function (params) {
   if (params.nodes.length) { //Was the click on a node?
     //The node clicked
     var page = params.nodes[0];
-    //Re-orange all nodes
-    resetProperties();
     //Highlight in blue all nodes tracing back to central node
     traceBack(page);
   } else {
