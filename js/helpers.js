@@ -4,7 +4,7 @@
 
 // -- GLOBAL VARIABLES -- //
 var isReset = true;
-
+var selectedNode = null;
 
 // -- HELPER FUNCTIONS -- //
 
@@ -110,6 +110,7 @@ function getTraceBackEdges(tbnodes) {
 //Reset the color of all nodes, and width of all edges.
 function resetProperties() {
   if (!isReset) {
+    selectedNode = null;
     //Reset node color
     var nodeids = nodes.getIds();
     for (var i=0; i<nodeids.length; i++) {
@@ -130,21 +131,25 @@ function resetProperties() {
 
 //Highlight the path from a given node back to the central node.
 function traceBack(node) {
-  resetProperties();
-  var tracenodes = getTraceBackNodes(node);
-  var traceedges = getTraceBackEdges(tracenodes);
-  //Color nodes blue
-  for (var i=0; i<tracenodes.length; i++) {
-    var pagename = tracenodes[i];
-    var node = nodes.get(pagename); //The node we're iterating on
-    var level = node.level;
-    colorNode(node, getBlueColor(level));
-  }
-  //Widen edges
-  for (var i=0; i<traceedges.length; i++) {
-    var edgeid = traceedges[i];
-    var edge = edges.get(edgeid); //The node we're iterating on
-    edge.color = {inherit:"to"}
-    edgeWidth(edge,5);
+  if (node != selectedNode) {
+    console.log("highlighting");
+    selectedNode = node;
+    resetProperties();
+    var tracenodes = getTraceBackNodes(node);
+    var traceedges = getTraceBackEdges(tracenodes);
+    //Color nodes blue
+    for (var i=0; i<tracenodes.length; i++) {
+      var pagename = tracenodes[i];
+      var node = nodes.get(pagename); //The node we're iterating on
+      var level = node.level;
+      colorNode(node, getBlueColor(level));
+    }
+    //Widen edges
+    for (var i=0; i<traceedges.length; i++) {
+      var edgeid = traceedges[i];
+      var edge = edges.get(edgeid); //The node we're iterating on
+      edge.color = {inherit:"to"}
+      edgeWidth(edge,5);
+    }
   }
 }
