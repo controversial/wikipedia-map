@@ -3,16 +3,15 @@
 
 
 // Is the user on a touch device?
-
 var isTouchDevice = 'ontouchstart' in document.documentElement;
 
+//Functions that will be used as bindings
 function expandEvent (params) { // Expand a node (with event handler)
   if (params.nodes.length) { //Did the click occur on a node?
     var page = params.nodes[0]; //The node clicked
     expandNode(page);
   }
 }
-
 function mobileTraceEvent (params) { // Trace back a node (with event handler)
   if (params.nodes.length) { //Was the click on a node?
     //The node clicked
@@ -24,19 +23,15 @@ function mobileTraceEvent (params) { // Trace back a node (with event handler)
   }
 }
 
-
+// Bind the network events
 if (isTouchDevice) { // Device has touchscreen
   network.on("hold", expandEvent);
   //Highlight traceback on click
   network.on("click",mobileTraceEvent);
 } else { // Device does not have touchscreen
-  network.on("click", expandEvent);
-  network.on("hoverNode", function(params) {
-    console.log("hover");
-    var page = params.node;
-    traceBack(page);
-  });
-  network.on("blurNode", resetProperties);
+  network.on("click", expandEvent); // Expand on click
+  network.on("hoverNode", function(params){traceBack(params.node)} ); // Highlight on hover
+  network.on("blurNode", resetProperties); // Reset on un-hover
 }
 
 

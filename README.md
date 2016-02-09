@@ -43,12 +43,14 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 - [x] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs. This will be accomplished by highlighting all nodes and edges taken in blues, instead of oranges.
 	- [x] Only highlight edges directly in the path
 - [x] mobile optimization
+  - [x] Implement a separate set of controls for touch devices
+- [ ] For very large networks, adjust the gradient on farther out nodes to be more gradual, so that fewer nodes are absolutely white.
 - [x] Improve efficiency of highlighting the nodes
     - [x] Single-click to expand, hover to highlight path back.
 - [x] `.gitignore`-ify the libraries directory, no reason for it to be in here when I didn't write that stuff.
-- [ ] Remove dependance on libraries
+- [ ] Remove dependance on some external libraries
 	- [x] jQuery
-	- [ ] wordwrap
+	- [x] wordwrap
 	- [ ] tinycolor
 - [x] Move JavaScript to separate files from HTML
 - [ ] Make API requests asynchronous
