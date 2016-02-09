@@ -25,6 +25,8 @@ var network = new vis.Network(container,data,options);
 
 //Reset the network to be new each time.
 function resetNetwork(startpage) {
+  tracenodes = [];
+  traceedges = [];
   // -- CREATE NETWORK -- //
   //Make a container
   nodes = new vis.DataSet([{id:startpage,label:wordwrap(startpage,20),

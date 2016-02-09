@@ -127,6 +127,8 @@ function resetProperties() {
       edge.color = "#C9895F";
       edgeWidth(edge,1);
     }
+    tracenodes = [];
+    traceedges = [];
   }
 }
 
