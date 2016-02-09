@@ -6,7 +6,6 @@
 // Bind actions within the network
 // Open a node when clicked
 network.on("doubleClick", function (params) {
-  console.log("doubleclick!");
   if (params.nodes.length) { //Did the click occur on a node?
     var page = params.nodes[0]; //The node clicked
     expandNode(page);
