@@ -1,4 +1,11 @@
-/* The network */
+/* == GLOBAL STYLES == */
+* {
+  overflow:hidden; /* Nothing should scroll unless specified otherwise */
+}
+
+
+
+/* == THE NETWORK == */
 #container {
   /* Same size as window */
   width: 100vw;
@@ -11,36 +18,8 @@
 }
 
 
-/* The input box */
-input[type=text] {
-  /* Border */
-  outline: none;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  /* Other */
-  padding: 5px;
-  font-size:18px;
-  -webkit-appearance: none;
-}
 
-/* The submit button */
-button[type=button] {
-  /* Color */
-  color: #666;
-  background-color: #fff;
-  /* Border */
-  outline: none;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  /* Other */
-  padding: 5px;
-  font-size:18px;
-
-}
-button[type=button]:active {
-  background-color: #f5f5f5;
-}
-
+/* == TOP CONTROLS == */
 /* The box that holds the button and input */
 #formbox {
   padding: 10px;
@@ -56,8 +35,39 @@ button[type=button]:active {
   -webkit-backdrop-filter: blur(5px); /* Blur behind bar */
 }
 
+/* The input box */
+input[type=text] {
+  /* Border */
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  /* Other */
+  padding: 5px;
+  font-size:18px;
+  -webkit-appearance: none;
+}
+
+/* The buttons */
+button[type=button] {
+  /* Color */
+  color: #666;
+  background-color: #fff;
+  /* Border */
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  /* Other */
+  padding: 5px;
+  font-size:18px;
+}
+
+button[type=button]:active {
+  background-color: #f5f5f5;
+}
 
 
+
+/* == MODAL HELP POPUP == */
 /* The modal about popup */
 .modal {
   /* Positioning */
@@ -87,11 +97,4 @@ button[type=button]:active {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 15px;
-}
-
-img {
-  /* Auto-resize images to fit their container */
-  max-width: 100%;
-  height: auto;
-  width: auto\9; /*ie8*/
 }
