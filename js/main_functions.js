@@ -113,3 +113,8 @@ function traceBack(node) {
     }
   }
 }
+
+function openPage(page) {
+  var page = "http://en.wikipedia.org/wiki/"+page;
+  window.open(page, '_blank');
+}

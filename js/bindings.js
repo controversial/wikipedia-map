@@ -23,6 +23,13 @@ function mobileTraceEvent (params) { // Trace back a node (with event handler)
   }
 }
 
+function openPageEvent (params) {
+  if (params.nodes.length) {
+    var page = params.nodes[0];
+    openPage(page);
+  }
+}
+
 // Bind the network events
 if (isTouchDevice) { // Device has touchscreen
   network.on("hold", expandEvent);
@@ -34,6 +41,8 @@ if (isTouchDevice) { // Device has touchscreen
   network.on("blurNode", resetProperties); // Reset on un-hover
 }
 
+//Bind double-click to open page
+network.on("doubleClick", openPageEvent);
 
 
 // Bind actions for search component.
