@@ -17,7 +17,7 @@ var options = {
   interaction:{
     hover: true,
     hoverConnectedEdges: false,
-    selectConnectedEdges: false,
+    selectConnectedEdges: true,
   }
 };
 
