@@ -34,21 +34,27 @@ The underlying script, in `wikipedia_parse.py`, uses `BeautifulSoup` to parse th
 #### The main page
 I suck at JavaScript, which is why I wrote a lot of the underlying code in Python. However, the main page is written mostly in JavaScript. It uses `vis.js` to display the graph. Every time a node is double-clicked, it uses `jQuery` to make an ajax request to the Flask API. The results are word-wrapped with [wordwrap](phpjs.org/functions/wordwrap)), and then stuck on nodes which are colored with [tinycolor](github.com/bgrins/TinyColor) (Honestly, the use of `jQuery`, `tinycolor` and `wordwrap` is *so* trivial that I'll probably just write it out in future versions. I used them temporarily to save me time writing it. :)
 
-## To Do (Sorted by priority)
+## To Do
+
+#### Interface
 - [x] Build an interface
   - [x] Change input method to something other than prompt
   - [x] Allow starting anew without refreshing page
   - [x] Create small info button that explains the project, controls, etc.
     - [x] Render this README into the help dialog
-- [x] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs. This will be accomplished by highlighting all nodes and edges taken in blues, instead of oranges.
+
+#### Interaction
+- [x] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs. This will be accomplished by highlighting all nodes and edges taken in blues, instead of oranges
 	- [x] Only highlight edges directly in the path
-- [x] mobile optimization
-  - [x] Implement a separate set of controls for touch devices
-- [ ] For very large networks, adjust the gradient on farther out nodes to be more gradual, so that fewer nodes are absolutely white.
+- [x] mobile optimization: Implement a separate set of controls for touch devices
+- [x] On desktop, single-click to expand, hover to highlight path back
+- [x] On both desktop and mobile, double-click a node to open the corresponding wikipedia page in a new tab
 - [x] Improve efficiency of highlighting the nodes
-    - [x] Single-click to expand, hover to highlight path back.
-- [x] `.gitignore`-ify the libraries directory, no reason for it to be in here when I didn't write that stuff.
-- [x] Remove dependance on some external libraries
+
+
+#### Technical
+- [x] `.gitignore`-ify the libraries directory, no reason for it to be in here when I didn't write that stuff
+- [x] Remove dependance on some external libraries:
 	- [x] jQuery
 	- [x] wordwrap
 	- [x] tinycolor

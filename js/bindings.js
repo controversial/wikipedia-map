@@ -26,7 +26,8 @@ function mobileTraceEvent (params) { // Trace back a node (with event handler)
 function openPageEvent (params) {
   if (params.nodes.length) {
     var page = params.nodes[0];
-    openPage(page);
+    var url = "http://en.wikipedia.org/wiki/"+page;
+    window.open(url, '_blank');
   }
 }
 
