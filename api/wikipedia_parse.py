@@ -7,8 +7,7 @@ opener = urllib2.build_opener()
 opener.addheaders = [('User-agent', 'Mozilla/5.0')]
 
 def get_url(pagename):
-    #Use wikipedia API to get the url from a pagename (even if it's not exact)
-    return "https://en.wikipedia.org/wiki/"+pagename
+    return "https://en.wikipedia.org/wiki/"+urllib2.quote(pagename)
 
 def get_page_title(url):
     #The last element of the URL is always the title. Allow for both URLs that
