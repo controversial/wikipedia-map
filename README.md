@@ -32,7 +32,7 @@ When you double click a node, a request is made to a Flask server (under the `ap
 The underlying script, in `wikipedia_parse.py`, uses `BeautifulSoup` to parse through the HTML of wikipedia pages. It looks for the `<div>` element with an `id` of `mw-content-text`, which contains page content. Then, it finds the first `<p>` tag directly under that, excluding the coordinates which are sometimes at the top right. Under this tag, it simply looks at all links, and extracts the page title from each of these links.
 
 #### The main page
-I suck at JavaScript, which is why I wrote a lot of the underlying code in Python. However, the main page is written mostly in JavaScript. It uses `vis.js` to display the graph. Every time a node is double-clicked, it uses `jQuery` to make an ajax request to the Flask API. The results are word-wrapped with [wordwrap](phpjs.org/functions/wordwrap)), and then stuck on nodes which are colored with [tinycolor](github.com/bgrins/TinyColor) (Honestly, the use of `jQuery`, `tinycolor` and `wordwrap` is *so* trivial that I'll probably just write it out in future versions. I used them temporarily to save me time writing it. :)
+I suck at JavaScript, which is why I wrote a lot of the underlying code in Python. However, the main page is written mostly in JavaScript. It uses `vis.js` to display the graph. Every time a node is double-clicked, it makes an ajax request to the Flask API. The results are word-wrapped, and then stuck under nodes which are colored according to their distance from the central node. Lighter node colors indicate weaker connections to the central topic.
 
 ## To Do
 
@@ -44,8 +44,7 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
     - [x] Render this README into the help dialog
 
 #### Interaction
-- [x] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs. This will be accomplished by highlighting all nodes and edges taken in blues, instead of oranges
-	- [x] Only highlight edges directly in the path
+- [x] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs
 - [x] mobile optimization: Implement a separate set of controls for touch devices
 - [x] On desktop, single-click to expand, hover to highlight path back
 - [x] On both desktop and mobile, double-click a node to open the corresponding wikipedia page in a new tab
