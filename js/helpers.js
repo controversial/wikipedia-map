@@ -4,6 +4,13 @@
 
 // -- MISCELLANEOUS FUNCTIONS -- //
 
+//Get the level of the highest level node that exists in the graph
+function maxLevel() {
+  var ids = nodes.getIds();
+  levels = ids.map(function(x){return nodes.get(x).level});
+  return Math.max.apply(null, levels);
+}
+
 //Convert a hex value to RGB
 function hexToRGB(hex) {
   if (hex[0] == "#"){hex = hex.slice(1,hex.length)} // Remove leading #
@@ -26,11 +33,12 @@ function lightenHex(hex,percent) {
 
 //Get the color for a node, lighten an orange based on level. Subtle.
 function getColor(level) {
-  return lightenHex("#fcb587",10*level); //Gets 10% lighter for each level
+  return lightenHex("#fcb587",5*level); //Gets 10% lighter for each level
 }
+
 //Get the highlighted color for a node, lighten a blue based on level. Subtle.
 function getBlueColor(level) {
-  return lightenHex("#87b5fc",10*level); //Gets 10% lighter for each level
+  return lightenHex("#87b5fc",5*level); //Gets 10% lighter for each level
 }
 
 function wordwrap(text,limit) {
