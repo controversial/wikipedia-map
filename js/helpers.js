@@ -4,15 +4,33 @@
 
 // -- MISCELLANEOUS FUNCTIONS -- //
 
+//Convert a hex value to RGB
+function hexToRGB(hex) {
+  if (hex[0] == "#"){hex = hex.slice(1,hex.length)} // Remove leading #
+  strips=[hex.slice(0,2),hex.slice(2,4),hex.slice(4,6)]; // Cut up into 2-digit strips
+  return strips.map(function(x){return parseInt(x,16)}); // To RGB
+}
+function rgbToHex(rgb) {
+  var hexvals = rgb.map(function(x){return Math.round(x).toString(16)});
+  return "#"+hexvals.join("");
+}
+// Lighten a given hex color by %
+function lightenHex(hex,percent) {
+  var rgb = hexToRGB(hex); // Convert to RGB
+  if (percent>100){percent=100;}; //Limit to 100%
+  var newRgb = rgb.map(function(x){
+    return x+percent/100.0*(255-x); // This works because math.
+  });
+  return rgbToHex(newRgb); //and back to hex
+}
+
 //Get the color for a node, lighten an orange based on level. Subtle.
 function getColor(level) {
-  var color = tinycolor("fcb587");
-  return color.lighten(2*level).toString();
+  return lightenHex("#fcb587",10*level); //Gets 10% lighter for each level
 }
 //Get the highlighted color for a node, lighten a blue based on level. Subtle.
 function getBlueColor(level) {
-  var color = tinycolor("87b5fc"); //Note this is orange with RGB reversed.
-  return color.lighten(2*level).toString();
+  return lightenHex("#87b5fc",10*level); //Gets 10% lighter for each level
 }
 
 function wordwrap(text,limit) {
