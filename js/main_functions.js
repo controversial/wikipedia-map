@@ -33,7 +33,7 @@ function expandNode(page) {
       var edgeID = page+"-"+subpage
       if (edges.getIds().indexOf(edgeID) == -1) { //Don't create duplicate edges in same direction
         newedges.push({id:page+"-"+subpage, from: page, to: subpage,
-                       color:"#C9895F", selectionWidth:2});
+                       color:"#C9895F",selectionWidth:2, hoverWidth:0});
       }
     }
     //Add the stuff to the nodes array
