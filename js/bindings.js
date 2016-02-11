@@ -85,3 +85,9 @@ modal.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+//Allow scrolling in the modal conntent
+var modalcontent = document.getElementById("modal-content");
+modalcontent.ontouchmove = function(event) {
+  event.stopPropagation();
+}
