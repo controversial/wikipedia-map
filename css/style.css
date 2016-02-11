@@ -63,11 +63,13 @@ button[type=button] {
 button[type=button]:active {
   background-color: #f5f5f5;
 }
-/* The about button should be pinned to the right side of the bar */
+
+/* The about button should be in the bottom right */
 #about {
   position: fixed;
-  bottom: 5;
-  right: 5;
+  bottom: 5px;
+  right: 5px;
+  z-index: 2;
 }
 
 
@@ -76,7 +78,7 @@ button[type=button]:active {
 .modal {
   /* Positioning */
   position: fixed;
-  z-index: 2;
+  z-index: 3;
   top: 0;
   left: 0;
   width: 100vw;
