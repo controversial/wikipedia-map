@@ -92,14 +92,12 @@ button[type=button]:active {
 .modal-content {
   /* Positioning */
   padding: 20px;
-  width: 80vw;
-  height: 80vh;
-  top: 50%;
-  left: 50%;
-  margin: margin:-40vw 0 0 -40vh;
+  position:absolute;
+  height:auto;
+  bottom:0;top:0;left:0;right:0;
+  margin: 10vh;
   /* Allow scrolling */
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: scroll;
   /* Appearance */
   background-color: #fff;
   border: 1px solid #ccc;
