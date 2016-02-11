@@ -27,6 +27,12 @@ def get_wiki_soup(url):
     #Specify parser to hide error message
     return bs4.BeautifulSoup(data,"html.parser")
 
+def get_random_article():
+  randomurl="https://en.wikipedia.org/wiki/Special:Random"
+  o = opener.open(randomurl)
+  pageurl = o.geturl()
+  return pageurl.split("/")[-1]
+
 def first_paragraph_links(page):
     soup=get_wiki_soup(get_url(page))
     #Div with content in it
@@ -57,3 +63,4 @@ def first_paragraph_links(page):
 
 if __name__ == "__main__":
     print first_paragraph_links("Wikimedia Foundation")
+    print get_random_article()

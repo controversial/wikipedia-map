@@ -16,5 +16,9 @@ def getPageName():
     page=request.args.get("page")
     return json.dumps(get_page_name(page))
 
+@app.route('/random')
+def randomArticle():
+  return get_random_article()
+
 if __name__ == "__main__":
     app.run()
