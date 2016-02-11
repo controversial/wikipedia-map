@@ -80,8 +80,8 @@ aboutButton.onclick = function() {
   modal.style.display = "block";
 }
 
-window.onclick = function(event) {
-  if (event.target.className == "modal") { //Clicked outside modal
+modal.onclick = function(event) {
+  if (event.target.className == "modal") { //Clicking on modal-content won't hide it
     modal.style.display = "none";
   }
 }
