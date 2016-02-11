@@ -65,8 +65,9 @@ button[type=button]:active {
 }
 /* The about button should be pinned to the right side of the bar */
 #about {
-  float: right;
-  margin-right: 15px;
+  position: fixed;
+  bottom: 5;
+  right: 5;
 }
 
 
@@ -88,11 +89,12 @@ button[type=button]:active {
 
 .modal-content {
   /* Positioning */
-  margin: 0 auto;
-  margin-top: 10vh;
   padding: 20px;
-  width: 50vw;
-  height: 75vh;
+  width: 80vw;
+  height: 80vh;
+  top: 50%;
+  left: 50%;
+  margin: margin:-40vw 0 0 -40vh;
   /* Allow scrolling */
   overflow-y: auto;
   overflow-x: hidden;
