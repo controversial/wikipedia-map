@@ -1,4 +1,5 @@
 #!/usr/local/bin/python
+from __future__ import unicode_literals
 import bs4
 import urllib2
 
