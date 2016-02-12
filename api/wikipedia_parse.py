@@ -9,7 +9,7 @@ opener = urllib2.build_opener()
 opener.addheaders = [('User-agent', 'Mozilla/5.0')]
 
 def get_url(pagename):
-    return "https://en.wikipedia.org/wiki/"+urllib2.quote(unicode(pagename).encode("utf-8"))
+    return "https://en.wikipedia.org/wiki/"+urllib2.quote(pagename.encode("utf-8"))
 
 def get_page_title(url):
     #The last element of the URL is always the title. Allow for both URLs that
