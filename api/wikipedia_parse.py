@@ -48,8 +48,8 @@ def first_paragraph_links(page):
     if "id" in firstlink.parent.attrs and firstlink.parent["id"]=="coordinates":
         paragraph1=paragraphs[1]
 
-    #Find all links from the first paragraph
-    links = [link.get("href") for link in paragraph1.find_all("a")]
+    #Find all links from the first paragraph (no duplicates)
+    links = list(set([link.get("href") for link in paragraph1.find_all("a")]))
     #Exclude links that tag points later in the article, and return the page title.
     pagenames = [str(l.split("/")[-1]) for l in links if l.startswith("/wiki/")]
     #Remove files
@@ -57,9 +57,7 @@ def first_paragraph_links(page):
     #Remove underscores
     pagenames = [pn.replace("_"," ") for pn in pagenames]
     #Remove fragment identifiers
-    pagenames = [pn.rsplit("#")[0] for pn in pagenames]
-    #Remove percent codes
-    return list(set([urllib2.unquote(pn) for pn in pagenames]))
+    return [pn.rsplit("#")[0] for pn in pagenames]
 
 
 
