@@ -69,6 +69,12 @@ submitButton.onclick = function() {
   resetNetwork(startpage);
 }
 
+var randomButton = document.getElementById('random');
+randomButton.onclick = function() {
+  var pagename = getRandomName();
+  startpage = getPageName(pagename);
+  resetNetwork(startpage);
+}
 
 
 

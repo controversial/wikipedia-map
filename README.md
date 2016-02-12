@@ -42,7 +42,7 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
   - [x] Allow starting anew without refreshing page
   - [x] Create small info button that explains the project, controls, etc.
     - [x] Render this README into the help dialog
-  - [ ] Add a "Random Article" button
+  - [x] Add a "Random Article" button
 #### Interaction
 - [x] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs
 - [x] mobile optimization: Implement a separate set of controls for touch devices
