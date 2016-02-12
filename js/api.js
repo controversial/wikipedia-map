@@ -35,3 +35,7 @@ function getSubPages(page) {
 function getPageName(query) {
   return apiRequest("pagename",query);
 }
+
+function getRandomName() {
+  return requestPage("api/random");
+}
