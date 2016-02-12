@@ -43,6 +43,8 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
   - [x] Create small info button that explains the project, controls, etc.
     - [x] Render this README into the help dialog
   - [x] Add a "Random Article" button
+
+
 #### Interaction
 - [x] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs
 - [x] mobile optimization: Implement a separate set of controls for touch devices
