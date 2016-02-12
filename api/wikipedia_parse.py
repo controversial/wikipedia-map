@@ -1,4 +1,5 @@
 #!/usr/local/bin/python
+# coding: utf-8
 from __future__ import unicode_literals
 import bs4
 import urllib2
@@ -8,7 +9,7 @@ opener = urllib2.build_opener()
 opener.addheaders = [('User-agent', 'Mozilla/5.0')]
 
 def get_url(pagename):
-    return "https://en.wikipedia.org/wiki/"+urllib2.quote(pagename)
+    return "https://en.wikipedia.org/wiki/"+urllib2.quote(pagename.encode("utf-8"))
 
 def get_page_title(url):
     #The last element of the URL is always the title. Allow for both URLs that
@@ -63,5 +64,4 @@ def first_paragraph_links(page):
 
 
 if __name__ == "__main__":
-    print first_paragraph_links("Wikimedia Foundation")
-    print get_random_article()
+    print first_paragraph_links("Zürich")
