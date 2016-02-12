@@ -28,8 +28,7 @@ function apiRequest(api,page) {
 
 //Get the name of all pages linked to by a page
 function getSubPages(page) {
-  var links = apiRequest("links",page);
-  return links.map(decodeURI);
+  return links = apiRequest("links",page);
 }
 
 //Get the name of the wikipedia article for a query
