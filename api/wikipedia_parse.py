@@ -1,4 +1,5 @@
 #!/usr/local/bin/python
+# coding: utf-8
 from __future__ import unicode_literals
 import bs4
 import urllib2
@@ -8,7 +9,7 @@ opener = urllib2.build_opener()
 opener.addheaders = [('User-agent', 'Mozilla/5.0')]
 
 def get_url(pagename):
-    return "https://en.wikipedia.org/wiki/"+urllib2.quote(pagename)
+    return "https://en.wikipedia.org/wiki/"+urllib2.quote(unicode(pagename).encode("utf-8"))
 
 def get_page_title(url):
     #The last element of the URL is always the title. Allow for both URLs that
@@ -47,8 +48,8 @@ def first_paragraph_links(page):
     if "id" in firstlink.parent.attrs and firstlink.parent["id"]=="coordinates":
         paragraph1=paragraphs[1]
 
-    #Find all links from the first paragraph
-    links = [link.get("href") for link in paragraph1.find_all("a")]
+    #Find all links from the first paragraph (no duplicates)
+    links = list(set([link.get("href") for link in paragraph1.find_all("a")]))
     #Exclude links that tag points later in the article, and return the page title.
     pagenames = [str(l.split("/")[-1]) for l in links if l.startswith("/wiki/")]
     #Remove files
@@ -56,12 +57,9 @@ def first_paragraph_links(page):
     #Remove underscores
     pagenames = [pn.replace("_"," ") for pn in pagenames]
     #Remove fragment identifiers
-    pagenames = [pn.rsplit("#")[0] for pn in pagenames]
-    #Remove percent codes
-    return list(set([urllib2.unquote(pn) for pn in pagenames]))
+    return [pn.rsplit("#")[0] for pn in pagenames]
 
 
 
 if __name__ == "__main__":
-    print first_paragraph_links("Wikimedia Foundation")
-    print get_random_article()
+    print first_paragraph_links("Zürich")
