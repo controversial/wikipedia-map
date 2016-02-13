@@ -34,5 +34,7 @@ function getPageName(query,onSuccess) {
 }
 
 function getRandomName(onSuccess) {
-  getPageName(requestPage("api/random",onSuccess));
+  requestPage("api/random",function(resp){
+    getPageName(resp,onSuccess)
+  });
 }
