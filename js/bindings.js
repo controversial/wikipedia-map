@@ -12,6 +12,7 @@ function expandEvent (params) { // Expand a node (with event handler)
     expandNode(page);
   }
 }
+
 function mobileTraceEvent (params) { // Trace back a node (with event handler)
   if (params.nodes.length) { //Was the click on a node?
     //The node clicked
@@ -55,8 +56,7 @@ inputBox.onkeypress = function(e) {
   var charCode = event.which || event.keyCode;
   if ( charCode == '13' ) { //Enter was pressed inside dialog
     var pagename = document.getElementById('pageName').value || "Wikipedia";
-    startpage = getPageName(pagename);
-    resetNetwork(startpage);
+    getPageName(pagename,resetNetwork);
   }
 }
 
@@ -65,8 +65,7 @@ var submitButton = document.getElementById('submit');
 
 submitButton.onclick = function() {
   var pagename = document.getElementById('pageName').value || "Wikipedia";
-  startpage = getPageName(pagename);
-  resetNetwork(startpage);
+  getPageName(pagename,resetNetwork);
 }
 
 var randomButton = document.getElementById('random');

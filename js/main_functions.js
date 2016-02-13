@@ -10,11 +10,11 @@ var tracenodes = [];
 // ---------------------- //
 
 
-//Expand the node for a page
-function expandNode(page) {
+// AJAX callback to add to a node once data is recieved
+function expandNodeCallback(page,data) {
   var node = nodes.get(page) //The node that was clicked
   var level = node.level + 1 //Level for new nodes is one more than parent
-  var subpages = getSubPages(page); //Call python Flask API for subpages
+  var subpages = data; //Data returned from AJAX call
 
   if (!subpages) {
     grayOut(page);
@@ -40,6 +40,11 @@ function expandNode(page) {
     nodes.add(subnodes);
     edges.add(newedges);
   }
+}
+//Expand a node without freezing other stuff
+function expandNode(page) {
+  getSubPages(page,
+    function(data) {expandNodeCallback(page,data)});
 }
 
 //Get all the nodes tracing back to the start node.
