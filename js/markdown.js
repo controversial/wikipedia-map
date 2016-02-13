@@ -1,8 +1,11 @@
 // This script contains the code necessary to load the modal with the README
 
 
-//Read README.md, render it to HTML, and set the modal content to that.
-var readme = requestPage("README.md"); //Read README.md
-var readmeHTML = marked(readme); //Render README from markdown to HTML
-var modalContent = document.getElementById("modal-content");
-modalContent.innerHTML = readmeHTML;
+//Render `data` and load it into the modal
+function loadHTML(data) {
+  var readmeHTML = marked(data); //Render README from markdown to HTML
+  var modalContent = document.getElementById("modal-content");
+  modalContent.innerHTML = readmeHTML;
+}
+
+requestPage("README.md",loadHTML); //Read README.md
