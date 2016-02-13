@@ -4,38 +4,35 @@
 
 
 //Make a synchronous request and return the response
-function requestPage(url) {
+function requestPage(url, onSuccess) {
   var data = null;
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
-      data = xhttp.responseText;
+      onSuccess(xhttp.responseText);
     }
   }
-  xhttp.open("GET",url,false);
+  xhttp.open("GET",url,true);
   xhttp.send();
-  return data;
 }
 
-//Make an AJAX request to the server
-function apiRequest(api,page) {
+//Make an AJAX request to the server while passing a page
+function apiRequest(api,page,onSuccess) {
   var url="api/"+api+"?page="+page;
-  var response = requestPage(url);
-  var data = JSON.parse(response);
-  return data;
+  requestPage(url, function (data){onSuccess(JSON.parse(data))});
 }
 
 
 //Get the name of all pages linked to by a page
-function getSubPages(page) {
-  return links = apiRequest("links",page);
+function getSubPages(page,onSuccess) {
+  apiRequest("links",page,onSuccess);
 }
 
 //Get the name of the wikipedia article for a query
-function getPageName(query) {
-  return apiRequest("pagename",query);
+function getPageName(query,onSuccess) {
+  apiRequest("pagename",query,onSuccess);
 }
 
-function getRandomName() {
-  return requestPage("api/random");
+function getRandomName(onSuccess) {
+  requestPage("api/random",onSuccess);
 }
