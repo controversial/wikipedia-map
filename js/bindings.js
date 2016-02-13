@@ -70,9 +70,7 @@ submitButton.onclick = function() {
 
 var randomButton = document.getElementById('random');
 randomButton.onclick = function() {
-  var pagename = getRandomName();
-  startpage = getPageName(pagename);
-  resetNetwork(startpage);
+  getRandomName(resetNetwork);
 }
 
 
