@@ -29,7 +29,8 @@ var network = new vis.Network(container,data,options);
 
 
 //Reset the network to be new each time.
-function resetNetwork(startpage) {
+function resetNetwork(start) {
+  startpage = start
   tracenodes = [];
   traceedges = [];
   // -- CREATE NETWORK -- //
