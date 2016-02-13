@@ -87,12 +87,12 @@ aboutButton.onclick = function() {
 }
 
 modal.onclick = function(event) {
-  if (event.target.className == "modal") { //Clicking on modal-content won't hide it
+  if (event.target.id == "modal") { //Clicking on modal-content won't hide it
     modal.style.display = "none";
   }
 }
 
-//Allow scrolling in the modal conntent
+//Allow scrolling in the modal conntent for touch devices
 var modalcontent = document.getElementById("modal-content");
 modalcontent.ontouchmove = function(event) {
   event.stopPropagation();

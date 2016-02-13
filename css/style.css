@@ -5,8 +5,8 @@
 
 
 
-/* == THE NETWORK == */
-#container {
+/* == Class for making divs strech the full screen == */
+.fullscreen {
   /* Same size as window */
   width: 100vw;
   height: 100vh;
@@ -91,12 +91,7 @@ button[type=button]:active {
 /* The modal about popup */
 .modal {
   /* Positioning */
-  position: fixed;
   z-index: 3;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
   /* Initially hide */
   display: none;
   /* Appearance */
