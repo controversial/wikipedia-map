@@ -37,14 +37,14 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 ## To Do
 
 #### Interface
-- [x] Build an interface
+- [x] Build a GUI
   - [x] Change input method to something other than prompt
   - [x] Allow starting anew without refreshing page
   - [x] Create small info button that explains the project, controls, etc.
     - [x] Render this README into the help dialog
     - [ ] The area with the network should contain instructions when it is blank
   - [x] Add a "Random Article" button
-
+- [ ] While waiting for a node to expand, show a spinner on it to indicate progress is happening
 
 #### Interaction
 - [x] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs
@@ -61,7 +61,7 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 	- [x] wordwrap
 	- [x] tinycolor
 - [x] Move JavaScript to separate files from HTML
-- [ ] Make API requests asynchronous
+- [x] Make API requests asynchronous
 
 ## Credits
 Powered mainly by [vis.js](visjs.org) and [BeautifulSoup](crummy.com/software/BeautifulSoup/).
