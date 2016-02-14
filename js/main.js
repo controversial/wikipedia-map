@@ -2,7 +2,7 @@
 // a function for resetting it to a brand new page.
 
 
-var nodes, edges, startpage //Global variables
+var nodes, edges, startpage, network //Global variables
 
 var container = document.getElementById('container');
 //Global options
@@ -24,13 +24,21 @@ var options = {
 var nodes = new vis.DataSet();
 var edges = new vis.DataSet();
 var data = {nodes:nodes,edges:edges};
+var initialized = false
+
+
 //Make the network
-var network = new vis.Network(container,data,options);
+function makeNetwork() {
+  network = new vis.Network(container,data,options);
+  bindNetwork();
+  initialized=true;
+}
 
 
 //Reset the network to be new each time.
 function resetNetwork(start) {
-  startpage = start
+  if (!initialized){makeNetwork()};
+  startpage = start;
   tracenodes = [];
   traceedges = [];
   // -- CREATE NETWORK -- //
