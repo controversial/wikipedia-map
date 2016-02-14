@@ -18,7 +18,8 @@ Single-clicking a node will highlight in blue the path back to the central node.
 ![](http://i.imgur.com/1xH3sri.png)
 Note that this is not necessarily the shortest path back, but the path that you took to reach the node. Regardless of whether a shorter path back exists, the path by which the node was created will be shown. This is by design.
 
-It has full support for touch devices and mobile browsers.
+It has full support for touch devices and mobile browsers:
+![](http://i.imgur.com/30TJSBy.jpg)
 
 ## Cloning
 Note: If you want to clone this, you'll have to replace the `github-markdown.css` file with the file at the link, and you'll have to manually create the `libraries` folder. This repo is designed to reflect only the code that I've actually written, as much as possible.
