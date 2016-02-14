@@ -33,19 +33,20 @@ function openPageEvent (params) {
 }
 
 // Bind the network events
-if (isTouchDevice) { // Device has touchscreen
-  network.on("hold", expandEvent);
-  //Highlight traceback on click
-  network.on("click",mobileTraceEvent);
-} else { // Device does not have touchscreen
-  network.on("click", expandEvent); // Expand on click
-  network.on("hoverNode", function(params){traceBack(params.node)} ); // Highlight on hover
-  network.on("blurNode", resetProperties); // Reset on un-hover
+function bindNetwork(){
+  if (isTouchDevice) { // Device has touchscreen
+    network.on("hold", expandEvent);
+    //Highlight traceback on click
+    network.on("click",mobileTraceEvent);
+  } else { // Device does not have touchscreen
+    network.on("click", expandEvent); // Expand on click
+    network.on("hoverNode", function(params){traceBack(params.node)} ); // Highlight on hover
+    network.on("blurNode", resetProperties); // Reset on un-hover
+  }
+
+  //Bind double-click to open page
+  network.on("doubleClick", openPageEvent);
 }
-
-//Bind double-click to open page
-network.on("doubleClick", openPageEvent);
-
 
 // Bind actions for search component.
 var inputBox = document.getElementById('pageName');
