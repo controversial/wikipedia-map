@@ -48,50 +48,58 @@ function bindNetwork(){
   network.on("doubleClick", openPageEvent);
 }
 
-// Bind actions for search component.
-var inputBox = document.getElementById('pageName');
+window.onload = function() {
 
-//Bind the event of pressing enter inside the text box
-inputBox.onkeypress = function(e) {
-  var event = e || window.event;
-  var charCode = event.which || event.keyCode;
-  if ( charCode == '13' ) { //Enter was pressed inside dialog
+  // Prevent iOS scrolling
+  document.ontouchmove = function(event){
+    event.preventDefault();
+  }
+
+  // Bind actions for search component.
+  var inputBox = document.getElementById('pageName');
+
+  //Bind the event of pressing enter inside the text box
+  inputBox.onkeypress = function(e) {
+    var event = e || window.event;
+    var charCode = event.which || event.keyCode;
+    if ( charCode == '13' ) { //Enter was pressed inside dialog
+      var pagename = document.getElementById('pageName').value || "Wikipedia";
+      getPageName(pagename,resetNetwork);
+    }
+  }
+
+  //Bind the action of pressing the button
+  var submitButton = document.getElementById('submit');
+
+  submitButton.onclick = function() {
     var pagename = document.getElementById('pageName').value || "Wikipedia";
     getPageName(pagename,resetNetwork);
   }
-}
 
-//Bind the action of pressing the button
-var submitButton = document.getElementById('submit');
-
-submitButton.onclick = function() {
-  var pagename = document.getElementById('pageName').value || "Wikipedia";
-  getPageName(pagename,resetNetwork);
-}
-
-var randomButton = document.getElementById('random');
-randomButton.onclick = function() {
-  getRandomName(resetNetwork);
-}
-
-
-
-//Bind modal events.
-var aboutButton = document.getElementById('about');
-var modal = document.getElementById("modal");
-
-aboutButton.onclick = function() {
-  modal.style.display = "block";
-}
-
-modal.onclick = function(event) {
-  if (event.target.id == "modal") { //Clicking on modal-content won't hide it
-    modal.style.display = "none";
+  var randomButton = document.getElementById('random');
+  randomButton.onclick = function() {
+    getRandomName(resetNetwork);
   }
-}
 
-//Allow scrolling in the modal conntent for touch devices
-var modalcontent = document.getElementById("modal-content");
-modalcontent.ontouchmove = function(event) {
-  event.stopPropagation();
+
+
+  //Bind modal events.
+  var aboutButton = document.getElementById('about');
+  var modal = document.getElementById("modal");
+
+  aboutButton.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  modal.onclick = function(event) {
+    if (event.target.id == "modal") { //Clicking on modal-content won't hide it
+      modal.style.display = "none";
+    }
+  }
+
+  //Allow iOS scrolling for the modal
+  var modalcontent = document.getElementById("modal-content");
+  modalcontent.ontouchmove = function(event) {
+    event.stopPropagation();
+  }
 }
