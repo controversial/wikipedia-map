@@ -1,4 +1,5 @@
-# wikipedia-map
+# Wikipedia Mapper
+
 See it at [luke.deentaylor.com/wikipedia](http://luke.deentaylor.com/wikipedia/)
 
 A web app for visualizing the connection of wikipedia pages. Start by entering a topic into the text box, i.e. *Cats*. A single node will be generated, labeled *Cat*. Double-click this node to expand it.
@@ -7,7 +8,7 @@ Expanding a node creates a new node for each page that  is linked to from the fi
 
 I've chosen to use links only from the first paragraph of an article for 2 reasons:
 
-1. There is usually a managable number of these links, about 5-10 per page.
+1. There is usually a manageable number of these links, about 5-10 per page.
 2. They tend to be more directly relevant to the article than links further down in the page.
 
 A map typically looks something like this:
@@ -43,7 +44,8 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
   - [x] Allow starting anew without refreshing page
   - [x] Create small info button that explains the project, controls, etc.
     - [x] Render this README into the help dialog
-    - [ ] The area with the network should contain instructions when it is blank
+    - [x] The area with the network should contain instructions when it is blank
+    - [ ] Create a more thorough help dialog explaining controls, etc. which also includes the README
   - [x] Add a "Random Article" button
 - [ ] While waiting for a node to expand, show a spinner on it to indicate progress is happening
 

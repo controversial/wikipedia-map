@@ -1,0 +1,27 @@
+/* This contains styles for the modal help dialog.
+
+
+/* General styles for the modal window */
+.modal {
+  /* Positioning */
+  z-index: 3;
+  /* Initially hide */
+  display: none;
+  /* Appearance */
+  background-color: rgba(0,0,0,0.2);
+}
+
+.modal-content {
+  /* Positioning */
+  padding: 20px;
+  position:absolute;
+  height:auto;
+  bottom:0;top:0;left:0;right:0;
+  margin: 10vh;
+  /* Allow scrolling */
+  overflow: scroll;
+  /* Appearance */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+}
