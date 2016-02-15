@@ -28,7 +28,6 @@
   top: 0;
   left: 0;
   width: 100vw;
-/*   height:37px;  Accounts for padding */
   z-index: 1;
   /* Appearance */
   background:rgba(255,255,255,0.5);
@@ -87,30 +86,4 @@ button[type=button]:active {
   height:33px;
   z-index: 2;
   border-radius:50%; /* Make it round */
-}
-
-/* == MODAL HELP POPUP == */
-/* The modal about popup */
-.modal {
-  /* Positioning */
-  z-index: 3;
-  /* Initially hide */
-  display: none;
-  /* Appearance */
-  background-color: rgba(0,0,0,0.2);
-}
-
-.modal-content {
-  /* Positioning */
-  padding: 20px;
-  position:absolute;
-  height:auto;
-  bottom:0;top:0;left:0;right:0;
-  margin: 10vh;
-  /* Allow scrolling */
-  overflow: scroll;
-  /* Appearance */
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 15px;
 }
