@@ -63,22 +63,24 @@ window.onload = function() {
     var event = e || window.event;
     var charCode = event.which || event.keyCode;
     if ( charCode == '13' ) { //Enter was pressed inside dialog
-      var pagename = document.getElementById('pageName').value || "Wikipedia";
+      var pagename = inputBox.value || "Wikipedia";
       getPageName(pagename,resetNetwork);
     }
   }
 
   //Bind the action of pressing the button
   var submitButton = document.getElementById('submit');
-
   submitButton.onclick = function() {
-    var pagename = document.getElementById('pageName').value || "Wikipedia";
+    var pagename = inputBox.value || "Wikipedia";
     getPageName(pagename,resetNetwork);
   }
 
   var randomButton = document.getElementById('random');
   randomButton.onclick = function() {
-    getRandomName(resetNetwork);
+    getRandomName(function (data) {
+      resetNetwork(data);
+      inputBox.value = data;
+    });
   }
 
 
