@@ -83,8 +83,10 @@ button[type=button]:active {
   position: fixed;
   bottom: 5px;
   right: 5px;
+  width:33px;
+  height:33px;
   z-index: 2;
-  box-shadow: 0 0 2px 0;
+  border-radius:50%; /* Make it round */
 }
 
 /* == MODAL HELP POPUP == */
