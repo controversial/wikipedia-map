@@ -38,6 +38,7 @@ function animatePage(newPage) { //Move to `page`
     removeAnimClasses(selectedPage);
     removeAnimClasses(newPage);
     selectedPage.style.display = "none";
+    newPage.style.display = "block"; //In case of rapid button-pressing
     selectedPage = newPage;
   },600);
 
@@ -47,12 +48,13 @@ function animateReturn() { //Return to menu
   selectedPage.className += " toRight";
   menuMain.className += " fromLeft";
   menuMain.style.display = "block";
-  
+
   setTimeout(function() {
     //Reset the scene
     removeAnimClasses(selectedPage);
     removeAnimClasses(menuMain);
     selectedPage.style.display = "none";
+    menuMain.style.display = "block"; //In case of rapid button-pressing
     selectedPage = menuMain;
   },600);
 }
