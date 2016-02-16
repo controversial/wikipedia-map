@@ -57,13 +57,21 @@ function animateReturn() { //Return to menu
     menuMain.style.display = "block"; //In case of rapid button-pressing
     selectedPage = menuMain;
   },600);
+
 }
 
-var button=document.getElementById("movetest");
-button.onclick=function(){
+var button1=document.getElementById("button1");
+button1.onclick=function(){
   animatePage(menuControls);
-}
-var button2=document.getElementById("goHome");
+};
+
+var button2=document.getElementById("button2");
 button2.onclick=function(){
-  animateReturn()
-}
+  animatePage(menuReadme);
+};
+
+var button3=document.getElementById("button3");
+button3.onclick=animateReturn;
+
+var button4=document.getElementById("button4");
+button4.onclick=animateReturn;
