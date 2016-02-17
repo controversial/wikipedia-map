@@ -76,10 +76,16 @@
   border-top: 1px solid #e2e2e2;
 }
 
-
-.menu-main {
-
+.menu button {
+  height:33px;
+  line-height:33px;
 }
+.menu button > img {
+  height:20px;
+  width:auto;
+  vertical-align: center;
+}
+
 .menu-page {
   display:none;
 
