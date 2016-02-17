@@ -4,11 +4,11 @@
 //Render `data` and load it into the modal
 function loadHTML(data) {
   var readmeHTML = marked(data); //Render README from markdown to HTML
-  var modalContent = document.getElementById("modal-content");
-  modalContent.innerHTML = readmeHTML;
+  var target = document.getElementById("readme");
+  target.innerHTML = readmeHTML;
 }
 
-//requestPage("README.md",loadHTML); //Read README.md
+requestPage("README.md",loadHTML); //Read README.md
 
 //Menu items
 var menuMain = document.getElementById("menu-main");
@@ -17,7 +17,8 @@ var menuReadme = document.getElementById("menu-readme");
 
 var selectedPage=menuMain;
 
-function removeAnimClasses(elem) { //Remove all animation classes from elem
+//Remove all animation classes from elem
+function removeAnimClasses(elem) {
   var cn = elem.className;
   var ac = [" toLeft"," toRight"," fromLeft"," fromRight"]; //Animation classes
   for (var i=0;i<ac.length;i++) {
@@ -28,11 +29,11 @@ function removeAnimClasses(elem) { //Remove all animation classes from elem
   elem.className=cn;
 }
 
-function animatePage(newPage) { //Move to `page`
+//Move to `page`
+function animatePage(newPage) {
   selectedPage.className += " toLeft";
   newPage.className += " fromRight";
   newPage.style.display = "block";
-
   setTimeout(function() {
     //Reset the scene
     removeAnimClasses(selectedPage);
@@ -41,14 +42,13 @@ function animatePage(newPage) { //Move to `page`
     newPage.style.display = "block"; //In case of rapid button-pressing
     selectedPage = newPage;
   },600);
-
 }
 
-function animateReturn() { //Return to menu
+//Return to menu
+function animateReturn() {
   selectedPage.className += " toRight";
   menuMain.className += " fromLeft";
   menuMain.style.display = "block";
-
   setTimeout(function() {
     //Reset the scene
     removeAnimClasses(selectedPage);
@@ -57,18 +57,21 @@ function animateReturn() { //Return to menu
     menuMain.style.display = "block"; //In case of rapid button-pressing
     selectedPage = menuMain;
   },600);
-
 }
 
-var button1=document.getElementById("button1");
-button1.onclick=function(){
+
+document.getElementById("aboutActivator").onclick=function(){
   animatePage(menuControls);
 };
 
-var button2=document.getElementById("button2");
-button2.onclick=function(){
+document.getElementById("controlsActivator").onclick=function(){
+  animatePage(menuControls);
+};
+
+document.getElementById("readmeActivator").onclick=function(){
   animatePage(menuReadme);
 };
+
 
 var button3=document.getElementById("button3");
 button3.onclick=animateReturn;
