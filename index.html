@@ -20,6 +20,8 @@
   <!-- Load my CSS-->
   <link rel="stylesheet" href="./css/style.css" type="text/css"/>
   <link rel="stylesheet" href="./css/helpdialog.css" type="text/css"/>
+  <!-- Load css for the github README -->
+  <link rel="stylesheet" href="./css/github-markdown.css" type="text/css"/>
 
 </head>
 
@@ -37,18 +39,26 @@
   <!-- Modal help popup-->
   <div id="modal" class="fullscreen modal">
     <div id="modal-content" class="modal-content markdown-body">
-      <!-- Main menu chooser -->
+      <!-- Main menu chooser (modeled after the iOS Settings app) -->
       <div class="menu menu-main" id="menu-main" menuname="Main">
-        <button id="button1" type="button">Display page 2</button>
-        <button id="button2" type="button">Display page 3</button>
+
+        <ul>
+          <li id="aboutActivator">About</li>
+          <li id="controlsActivator">Controls</li>
+          <li class="menu-spacer"></li>
+          <li id="readmeActivator">README</li>
+        </ul>
+
       </div>
       <!-- Controls page -->
       <div class="menu menu-page" id="menu-controls" menuname="Controls">
+        <h1 style="margin-left:20px;">Not yet implemented.</h1>
         <button id="button3" type="button">Back to page 1</button>
       </div>
       <!-- README page -->
-      <div class="menu menu-page" id="menu-readme" menuname="README" style="background-color:#abefcd;">
-        <button id="button4" type="button">Back to page 1</button>
+      <div class="menu menu-page" id="menu-readme" menuname="README">
+        <div id="readme"></div>
+        <button id="button4" type="button"> < Back </button>
       </div>
     </div>
   </div>
@@ -71,8 +81,6 @@
   <link rel="stylesheet" href="./libraries/vis/vis.min.css" type="text/css" />
   <!-- Load marked for rendering README.md -->
   <script type="text/javascript" src="./libraries/marked.js"></script>
-  <!-- Load css for the github README -->
-  <link rel="stylesheet" href="./css/github-markdown.css" type="text/css"/>
 
   <!-- My Stuff -->
   <!-- Load API functions -->
