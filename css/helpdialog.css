@@ -44,26 +44,38 @@
   background-color:#f1f0f7;
 }
 
+/* Styles for UINavigationController-like menu*/
 .menu > ul {
   width:100%;
   padding:0 !important;
 }
-
 .menu > ul > li { /* Items in help menu list */
   font-size: 18px;
   background-color: #fff;
   border-top: 1px solid #e2e2e2;
   line-height: 40px;
+  height:40px;
   padding-left: 20px;
+}
+.menu > ul > li > img {
+  margin-top:3px;
+  margin-bottom:8px;
+  margin-right:20px;
+  height:30px;
+  vertical-align: middle;
+  width:auto;
+  border: 1px solid #ccc;
+  border-radius:50%;
+}
+.menu > ul > li:last-child { /* Only bottom element needs bottom border */
+  border-bottom: 1px solid #e2e2e2;
 }
 .menu-spacer { /* Spacers in help menu list */
   height:32px;
   background-color:#f1f0f7 !important;
   border-top: 1px solid #e2e2e2;
 }
-.menu > ul > li:last-child { /* Only bottom element needs bottom border */
-  border-bottom: 1px solid #e2e2e2;
-}
+
 
 .menu-main {
 
