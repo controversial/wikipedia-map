@@ -79,6 +79,7 @@
 .menu button {
   height:33px;
   line-height:33px;
+  opacity:0.75;
 }
 .menu button > img {
   height:20px;
@@ -88,23 +89,20 @@
 
 .menu-page {
   display:none;
-
+  padding:20px;
 }
 
-#readme {
+.menu-content {
   position:absolute;
   width:100%;
   height:100%;
   top:0;
   left:0;
   padding:20px;
-  background-color: #fff;
+  background-color: #fff !important;
   overflow-y:auto;
 }
 
-#menu-readme {
-  padding:20px;
-}
 .menu button {
   position:absolute;
 }
