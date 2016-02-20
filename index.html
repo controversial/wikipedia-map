@@ -41,24 +41,46 @@
     <div id="modal-content" class="modal-content markdown-body">
       <!-- Main menu chooser (modeled after the iOS Settings app) -->
       <div class="menu menu-main" id="menu-main" menuname="Main">
-
         <ul>
           <li id="aboutActivator"><img src="assets/information.png"/> About</li>
           <li id="controlsActivator"><img src="assets/game-controller.png"/> Controls</li>
           <li class="menu-spacer"></li>
           <li id="readmeActivator"><img src="assets/GitHub.png"/>Github README</li>
         </ul>
-
       </div>
-      <!-- Not Implemented page -->
-      <div class="menu menu-page" id="menu-controls" menuname="Controls">
-        <button id="button3" type="button">Back to page 1</button>
-        <h1 style="margin-left:20px;">Not yet implemented.</h1>
+      <!-- About -->
+      <div class="menu menu-page" id="menu-about">
+        <div class="menu-content markdown-body">
+        
+          <h1>Wikipedia Mapper</h1>
+          
+          <p>A web app for visualizing the connection of wikipedia pages. </p>          
+          <p>Wikipedia Mapper works based on a concept of <b>nodes</b>, which are dots on the screen.</p>          
+          <p>Start by entering a topic into the text box at the top, and pressing <b>Go</b>. Let&#39;s say you entered <em>Cats</em>, a single node will be generated, labeled <em>Cat</em>. This is called the <b>central node</b></p>          
+          <p>Nodes can be <b>expanded</b>. On most platforms, this is a single click. If you&#39;re on a touch device, press and hold on the node. (See &ldquo;Controls&rdquo;)</p>          
+          <p>Expanding a node creates a new node for <b>each page</b> that  is linked to from the <b>first paragraph</b> of the article. These nodes will be <b>connected</b> to the node from which they were expanded. For example, expanding <em>Cat</em> will create eight nodes, including <em>Fur</em>, <em>Mammal</em>, <em>Carnivore</em>, and <em>Domestication</em>, and these will each be connected to <em>Cat</em>. </p>          
+          <p>Each new node can be expanded in the same way. This is how complex networks emerge.</p>          
+          <p>Other features include:</p>          
+          <ul>
+          <li>A &ldquo;Random Article&rdquo; button</li>
+          <li>Hover over a node to see the path that you took to get there</li>
+          <li>The color of a node indicates how bly it is connected to the central topic. Lighter colored nodes have looser connections to the central topic. </li>
+          </ul>          
+          <p>For more details, see the GitHub README in the Help menu.</p>
+          
+        </div>
+        <button class="backbutton" type="button"><img src="assets/arrow-back.png"/> Back</button>
       </div>
+      <!-- Controls -->
+      <div class="menu menu-page" id="menu-controls">
+        <h1>Controls</h1>
+        <button class="backbutton" type="button"><img src="assets/arrow-back.png"/> Back</button>
+      </div>
+      
       <!-- README page -->
-      <div class="menu menu-page" id="menu-readme" menuname="README">
-        <div id="readme"></div>
-        <button id="button4" type="button"><img src="assets/arrow-back.png"/> Back</button>
+      <div class="menu menu-page" id="menu-readme">
+        <div id="readme" class="menu-content"></div>
+        <button class="backbutton" type="button"><img src="assets/arrow-back.png"/> Back</button>
       </div>
     </div>
   </div>
@@ -66,6 +88,7 @@
 
   <!-- Will hold the network -->
   <div id="container" class="fullscreen">
+    <!-- Welcome message -->
     <div class="markdown-body" style="position:fixed;top:58px;padding:25px">
       <h1>Wikipedia Mapper</h1>
       <p>A tool for visualizing the connections between wikipedia pages.<br>

@@ -12,6 +12,7 @@ requestPage("README.md",loadHTML); //Read README.md
 
 //Menu items
 var menuMain = document.getElementById("menu-main");
+var menuAbout = document.getElementById("menu-about");
 var menuControls = document.getElementById("menu-controls");
 var menuReadme = document.getElementById("menu-readme");
 
@@ -61,7 +62,7 @@ function animateReturn() {
 
 
 document.getElementById("aboutActivator").onclick=function(){
-  animatePage(menuControls);
+  animatePage(menuAbout);
 };
 
 document.getElementById("controlsActivator").onclick=function(){
@@ -73,8 +74,7 @@ document.getElementById("readmeActivator").onclick=function(){
 };
 
 
-var button3=document.getElementById("button3");
-button3.onclick=animateReturn;
-
-var button4=document.getElementById("button4");
-button4.onclick=animateReturn;
+backButtons=document.getElementsByClassName("backbutton")
+for (var i=0;i<backButtons.length;i++) {
+  backButtons[i].onclick=animateReturn;
+}
