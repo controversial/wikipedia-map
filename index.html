@@ -20,27 +20,75 @@
   <!-- Load my CSS-->
   <link rel="stylesheet" href="./css/style.css" type="text/css"/>
   <link rel="stylesheet" href="./css/helpdialog.css" type="text/css"/>
+  <!-- Load css for the github README -->
+  <link rel="stylesheet" href="./css/github-markdown.css" type="text/css"/>
 
 </head>
 
 <body>
+  <!-- The top bar -->
   <div id="formbox">
     <input id="pageName" type="text" placeholder="Wikipedia" title="Enter the name of a wikipedia page, then press 'Go'"/>
     <button id="submit" type="button" title="Enter the name of a wikipedia page, then press 'Go'">Go</button>
-    <button id="random"type=button title="Random article"> &nbsp </button>
-
+    <button id="random" type=button title="Random article"> &nbsp </button>
   </div>
 
+  <!-- The about button -->
   <button id="about" type="button">?</button>
 
-  <!-- Modal about popup-->
+  <!-- Modal help popup-->
   <div id="modal" class="fullscreen modal">
-    <div id="modal-content" class="modal-content markdown-body"></div>
+    <div id="modal-content" class="modal-content markdown-body">
+      <!-- Main menu chooser (modeled after the iOS Settings app) -->
+      <div class="menu menu-main" id="menu-main" menuname="Main">
+        <ul>
+          <li id="aboutActivator"><img src="assets/information.png"/> About</li>
+          <li id="controlsActivator"><img src="assets/game-controller.png"/> Controls</li>
+          <li class="menu-spacer"></li>
+          <li id="readmeActivator"><img src="assets/GitHub.png"/>Github README</li>
+        </ul>
+      </div>
+      <!-- About -->
+      <div class="menu menu-page" id="menu-about">
+        <div class="menu-content markdown-body">
+
+          <h1>Wikipedia Mapper</h1>
+
+          <p>A web app for visualizing the connection of wikipedia pages. </p>
+          <p>Wikipedia Mapper works based on a concept of <b>nodes</b>, which are dots on the screen.</p>
+          <p>Start by entering a topic into the text box at the top, and pressing <b>Go</b>. Let&#39;s say you entered <em>Cats</em>, a single node will be generated, labeled <em>Cat</em>. This is called the <b>central node</b></p>
+          <p>Nodes can be <b>expanded</b>. On most platforms, this is a single click. If you&#39;re on a touch device, press and hold on the node. (See &ldquo;Controls&rdquo;)</p>
+          <p>Expanding a node creates a new node for <b>each page</b> that  is linked to from the <b>first paragraph</b> of the article. These nodes will be <b>connected</b> to the node from which they were expanded. For example, expanding <em>Cat</em> will create eight nodes, including <em>Fur</em>, <em>Mammal</em>, <em>Carnivore</em>, and <em>Domestication</em>, and these will each be connected to <em>Cat</em>. </p>
+          <p>Each new node can be expanded in the same way. This is how complex networks emerge.</p>
+          <p>Other features include:</p>
+          <ul>
+          <li>A &ldquo;Random Article&rdquo; button</li>
+          <li>Hover over a node to see the path that you took to get there</li>
+          <li>The color of a node indicates how bly it is connected to the central topic. Lighter colored nodes have looser connections to the central topic. </li>
+          </ul>
+          <p>For more details, see the GitHub README in the Help menu.</p>
+
+        </div>
+        <button class="backbutton" type="button"><img src="assets/arrow-back.png"/> Back</button>
+      </div>
+      <!-- Controls -->
+      <div class="menu menu-page" id="menu-controls">
+        <div id="controls" class="menu-content markdown-body"></div>
+        <button class="backbutton" type="button"><img src="assets/arrow-back.png"/> Back</button>
+      </div>
+
+      <!-- README page -->
+      <div class="menu menu-page" id="menu-readme">
+        <div id="readme" class="menu-content"></div>
+        <button class="backbutton" type="button"><img src="assets/arrow-back.png"/> Back</button>
+      </div>
+    </div>
   </div>
 
 
   <!-- Will hold the network -->
   <div id="container" class="fullscreen">
+    <!-- Welcome message -->
     <div class="markdown-body" style="position:fixed;top:58px;padding:25px">
       <h1>Wikipedia Mapper</h1>
       <p>A tool for visualizing the connections between wikipedia pages.<br>
@@ -56,8 +104,6 @@
   <link rel="stylesheet" href="./libraries/vis/vis.min.css" type="text/css" />
   <!-- Load marked for rendering README.md -->
   <script type="text/javascript" src="./libraries/marked.js"></script>
-  <!-- Load css for the github README -->
-  <link rel="stylesheet" href="./css/github-markdown.css" type="text/css"/>
 
   <!-- My Stuff -->
   <!-- Load API functions -->
@@ -68,10 +114,10 @@
   <script type="text/javascript" src="./js/main_functions.js"> </script>
   <!-- Load the main script -->
   <script type="text/javascript" src="./js/main.js"> </script>
+  <!-- Build help popup -->
+  <script type="text/javascript" src="./js/help.js"> </script>
   <!-- Load bindings -->
   <script type="text/javascript" src="./js/bindings.js"> </script>
-  <!-- Render README into help popup -->
-  <script type="text/javascript" src="./js/help.js"> </script>
 
 </body>
 

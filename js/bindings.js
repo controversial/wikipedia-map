@@ -2,8 +2,8 @@
 // network, in the search bar, and for the modal popup.
 
 
-// Is the user on a touch device?
-var isTouchDevice = 'ontouchstart' in document.documentElement;
+// Have changes been made
+var changesmade = false;
 
 //Functions that will be used as bindings
 function expandEvent (params) { // Expand a node (with event handler)
