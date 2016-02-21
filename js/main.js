@@ -4,6 +4,10 @@
 
 var nodes, edges, startpage, network //Global variables
 
+
+// Is the user on a touch device?
+var isTouchDevice = 'ontouchstart' in document.documentElement;
+
 var container = document.getElementById('container');
 //Global options
 var options = {

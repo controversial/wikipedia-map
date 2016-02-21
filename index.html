@@ -51,32 +51,32 @@
       <!-- About -->
       <div class="menu menu-page" id="menu-about">
         <div class="menu-content markdown-body">
-        
+
           <h1>Wikipedia Mapper</h1>
-          
-          <p>A web app for visualizing the connection of wikipedia pages. </p>          
-          <p>Wikipedia Mapper works based on a concept of <b>nodes</b>, which are dots on the screen.</p>          
-          <p>Start by entering a topic into the text box at the top, and pressing <b>Go</b>. Let&#39;s say you entered <em>Cats</em>, a single node will be generated, labeled <em>Cat</em>. This is called the <b>central node</b></p>          
-          <p>Nodes can be <b>expanded</b>. On most platforms, this is a single click. If you&#39;re on a touch device, press and hold on the node. (See &ldquo;Controls&rdquo;)</p>          
-          <p>Expanding a node creates a new node for <b>each page</b> that  is linked to from the <b>first paragraph</b> of the article. These nodes will be <b>connected</b> to the node from which they were expanded. For example, expanding <em>Cat</em> will create eight nodes, including <em>Fur</em>, <em>Mammal</em>, <em>Carnivore</em>, and <em>Domestication</em>, and these will each be connected to <em>Cat</em>. </p>          
-          <p>Each new node can be expanded in the same way. This is how complex networks emerge.</p>          
-          <p>Other features include:</p>          
+
+          <p>A web app for visualizing the connection of wikipedia pages. </p>
+          <p>Wikipedia Mapper works based on a concept of <b>nodes</b>, which are dots on the screen.</p>
+          <p>Start by entering a topic into the text box at the top, and pressing <b>Go</b>. Let&#39;s say you entered <em>Cats</em>, a single node will be generated, labeled <em>Cat</em>. This is called the <b>central node</b></p>
+          <p>Nodes can be <b>expanded</b>. On most platforms, this is a single click. If you&#39;re on a touch device, press and hold on the node. (See &ldquo;Controls&rdquo;)</p>
+          <p>Expanding a node creates a new node for <b>each page</b> that  is linked to from the <b>first paragraph</b> of the article. These nodes will be <b>connected</b> to the node from which they were expanded. For example, expanding <em>Cat</em> will create eight nodes, including <em>Fur</em>, <em>Mammal</em>, <em>Carnivore</em>, and <em>Domestication</em>, and these will each be connected to <em>Cat</em>. </p>
+          <p>Each new node can be expanded in the same way. This is how complex networks emerge.</p>
+          <p>Other features include:</p>
           <ul>
           <li>A &ldquo;Random Article&rdquo; button</li>
           <li>Hover over a node to see the path that you took to get there</li>
           <li>The color of a node indicates how bly it is connected to the central topic. Lighter colored nodes have looser connections to the central topic. </li>
-          </ul>          
+          </ul>
           <p>For more details, see the GitHub README in the Help menu.</p>
-          
+
         </div>
         <button class="backbutton" type="button"><img src="assets/arrow-back.png"/> Back</button>
       </div>
       <!-- Controls -->
       <div class="menu menu-page" id="menu-controls">
-        <h1>Controls</h1>
+        <div id="controls" class="menu-content markdown-body"></div>
         <button class="backbutton" type="button"><img src="assets/arrow-back.png"/> Back</button>
       </div>
-      
+
       <!-- README page -->
       <div class="menu menu-page" id="menu-readme">
         <div id="readme" class="menu-content"></div>
