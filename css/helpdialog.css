@@ -19,9 +19,127 @@
   bottom:0;top:0;left:0;right:0;
   margin: 10vh;
   /* Allow scrolling */
-  overflow: scroll;
+  overflow-y:auto;
+  overflow-x:hidden;
   /* Appearance */
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 15px;
+}
+/* Less margin for small screens */
+@media screen and (max-width: 750px) {
+    .modal-content {
+      margin: 5vh;
+    }
+}
+
+
+.menu {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  padding-top:20px;
+  background-color:#f1f0f7;
+}
+
+/* Styles for UINavigationController-like menu*/
+.menu > ul {
+  width:100%;
+  padding:0 !important;
+}
+.menu > ul > li { /* Items in help menu list */
+  font-size: 18px;
+  background-color: #fff;
+  border-top: 1px solid #e2e2e2;
+  line-height: 40px;
+  height:40px;
+  padding-left: 20px;
+}
+.menu > ul > li > img {
+  margin-top:3px;
+  margin-bottom:8px;
+  margin-right:20px;
+  height:30px;
+  vertical-align: middle;
+  width:auto;
+  border: 1px solid #ccc;
+  border-radius:50%;
+}
+.menu > ul > li:last-child { /* Only bottom element needs bottom border */
+  border-bottom: 1px solid #e2e2e2;
+}
+.menu-spacer { /* Spacers in help menu list */
+  height:32px;
+  background-color:#f1f0f7 !important;
+  border-top: 1px solid #e2e2e2;
+}
+
+.menu button {
+  height:33px;
+  line-height:33px;
+  opacity:0.75;
+}
+.menu button > img {
+  height:20px;
+  width:auto;
+  vertical-align: center;
+}
+
+.menu-page {
+  display:none;
+  padding:20px;
+}
+
+.menu-content {
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  padding:20px;
+  background-color: #fff !important;
+  overflow-y:auto;
+}
+
+.menu button {
+  position:absolute;
+}
+
+
+/* Styles for animation */
+.toLeft {
+	-webkit-animation: moveToLeft .6s ease both;
+	animation: moveToLeft .6s ease both;
+}
+@keyframes moveToLeft {
+	from { }
+	to { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+
+.fromLeft {
+	-webkit-animation: moveFromLeft .6s ease both;
+	animation: moveFromLeft .6s ease both;
+}
+@keyframes moveFromLeft {
+	from { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+
+
+.toRight {
+	-webkit-animation: moveToRight .6s ease both;
+	animation: moveToRight .6s ease both;
+}
+@keyframes moveToRight {
+	from {}
+	to {-webkit-transform: translateX(100%); transform: translateX(100%);}
+}
+
+.fromRight {
+	-webkit-animation: moveFromRight .6s ease both;
+	animation: moveFromRight .6s ease both;
+}
+@keyframes moveFromRight {
+	from { -webkit-transform: translateX(100%); transform: translateX(100%); }
 }

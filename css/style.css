@@ -1,6 +1,7 @@
 /* == GLOBAL STYLES == */
-* {
+*, *:before, *:after{
   overflow:hidden; /* Nothing should scroll unless specified otherwise */
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
 
 
@@ -72,6 +73,7 @@ button[type=button]:active {
   background: #fff url(../assets/random.png);
   background-size: 31px 31px;
 }
+
 #random:active {
   background: #f5f5f5 url(../assets/random.png);
   background-size: 31px 31px;
