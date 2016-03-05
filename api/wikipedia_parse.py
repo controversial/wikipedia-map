@@ -1,65 +1,142 @@
 #!/usr/local/bin/python
-# coding: utf-8
-from __future__ import unicode_literals
+# -*- coding: utf-8 -*-
+
+"""Functions for getting information about wikipedia pages. This contains the
+code for all of the functions used by the backend of Wikipedia Map"""
+
+import json
+from urllib2 import quote, unquote
+
 import bs4
-import urllib2
+import requests
 
-#Pretend not to be a bot
-opener = urllib2.build_opener()
-opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+# Base URL for API
+_endpoint = "https://en.wikipedia.org/w/api.php"
 
-def get_url(pagename):
-    return "https://en.wikipedia.org/wiki/"+urllib2.quote(pagename.encode("utf-8"))
+
+# --- HELPER FUNCTIONS --- #
+
 
 def get_page_title(url):
-    #The last element of the URL is always the title. Allow for both URLs that
-    #end with a slash and for URLs that don't.
+    """Get the title of a page quickly, but inaccurately from a URL. Allows
+    both for URLs with a trailing slash and URLs without.
+
+    This is considered inaccurate because this does not handle redirects. E.g.
+    one page might link to /wiki/Cats, while another might link to /wiki/Cat.
+    These are both the same page, but will be recognized as different."""
+    # The last element of the URL is always the title.
     return url.rstrip('/').split('/')[-1]
 
-def get_page_name(page):
-    #The title of the page before the hyphen.
-    return get_wiki_soup(get_url(page)).title.string.split("-")[0].strip()
 
-def get_wiki_soup(url):
-    #Open the URL
-    f=opener.open(url)
-    #Return the data, ascii decoded.
-    data=str(f.read().decode("ascii",errors="ignore"))
-    f.close()
-    #Specify parser to hide error message
-    return bs4.BeautifulSoup(data,"html.parser")
+def get_page_name(page):
+    """Get the title of a page accurately, but more slowly. See get_page_title
+    for notes on accuracy"""
+
+    payload = {
+        "format": "json",
+        "action": "query",
+        "titles": page,
+        "redirects": 1
+    }
+
+    req = requests.get(_endpoint, params=payload)
+    resp = json.loads(req.text)
+    return resp["query"]["pages"].values()[0]["title"]
+
+
+def is_article(name):
+    """Decide whether the name of a wikipedia page is an article, or belongs to
+    another namespace. See https://en.wikipedia.org/wiki/Wikipedia:Namespace"""
+    # Pages outside of main namespace have colons in the middle, e.g. 'WP:UA'
+    return ":" not in name.strip(":")
+
+
+# --- MAIN FUNCTIONS --- #
+
+
+def get_page_html(pagename):
+    """Get a BeautifulSoup object representing the HTML for the first section
+    of the Wikipedia article named <pagename>"""
+
+    payload = {
+        "format": "json",
+        "action": "parse",
+        "page": pagename,
+        "prop": "text",
+        "section": 0,
+        "redirects": 1
+    }
+
+    req = requests.get(_endpoint, params=payload)
+    resp = json.loads(req.text)
+
+    if "error" in resp.keys():
+        return None
+    else:
+        html = resp["parse"]["text"]["*"]
+        return bs4.BeautifulSoup(html, "html.parser")
+
+
+def get_first_paragraph(pagename):
+    """Get a BeautifulSoup object representing the HTML for the first paragraph
+    of the Wikipedia article named <pagename>"""
+    html = get_page_html(pagename)
+    if html is None:
+        return None
+    else:
+        return html.find("p", recursive=False)
+
+
+def first_paragraph_links(pagename):
+    """Get the name of each Wikipedia article linked to from the first
+    paragraph of the Wikipedia article named <pagename>"""
+    p1 = get_first_paragraph(pagename)
+    if p1 is None:
+        return []
+    else:
+        links = [link.get("href") for link in p1.find_all("a")]
+        links = [link for link in links if link.startswith("/wiki/")]
+        links = [get_page_title(link) for link in links]
+        links = [link.split("#")[0] for link in links]
+        links = [link for link in links if is_article(link)]
+        links = [link.replace("_", " ") for link in links]
+        links = list(set(links))
+        return links
+
 
 def get_random_article():
-  randomurl="https://en.wikipedia.org/wiki/Special:Random"
-  o = opener.open(randomurl)
-  pageurl = o.geturl()
-  return pageurl.split("/")[-1]
+    """Get the name of a random Wikipedia article"""
 
-def first_paragraph_links(page):
-    soup=get_wiki_soup(get_url(page))
-    #Div with content in it
-    content=soup.find("div",id="mw-content-text")
-    #First p tag directly under the content div
-    paragraphs=content.find_all("p",recursive=False)
-    paragraph1=paragraphs[0]
+    payload = {
+        "format": "json",
+        "action": "query",
+        "list": "random",
+        "rnlimit": 1,
+        "rnnamespace": 0  # Limits results to articles
+    }
 
-    #If the first paragraph is coordinate info, use the second paragraph.
-    firstlink = paragraph1.find("a")
-    if "id" in firstlink.parent.attrs and firstlink.parent["id"]=="coordinates":
-        paragraph1=paragraphs[1]
-
-    #Find all links from the first paragraph (no duplicates)
-    links = list(set([link.get("href") for link in paragraph1.find_all("a")]))
-    #Exclude links that tag points later in the article, and return the page title.
-    pagenames = [str(l.split("/")[-1]) for l in links if l.startswith("/wiki/")]
-    #Remove files
-    pagenames = [pn for pn in pagenames if not pn.startswith(("File:","Wikipedia:","Help:"))]
-    #Remove underscores
-    pagenames = [pn.replace("_"," ") for pn in pagenames]
-    #Remove fragment identifiers
-    return [pn.rsplit("#")[0] for pn in pagenames]
-
+    req = requests.get(_endpoint, payload)
+    resp = json.loads(req.text)
+    return resp["query"]["random"][0]["title"]
 
 
 if __name__ == "__main__":
-    print first_paragraph_links("Zürich")
+    import time
+
+    print is_article(":Cows"), is_article("WP:UA")  # Test if it's an article
+
+    start = time.time()
+    print get_page_name("Cats"),  # Test accurate page name fetch
+    print "({} seconds)\n".format(time.time()-start)
+
+    start = time.time()
+    print get_random_article(),  # Test random article fetching
+    print "({} seconds)\n".format(time.time()-start)
+
+    start = time.time()
+    print first_paragraph_links("Penguins"),  # Test link fetching
+    print "({} seconds)\n".format(time.time()-start)
+
+    start = time.time()
+    print first_paragraph_links("Zürich"),  # Test unicode
+    print "({} seconds)\n".format(time.time()-start)
