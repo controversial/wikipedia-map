@@ -85,7 +85,12 @@ def get_first_paragraph(pagename):
     if html is None:
         return None
     else:
-        return html.find("p", recursive=False)
+        ps = html.find_all("p", recursive=False)
+        p1 = ps[0]
+        if p1.find("span", id="coordinates"):
+            return ps[1]
+        else:
+            return p1
 
 
 def first_paragraph_links(pagename):
@@ -135,7 +140,7 @@ if __name__ == "__main__":
     print "({} seconds)\n".format(time.time()-start)
 
     start = time.time()
-    print first_paragraph_links("Penguins"),  # Test link fetching
+    print first_paragraph_links("Apple Computer"),  # Test link fetching
     print "({} seconds)\n".format(time.time()-start)
 
     start = time.time()
