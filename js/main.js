@@ -48,7 +48,7 @@ function resetNetwork(start) {
   // -- CREATE NETWORK -- //
   //Make a container
   nodes = new vis.DataSet([
-    {id:startpage, label:wordwrap(decodeURI(startpage),20), value:2, level:0,
+    {id:startpage, label:wordwrap(decodeURIComponent(startpage),20), value:2, level:0,
      color:getColor(0), parent:startpage} //Parent is self
   ]);
   edges = new vis.DataSet();

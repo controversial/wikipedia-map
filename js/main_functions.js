@@ -27,7 +27,7 @@ function expandNodeCallback(page,data) {
     for (var i=0; i<subpages.length; i++) {
       var subpage = subpages[i];
       if (nodes.getIds().indexOf(subpage) == -1) { //Don't add if node exists
-          subnodes.push({id:subpage, label:wordwrap(decodeURI(subpage),15), value:1,
+          subnodes.push({id:subpage, label:wordwrap(decodeURIComponent(subpage),15), value:1,
                          level:level, color:getColor(level), parent:page}); //Add node
       }
       var edgeID = page+"-"+subpage

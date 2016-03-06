@@ -79,7 +79,7 @@ window.onload = function() {
   randomButton.onclick = function() {
     getRandomName(function (data) {
       resetNetwork(data);
-      inputBox.value = data;
+      inputBox.value = decodeURIComponent(data);
     });
   }
 
