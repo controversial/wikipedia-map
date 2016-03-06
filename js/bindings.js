@@ -64,7 +64,7 @@ window.onload = function() {
     var charCode = event.which || event.keyCode;
     if ( charCode == '13' ) { //Enter was pressed inside dialog
       var pagename = inputBox.value || "Wikipedia";
-      getPageName(pagename,resetNetwork);
+      getPageName(encodeURI(pagename),resetNetwork);
     }
   }
 
@@ -72,7 +72,7 @@ window.onload = function() {
   var submitButton = document.getElementById('submit');
   submitButton.onclick = function() {
     var pagename = inputBox.value || "Wikipedia";
-    getPageName(pagename,resetNetwork);
+    getPageName(encodeURI(pagename),resetNetwork);
   }
 
   var randomButton = document.getElementById('random');

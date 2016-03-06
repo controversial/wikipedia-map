@@ -41,7 +41,8 @@ def get_page_name(page):
 
     req = requests.get(_endpoint, params=payload)
     resp = json.loads(req.text)
-    return resp["query"]["pages"].values()[0]["title"]
+    pagename = resp["query"]["pages"].values()[0]["title"]
+    return quote(pagename.encode("utf-8"))
 
 
 def is_article(name):
