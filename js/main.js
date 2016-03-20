@@ -4,6 +4,9 @@
 
 var nodes, edges, network //Global variables
 var startpages = [];
+// Tracks whether the network needs to be reset. Used to prevent deleting nodes
+// when multiple nodes need to be created, because AJAX requests are async.
+var needsreset = true;
 
 // Is the user on a touch device?
 var isTouchDevice = 'ontouchstart' in document.documentElement;
@@ -42,7 +45,7 @@ function makeNetwork() {
 //Reset the network to be new each time.
 function resetNetwork(start) {
   if (!initialized){makeNetwork()};
-  startpages = [start]; // Register the
+  startpages = [start]; // Register the page as an origin node
   tracenodes = [];
   traceedges = [];
   // -- CREATE NETWORK -- //
@@ -58,9 +61,34 @@ function resetNetwork(start) {
 }
 
 
+// Add a new start node to the map.
+function addStart(start, index) {
+  if (needsreset) {
+    // Delete everything only for the first call to addStart by tracking needsreset
+    resetNetwork(start);
+    needsreset = false;
+    return;
+
+  } else {
+    startpages.push(start);
+    nodes.add([
+      {id:start, label:wordwrap(decodeURIComponent(start),20), value:2, level:0,
+      color:getColor(0), parent:start} // Parent is self
+    ]);
+  }
+}
+
+
 // Reset the network with the content from the input box.
 function resetNetworkFromInput() {
+  // Network should be reset
+  needsreset = true;
   // If no input is given, fall back to the page about Wikipedia
   var input = inputBox.value || "Wikipedia";
-  getPageName(encodeURI(input), resetNetwork);
+  // Separate list by comma, strip whitespace
+  var input = input.replace(" vs ", ", ") // 'Cats vs Dogs' -> 'Cats, Dogs'
+  var inputs = input.split(",").map(function(s){return s.trim()});
+  for (var i=0; i<inputs.length; i++) {
+    getPageName(encodeURI(inputs[i]), addStart);
+  }
 }
