@@ -56,3 +56,11 @@ function resetNetwork(start) {
   data = {nodes:nodes,edges:edges};
   network.setData(data);
 }
+
+
+// Reset the network with the content from the input box.
+function resetNetworkFromInput() {
+  // If no input is given, fall back to the page about Wikipedia
+  var input = inputBox.value || "Wikipedia";
+  getPageName(encodeURI(input), resetNetwork);
+}

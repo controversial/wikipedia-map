@@ -47,7 +47,7 @@ function wordwrap(text,limit) {
   for (var i=0; i<words.length; i++) {
     var word = words[i]
     lastLine = lines[lines.length-1];
-    if (lastLine.length +word.length > limit) {
+    if (lastLine.length + word.length > limit) {
       lines.push(word);
     } else {
       lines[lines.length-1] = lastLine + " " + word;

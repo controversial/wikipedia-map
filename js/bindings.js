@@ -4,6 +4,7 @@
 
 // Have changes been made
 var changesmade = false;
+var inputBox;
 
 //Functions that will be used as bindings
 function expandEvent (params) { // Expand a node (with event handler)
@@ -56,23 +57,22 @@ window.onload = function() {
   }
 
   // Bind actions for search component.
-  var inputBox = document.getElementById('pageName');
+
+  inputBox = document.getElementById('pageName');
 
   //Bind the event of pressing enter inside the text box
   inputBox.onkeypress = function(e) {
     var event = e || window.event;
     var charCode = event.which || event.keyCode;
     if ( charCode == '13' ) { //Enter was pressed inside dialog
-      var pagename = inputBox.value || "Wikipedia";
-      getPageName(encodeURI(pagename),resetNetwork);
+      resetNetworkFromInput();
     }
   }
 
   //Bind the action of pressing the button
   var submitButton = document.getElementById('submit');
   submitButton.onclick = function() {
-    var pagename = inputBox.value || "Wikipedia";
-    getPageName(encodeURI(pagename),resetNetwork);
+    resetNetworkFromInput()
   }
 
   var randomButton = document.getElementById('random');
@@ -82,7 +82,6 @@ window.onload = function() {
       inputBox.value = decodeURIComponent(data);
     });
   }
-
 
 
   //Bind modal events.
