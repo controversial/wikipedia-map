@@ -2,8 +2,8 @@
 // a function for resetting it to a brand new page.
 
 
-var nodes, edges, startpage, network //Global variables
-
+var nodes, edges, network //Global variables
+var startpages = [];
 
 // Is the user on a touch device?
 var isTouchDevice = 'ontouchstart' in document.documentElement;
@@ -42,14 +42,14 @@ function makeNetwork() {
 //Reset the network to be new each time.
 function resetNetwork(start) {
   if (!initialized){makeNetwork()};
-  startpage = start;
+  startpages = [start]; // Register the
   tracenodes = [];
   traceedges = [];
   // -- CREATE NETWORK -- //
   //Make a container
   nodes = new vis.DataSet([
-    {id:startpage, label:wordwrap(decodeURIComponent(startpage),20), value:2, level:0,
-     color:getColor(0), parent:startpage} //Parent is self
+    {id:start, label:wordwrap(decodeURIComponent(start),20), value:2, level:0,
+     color:getColor(0), parent:start} //Parent is self
   ]);
   edges = new vis.DataSet();
   //Put the data in the container

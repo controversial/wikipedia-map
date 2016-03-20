@@ -50,11 +50,10 @@ function expandNode(page) {
 //Get all the nodes tracing back to the start node.
 function getTraceBackNodes(node) {
   var finished = false;
-  var startnode = nodes.get(startpage);
   var path = [];
   while (! finished) { //Add parents of nodes until we reach the start
     path.push(node);
-    if (node==startpage) { //Check if we've reached the end
+    if (startpages.indexOf(node) !== -1) { //Check if we've reached the end
       finished = true;
     }
     node = nodes.get(node).parent; //Keep exploring with the node above.
