@@ -25,7 +25,10 @@
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 15px;
+  overflow:hidden;
+  z-index:2; /* Prevent corners turning square while animating */
 }
+
 /* Less margin for small screens */
 @media screen and (max-width: 750px) {
     .modal-content {
