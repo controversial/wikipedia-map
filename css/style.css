@@ -24,6 +24,8 @@
 /* The box that holds the button and input */
 #formbox {
   padding: 10px;
+  display: block;
+  overflow: hidden;
   /* Position */
   position: fixed;
   top: 0;
@@ -37,7 +39,12 @@
 }
 
 /* The input box */
-input[type=text] {
+#formbox span {
+  display: block;
+  overflow: hidden;
+  padding-right: 5px;
+}
+#formbox input[type=text] {
   /* Border */
   outline: none;
   border: 1px solid #ccc;
@@ -46,6 +53,8 @@ input[type=text] {
   padding: 5px;
   font-size:18px;
   -webkit-appearance: none;
+  /* Stretch */
+  width:100%;
 }
 
 /* The buttons */
@@ -59,12 +68,16 @@ button[type=button] {
   border-radius: 5px;
   /* Other */
   padding: 5px;
+  margin: 2px;
   font-size:18px;
 }
-
 button[type=button]:active {
   background-color: #f5f5f5;
 }
+#formbox > button[type=button] {
+  float:right;
+}
+
 
 /* The random button */
 #random {
