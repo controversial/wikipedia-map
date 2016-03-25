@@ -35,6 +35,15 @@ function removeLast(cf) {
   }
 }
 
+// Clear all items from a commafield
+function clearItems(cf) {
+  // Clear input
+  cf.getElementsByTagName("input")[0].value = "";
+  while (cf.getElementsByClassName("item").length) {
+    removeLast(cf);
+  }
+}
+
 // Turn placeholder on for a commafield
 function onPlaceholder(cf) {
   if (cf.hasAttribute("placeholder")) {
