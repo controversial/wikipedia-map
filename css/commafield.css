@@ -12,7 +12,7 @@
   height:33px;
   padding:3px;
   margin: 2px;
-  
+
   font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
 
@@ -28,13 +28,13 @@
   margin: 2px 5px 3px 0;
   padding-left:7px;
   flex: 2;
-  height: 80%;
+  height: 85%;
 }
 
 .item {
   float: left;
 
-  background-color: #eee;
+  background-color: rgba(255, 255, 255, 0.6);
   border: 1px solid #ccc;
   border-radius: 2px;
   font-size: 1em;
@@ -43,7 +43,7 @@
   margin: 2px 5px 3px 0;
 
   flex: 0 1 auto;
-  height: 80%;
+  height: 85%;
 
   cursor: pointer;
 
@@ -63,7 +63,7 @@
 }
 
 .item:hover {
-  background-color: #ddd;
+  background-color: #fff;
 }
 
 .item:hover:after {

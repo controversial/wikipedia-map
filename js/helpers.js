@@ -19,6 +19,10 @@ function hexToRGB(hex) {
 }
 function rgbToHex(rgb) {
   var hexvals = rgb.map(function(x){return Math.round(x).toString(16)});
+  // Add leading 0s to make a valid 6 digit hex
+  hexvals = hexvals.map(function(x){
+    if (x.length == 1) {return ("0"+x)} else {return x}
+  })
   return "#"+hexvals.join("");
 }
 // Lighten a given hex color by %
@@ -33,12 +37,12 @@ function lightenHex(hex,percent) {
 
 //Get the color for a node, lighten an orange based on level. Subtle.
 function getColor(level) {
-  return lightenHex("#fcb587",5*level); //Gets 10% lighter for each level
+  return lightenHex("#40C4FF",5*level); //Gets 10% lighter for each level
 }
 
 //Get the highlighted color for a node, lighten a blue based on level. Subtle.
 function getBlueColor(level) {
-  return lightenHex("#87b5fc",5*level); //Gets 10% lighter for each level
+  return lightenHex("#FFC400",5*level); //Gets 10% lighter for each level
 }
 
 function wordwrap(text,limit) {
