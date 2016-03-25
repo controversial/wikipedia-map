@@ -18,6 +18,8 @@ function addItem(cf, itemtext) {
   item.className = "item";
   item.onclick = removeThis;
   cf.insertBefore(item, cf.getElementsByTagName("input")[0]);
+  // Turn off the placeholder
+  offPlaceholder(cf);
 }
 
 // Remove the last item from a commafield
@@ -26,6 +28,10 @@ function removeLast(cf) {
   if (items.length) {
     var item = items[items.length-1];
     cf.removeChild(item);
+  }
+  // Turn the placeholder back on only if no tags are entered
+  if (!getRegisteredItems(cf).length) {
+    onPlaceholder(cf);
   }
 }
 
@@ -88,8 +94,6 @@ for (var i=0; i<cfs.length; i++) {
             // Prevent duplicates
             getRegisteredItems(this).indexOf(inp.value)==-1) {
           addItem(this, inp.value.trim());
-          // Turn off the placeholder
-          offPlaceholder(this);
           inp.value = "";
         }
         break;
@@ -98,10 +102,6 @@ for (var i=0; i<cfs.length; i++) {
         // If we're at the beginning of text insertion, delete last item
         if (inp.value == "") {
           removeLast(this);
-        }
-        // Turn the placeholder back on only if no tags are entered
-        if (!getRegisteredItems(this).length) {
-          onPlaceholder(this);
         }
         break;
     }
