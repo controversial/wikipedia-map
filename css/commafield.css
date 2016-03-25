@@ -9,7 +9,10 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   overflow: hidden;
+  height:33px;
   padding:3px;
+  margin: 2px;
+  
   font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
 
@@ -25,6 +28,7 @@
   margin: 2px 5px 3px 0;
   padding-left:7px;
   flex: 2;
+  height: 80%;
 }
 
 .item {
@@ -39,6 +43,7 @@
   margin: 2px 5px 3px 0;
 
   flex: 0 1 auto;
+  height: 80%;
 
   cursor: pointer;
 
