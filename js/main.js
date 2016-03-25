@@ -83,11 +83,12 @@ function addStart(start, index) {
 function resetNetworkFromInput() {
   // Network should be reset
   needsreset = true;
+  var cf = document.getElementsByClassName("commafield")[0];
+  // Items entered.
+  var inputs = getItems(cf);
   // If no input is given, fall back to the page about Wikipedia
-  var input = inputBox.value || "Wikipedia";
-  // Separate list by comma, strip whitespace
-  var input = input.replace(" vs ", ", ") // 'Cats vs Dogs' -> 'Cats, Dogs'
-  var inputs = input.split(",").map(function(s){return s.trim()});
+  if (!inputs[0]) {inputs=["Wikipedia"]}
+
   for (var i=0; i<inputs.length; i++) {
     getPageName(encodeURI(inputs[i]), addStart);
   }
