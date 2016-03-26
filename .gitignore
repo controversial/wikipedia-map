@@ -8,3 +8,6 @@ libraries/*
 *.DS_Store
 # Don't include textastic iCloud stuff
 *.icloud
+
+# Don't include the commafield test file
+commafield.html

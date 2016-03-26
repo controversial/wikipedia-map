@@ -58,17 +58,7 @@ window.onload = function() {
 
   // Bind actions for search component.
 
-  inputBox = document.getElementById('pageName');
-
-  //Bind the event of pressing enter inside the text box
-  inputBox.onkeypress = function(e) {
-    var event = e || window.event;
-    var charCode = event.which || event.keyCode;
-    if ( charCode == '13' ) { //Enter was pressed inside dialog
-      resetNetworkFromInput();
-    }
-  }
-
+  var cf = document.getElementsByClassName("commafield")[0];
   //Bind the action of pressing the button
   var submitButton = document.getElementById('submit');
   submitButton.onclick = function() {
@@ -79,7 +69,8 @@ window.onload = function() {
   randomButton.onclick = function() {
     getRandomName(function (data) {
       resetNetwork(data);
-      inputBox.value = decodeURIComponent(data);
+      clearItems(cf);
+      addItem(cf, decodeURIComponent(data));
     });
   }
 

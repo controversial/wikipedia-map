@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+
+.commafield {
+  display:flex;
+  flex-wrap: wrap;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  height:33px;
+  padding:3px;
+  margin: 2px;
+
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.commafield input {
+  font-size: 1em;
+  /* Kill default styles */
+  outline: none;
+  border: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  /* Layout */
+  margin: 2px 5px 3px 0;
+  padding-left:7px;
+  flex: 2;
+  height: 85%;
+}
+
+.item {
+  float: left;
+
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  font-size: 1em;
+
+  padding: 0 5px;
+  margin: 2px 5px 3px 0;
+
+  flex: 0 1 auto;
+  height: 85%;
+
+  cursor: pointer;
+
+  transition: all 0.1s ease-in-out;
+}
+
+.item:after {
+  /* Add a close button */
+  content: "x";
+  padding-left:5px;
+
+  /* Font styles */
+  font-size: 75%;
+  vertical-align: 10%; /* This is about right for centering */
+  color: #EC725D;
+  font-weight: bold;
+}
+
+.item:hover {
+  background-color: #fff;
+}
+
+.item:hover:after {
+  color: #f00;
+}

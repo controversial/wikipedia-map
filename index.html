@@ -22,7 +22,9 @@
   <link rel="stylesheet" href="./css/helpdialog.css" type="text/css"/>
   <!-- Load css for the github README -->
   <link rel="stylesheet" href="./css/github-markdown.css" type="text/css"/>
-
+  <!-- Load css for comma input field -->
+  <link rel="stylesheet" href="./css/commafield.css" type="text/css"/>
+  
 </head>
 
 <body>
@@ -30,7 +32,7 @@
   <div id="formbox">
     <button id="random" type=button title="Random article"></button>
     <button id="submit" type="button" title="Enter the name of a wikipedia page, then press 'Go'">Go</button>
-    <span> <input id="pageName" type="text" placeholder="Wikipedia" title="Enter the name of a wikipedia page, then press 'Go'"/> </span>
+    <div class="commafield" placeholder="Wikipedia"> </div>
   </div>
 
   <!-- The about button -->
@@ -118,7 +120,9 @@
   <script type="text/javascript" src="./js/help.js"> </script>
   <!-- Load bindings -->
   <script type="text/javascript" src="./js/bindings.js"> </script>
-
+  <!-- Transform comma field -->
+  <script type="text/javascript" src="./js/commafield.js"> </script>
+  
 </body>
 
 </html>

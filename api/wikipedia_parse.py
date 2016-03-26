@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """Functions for getting information about wikipedia pages. This contains the
-code for all of the functions used by the backend of Wikipedia Map"""
+code for all of the functions used by the backend of Wikipedia Map."""
 
 import json
 from urllib2 import quote, unquote
@@ -12,7 +12,6 @@ import requests
 
 # Base URL for API
 _endpoint = "https://en.wikipedia.org/w/api.php"
-
 
 # --- HELPER FUNCTIONS --- #
 
@@ -57,7 +56,8 @@ def is_article(name):
 
 def get_page_html(pagename):
     """Get a BeautifulSoup object representing the HTML for the first section
-    of the Wikipedia article named <pagename>"""
+    of the Wikipedia article named <pagename>. Will not resolve disambiguation
+    pages."""
 
     payload = {
         "format": "json",
@@ -78,36 +78,52 @@ def get_page_html(pagename):
         return bs4.BeautifulSoup(html, "html.parser")
 
 
-def get_first_paragraph(pagename):
-    """Get a BeautifulSoup object representing the HTML for the first paragraph
+def get_nth_paragraph(html, n):
+    """Get a BeautifulSoup object representing the HTML for the nth paragraph
     of the Wikipedia article named <pagename>"""
-    html = get_page_html(pagename)
     if html is None:
         return None
     else:
         ps = html.find_all("p", recursive=False)
-        p1 = ps[0]
-        if p1.find("span", id="coordinates"):
-            return ps[1]
-        else:
-            return p1
+        # If the first paragraph in the HTML is that thing about coordinates,
+        # shift the index by 1 so that we find only paragraphs of text.
+        if ps[0].find("span", id="coordinates"):
+            n += 1
+        try:
+            return ps[n]
+        except IndexError:
+            return bs4.BeautifulSoup("", "html.parser")
+
+
+def get_links(html):
+    """Get valid Wikipedia article links from a BeautifulSoup object."""
+    links = [link.get("href") for link in html.find_all("a")]
+    links = [link for link in links if link.startswith("/wiki/")]
+    links = [get_page_title(link) for link in links]
+    links = [link.split("#")[0] for link in links]
+    links = [link for link in links if is_article(link)]
+    links = [link.replace("_", " ") for link in links]
+    links = list(set(links))
+    return links
 
 
 def first_paragraph_links(pagename):
     """Get the name of each Wikipedia article linked to from the first
     paragraph of the Wikipedia article named <pagename>"""
-    p1 = get_first_paragraph(pagename)
-    if p1 is None:
+    html = get_page_html(pagename)
+    p = get_nth_paragraph(html, 0)
+    if p is None:
         return []
     else:
-        links = [link.get("href") for link in p1.find_all("a")]
-        links = [link for link in links if link.startswith("/wiki/")]
-        links = [get_page_title(link) for link in links]
-        links = [link.split("#")[0] for link in links]
-        links = [link for link in links if is_article(link)]
-        links = [link.replace("_", " ") for link in links]
-        links = list(set(links))
-        return links
+        n = 1
+        # This loop is executed if the first paragraph contains no links. With
+        # this loop, if an article contains links in the first section but not
+        # in the first paragraph, wikipedia-map will find the first paragraph
+        # that *does* contain links.
+        while p.get_text() and not get_links(p):
+            p = get_nth_paragraph(html, n)
+            n += 1
+        return get_links(p)
 
 
 def get_random_article():
@@ -145,4 +161,8 @@ if __name__ == "__main__":
 
     start = time.time()
     print first_paragraph_links("Zürich"),  # Test unicode
+    print "({} seconds)\n".format(time.time()-start)
+
+    start = time.time()
+    print first_paragraph_links("Peer-to-peer"),  # Test no-link fallback
     print "({} seconds)\n".format(time.time()-start)
