@@ -61,8 +61,23 @@ function wordwrap(text,limit) {
       lines[lines.length-1] = lastLine + " " + word;
     }
   }
-  return lines.join("\n")
+  return lines.join("\n").trim() // Trim because the first line will start with a space
 }
+function unwrap(text) {
+  return text.replace(/\n/g," ")
+}
+
+// Get a "neutral" form of a page name to use as an ID. This is designed to
+// minimize the number of duplicate nodes found in the network.
+function getNeutralId(id) {
+  id = id.toLowerCase(); // Lowercase
+  id = id.replace( /(\s|_|%20)/ , "" ); // Remove spaces, underscores, and %20
+  if (id[id.length-1] == "s") {
+    id = id.slice(0, -1);
+  }
+  return id;
+}
+
 
 
 // == NETWORK SHORTCUTS == //
