@@ -34,16 +34,20 @@ function lightenHex(hex,percent) {
   });
   return rgbToHex(newRgb); //and back to hex
 }
-
 //Get the color for a node, lighten an orange based on level. Subtle.
 function getColor(level) {
   return lightenHex("#40C4FF",5*level); //Gets 10% lighter for each level
 }
-
 //Get the highlighted color for a node, lighten a blue based on level. Subtle.
 function getBlueColor(level) {
   return lightenHex("#FFC400",5*level); //Gets 10% lighter for each level
 }
+// Get the color that an edge should be pointing to a certain level
+function getEdgeColor(level) {
+  var nodecolor = getColor(level);
+  return vis.util.parseColor(nodecolor).border;
+}
+
 
 function wordwrap(text,limit) {
   var words = text.split(" ");
