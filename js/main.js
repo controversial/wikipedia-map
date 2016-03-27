@@ -86,8 +86,11 @@ function resetNetworkFromInput() {
   var cf = document.getElementsByClassName("commafield")[0];
   // Items entered.
   var inputs = getItems(cf);
-  // If no input is given, fall back to the page about Wikipedia
-  if (!inputs[0]) {inputs=["Wikipedia"]}
+  // If no input is given, add an item for the page about Wikipedia as a fallback
+  if (!inputs[0]) {
+    addItem(cf, "Wikipedia")
+    inputs = getItems(cf);
+  }
 
   for (var i=0; i<inputs.length; i++) {
     getPageName(encodeURI(inputs[i]), addStart);
