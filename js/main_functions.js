@@ -32,7 +32,7 @@ function expandNodeCallback(page,data) {
       }
       var edgeID = page+"-"+subpage
       if (edges.getIds().indexOf(edgeID) == -1) { //Don't create duplicate edges in same direction
-        newedges.push({id:page+"-"+subpage, from: page, to: subpage,
+        newedges.push({id:edgeID, from: page, to: subpage,
                        color:getEdgeColor(level),selectionWidth:2, hoverWidth:0});
       }
     }
@@ -43,7 +43,9 @@ function expandNodeCallback(page,data) {
 }
 //Expand a node without freezing other stuff
 function expandNode(page) {
-  getSubPages(page,
+  var label = nodes.get(page).label;
+  var pagename = encodeURIComponent(unwrap(label));
+  getSubPages(pagename,
     function(data) {expandNodeCallback(page,data)});
 }
 

@@ -9,7 +9,7 @@ var inputBox;
 //Functions that will be used as bindings
 function expandEvent (params) { // Expand a node (with event handler)
   if (params.nodes.length) { //Did the click occur on a node?
-    var page = params.nodes[0]; //The node clicked
+    var page = params.nodes[0]; //The id of the node clicked
     expandNode(page);
   }
 }
@@ -38,7 +38,7 @@ function bindNetwork(){
   if (isTouchDevice) { // Device has touchscreen
     network.on("hold", expandEvent);
     //Highlight traceback on click
-    network.on("click",mobileTraceEvent);
+    network.on("click", mobileTraceEvent);
   } else { // Device does not have touchscreen
     network.on("click", expandEvent); // Expand on click
     network.on("hoverNode", function(params){traceBack(params.node)} ); // Highlight on hover
