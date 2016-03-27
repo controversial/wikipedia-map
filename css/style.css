@@ -73,13 +73,27 @@ button[type=button]:active {
   background-size: 31px 31px;
 }
 
-/* The about button should be in the bottom right */
-#about {
+/* Buttons all go in the bottom right. They should be round.*/
+.button-container {
   position: fixed;
   bottom: 5px;
   right: 5px;
+  width: 33px;
+  
+  z-index: 2;
+}
+
+.button-container button,
+.button-container img {
   width:33px;
   height:33px;
-  z-index: 2;
-  border-radius:50%; /* Make it round */
+  border-radius: 50%; /* Makes things round */
+   
+  margin: 0;
+  margin-top: 5px;
+  padding: 0;
+  
+  /* These were already on buttons but not images */
+  border: 1px solid #ccc;
+  background-color: #fff; /* GitHub logo is transparent */
 }

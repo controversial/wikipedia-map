@@ -35,10 +35,15 @@
     <div class="commafield" placeholder="Wikipedia"> </div>
   </div>
 
-  <!-- The about button -->
+  <!-- The buttons (about, github, etc) -->
+  <div class="button-container">
+  <a href="http://github.com/The-Penultimate-Defenestrator/wikipedia-map/">
+    <img src="assets/GitHub.png"/>
+  </a>
   <button id="about" type="button">?</button>
-
-  <!-- Modal help popup-->
+  </div>
+  
+  <!-- Modal help popup -->
   <div id="modal" class="fullscreen modal">
     <div id="modal-content" class="modal-content markdown-body">
       <!-- Main menu chooser (modeled after the iOS Settings app) -->
@@ -92,9 +97,10 @@
   <div id="container" class="fullscreen">
     <!-- Welcome message -->
     <div class="markdown-body" style="position:fixed;top:58px;padding:25px">
+      
       <h1>Wikipedia Mapper</h1>
       <p>A tool for visualizing the connections between wikipedia pages.<br>
-         Press the <b>?</b> button in the bottom right for more info</p>
+        Press the <b>?</b> button in the bottom right for more info <p>
     </div>
   </div>
 
