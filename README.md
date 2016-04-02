@@ -1,40 +1,52 @@
-# Wikipedia Mapper
+# Wikipedia Map
 
-See it at [luke.deentaylor.com/wikipedia](http://luke.deentaylor.com/wikipedia/)
+A web app for visualizing the connection of wikipedia pages. See it at [luke.deentaylor.com/wikipedia](http://luke.deentaylor.com/wikipedia/)
 
-A web app for visualizing the connection of wikipedia pages. Start by entering a topic into the text box, i.e. *Cats*. A single node will be generated, labeled *Cat*. Double-click this node to expand it.
 
-Expanding a node creates a new node for each page that  is linked to from the first paragraph of the article. These nodes will be connected to the node from which they were expanded. For example, expanding *Cat* will create eight nodes, including *Fur*, *Mammal*, *Carnivore*, and *Domestication*, each of which will be connected to *Cat*. Each of these nodes can also be expanded in the same way.
+## Usage
+Start by entering a topic into the text box, i.e. *Cats*. A single node will be generated, labeled *Cat*. Click this node to expand it.
 
+Expanding a node creates a new node for each page that is linked to from the first paragraph of the article. These nodes will be connected to the node from which they were expanded. For example, expanding *Cat* will create eight nodes, including *Fur*, *Mammal*, *Carnivore*, and *Domestication*, each of which will be connected to *Cat*. Each of these nodes can also be expanded in the same way.
+
+You can also enter multiple articles to "compare" by pressing Comma, Tab, or Enter after each one. I've built a custom input to give users visual feedback on this style of input, which behaves similarly to many "tag inputs" found elsewhere.
+
+## Showcase
+
+A map typically looks something like this:
+![](http://i.imgur.com/tJnHSDE.png)
+
+Wikipedia Map also has full support for touch devices and mobile browsers:
+![](http://i.imgur.com/30TJSBy.jpg)
+
+
+## Design choices
+
+#### Functional
 I've chosen to use links only from the first paragraph of an article for 2 reasons:
 
 1. There is usually a manageable number of these links, about 5-10 per page.
 2. They tend to be more directly relevant to the article than links further down in the page.
 
-A map typically looks something like this:
-![](http://i.imgur.com/tJnHSDE.png)
-Note that nodes are lighter in color when they are farther away from the central node. If it took 5 steps to reach *Ancient Greek* from *Penguin*, it will be a lighter color than a node like *Birding*, which only took 2 steps to reach. Thus, in general, a node's color indicates how strongly related to the central topic an article is, with less-strongly related topics having lighter color.
+#### Visual
+Note that nodes are lighter in color when they are farther away from the central node. If it took 5 steps to reach *Ancient Greek* from *Penguin*, it will be a lighter color than a node like *Birding*, which only took 2 steps to reach. Thus, a node's color indicates how closely an article is related to the central topic.
 
-Single-clicking a node will highlight in blue the path back to the central node.
+Hovering the mouse over a node will highlight the path back to the central node:
 ![](http://i.imgur.com/1xH3sri.png)
 Note that this is not necessarily the shortest path back, but the path that you took to reach the node. Regardless of whether a shorter path back exists, the path by which the node was created will be shown. This is by design.
 
-It has full support for touch devices and mobile browsers:
-![](http://i.imgur.com/30TJSBy.jpg)
-
-## Cloning
-Note: If you want to clone this, you'll have to replace the `github-markdown.css` file with the file at the link, and you'll have to manually create the `libraries` folder. This repo is designed to reflect only the code that I've actually written, as much as possible.
 
 ## How it works
 
 #### API
-When you double click a node, a request is made to a Flask server (under the `api` directory). The Flask server provides a wrapper around code from my Python script, `wikipedia_parse.py`. The API json-izes the results from `wikipedia_parse.py` and serves them. The resulting API is at [luke.deentaylor.com/wikipedia/api](http://luke.deentaylor.com/wikipedia/api). The main functionality is getting first paragraph links, by making a request like http://luke.deentaylor.com/wikipedia/api/links?page=Cats.
+When you click to expand a node, a request is made to a Flask server (under the `api` directory). This Flask server exposes code from my Python script, `wikipedia_parse.py`, to JavaScript `XMLHttpRequests`. This Python API parses and json-izes the results of different calls to the Wikipedia API and serves them. The resulting API is at [luke.deentaylor.com/wikipedia/api](http://luke.deentaylor.com/wikipedia/api).
+
+The main functionality is getting "first paragraph links", by making a request like http://luke.deentaylor.com/wikipedia/api/links?page=Cats, but this API also exposes methods like getting the name of a random page (which just consists of a simple wrapper around Wikipedia's API)
 
 #### HTML Parsing
-The underlying script, in `wikipedia_parse.py`, uses `BeautifulSoup` to parse through the HTML of wikipedia pages. It looks for the `<div>` element with an `id` of `mw-content-text`, which contains page content. Then, it finds the first `<p>` tag directly under that, excluding the coordinates which are sometimes at the top right. Under this tag, it simply looks at all links, and extracts the page title from each of these links.
+The underlying script, in `wikipedia_parse.py`, uses `BeautifulSoup` to parse through the HTML of wikipedia pages. This HTML is retrieved from calls to Wikipedia's API. The parser looks for the first `<p>` tag (non-recursively to exclude informational content inside divs), and excludes certain special edge cases. Then the parser simply finds all links within this paragraph, excluding ones outside of [the "Main/Article" namespace](https://en.wikipedia.org/wiki/Wikipedia:Namespace). It extracts the page title from each, and returns a list.
 
 #### The main page
-I suck at JavaScript, which is why I wrote a lot of the underlying code in Python. However, the main page is written mostly in JavaScript. It uses `vis.js` to display the graph. Every time a node is double-clicked, it makes an ajax request to the Flask API. The results are word-wrapped, and then stuck under nodes which are colored according to their distance from the central node. Lighter node colors indicate weaker connections to the central topic.
+I suck at JavaScript, which is why I wrote a lot of the underlying code in Python. However, the front-end is written mostly in JavaScript. I use [`vis.js`](http://visjs.org/) to display the graph. Every time a node is double-clicked, JavaScript makes an AJAX `XMLHttpRequest` to the aforementioned Flask API. The results of the query are word-wrapped, and then stuck under nodes which are colored according to their distance from the central node, as described above.
 
 ## To Do
 
@@ -47,13 +59,15 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
     - [x] The area with the network should contain instructions when it is blank
     - [x] Create a more thorough help dialog explaining controls, etc. which also includes the README
   - [x] Add a "Random Article" button
+  - [ ] Create a *better* help menu that pops up when a user first visits
+- [x] Allow inputting of multiple starts
+  - [x] Build an interface for this
 - [ ] While waiting for a node to expand, show a spinner on it to indicate progress is happening
 
 #### Interaction
-- [x] single clicking on a node will show a traceback of how you arrived at that node, kind of like breadcrumbs
+- [x] Hovering over a node will show a traceback of how you arrived at that node, kind of like breadcrumbs
 - [x] mobile optimization: Implement a separate set of controls for touch devices
-- [x] On desktop, single-click to expand, hover to highlight path back
-- [x] On both desktop and mobile, double-click a node to open the corresponding wikipedia page in a new tab
+- [x] On both desktop and mobile, double-click (or tap) a node to open the corresponding wikipedia page in a new tab
 - [x] Improve efficiency of highlighting the nodes
 
 
@@ -66,7 +80,12 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 - [x] Move JavaScript to separate files from HTML
 - [x] Make API requests asynchronous
 
-## Credits
-Powered mainly by [vis.js](visjs.org) and [BeautifulSoup](crummy.com/software/BeautifulSoup/).
+## Cloning
+Note: If you want to clone this, you'll have to replace the `github-markdown.css` file with the file at the link, and you'll have to manually create the `libraries` folder. This repo is designed to reflect only the code that I've actually written, as much as possible. Maybe I'll build a makefile to make cloning easier if I decide I care a lot about contributions.
 
-Rendering of this document into the help modal is done via a modified version of [marked](github.com/chjj/marked) that supports task lists.
+## Credits
+This project is powered by Wikipedia! Wikipedia is one of my favorite things, and its wealth of information makes this project possible.
+
+The technical bits are mostly powered just by  [`vis.js`](visjs.org) and [`BeautifulSoup`](crummy.com/software/BeautifulSoup/).
+
+Rendering of this document into the help modal is done via a modified version of [`marked`](github.com/chjj/marked) that supports task lists.
