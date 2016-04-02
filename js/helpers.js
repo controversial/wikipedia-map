@@ -71,7 +71,8 @@ function unwrap(text) {
 // minimize the number of duplicate nodes found in the network.
 function getNeutralId(id) {
   id = id.toLowerCase(); // Lowercase
-  id = id.replace( /(\s|_|%20)/ , "" ); // Remove spaces, underscores, and %20
+  id = id.replace( /%20/g , "" ); // Remove code for spaces
+  id = id.replace(/[^A-Za-z\d%]/g, "") // Remove all non-alphanumeric characters
   if (id[id.length-1] == "s") {
     id = id.slice(0, -1);
   }

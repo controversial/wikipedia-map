@@ -62,7 +62,7 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
   - [ ] Create a *better* help menu that pops up when a user first visits
 - [x] Allow inputting of multiple starts
   - [x] Build an interface for this
-- [ ] While waiting for a node to expand, show a spinner on it to indicate progress is happening
+- [ ] Make the size of nodes reflect the number of backlinks?
 
 #### Interaction
 - [x] Hovering over a node will show a traceback of how you arrived at that node, kind of like breadcrumbs

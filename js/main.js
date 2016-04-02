@@ -45,14 +45,15 @@ function makeNetwork() {
 //Reset the network to be new each time.
 function resetNetwork(start) {
   if (!initialized){makeNetwork()};
-  startpages = [start]; // Register the page as an origin node
+  var startID = getNeutralId(start);
+  startpages = [startID]; // Register the page as an origin node
   tracenodes = [];
   traceedges = [];
   // -- CREATE NETWORK -- //
   //Make a container
   nodes = new vis.DataSet([
-    {id:start, label:wordwrap(decodeURIComponent(start),20), value:2, level:0,
-     color:getColor(0), parent:start} //Parent is self
+    {id:startID, label:wordwrap(decodeURIComponent(start),20), value:2, level:0,
+     color:getColor(0), parent:startID} //Parent is self
   ]);
   edges = new vis.DataSet();
   //Put the data in the container
@@ -70,10 +71,11 @@ function addStart(start, index) {
     return;
 
   } else {
-    startpages.push(start);
+    var startID = getNeutralId(start);
+    startpages.push(startID);
     nodes.add([
-      {id:start, label:wordwrap(decodeURIComponent(start),20), value:2, level:0,
-      color:getColor(0), parent:start} // Parent is self
+      {id:startID, label:wordwrap(decodeURIComponent(start),20), value:2, level:0,
+      color:getColor(0), parent:startID} // Parent is self
     ]);
   }
 }

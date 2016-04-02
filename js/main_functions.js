@@ -26,13 +26,14 @@ function expandNodeCallback(page,data) {
     //Create node objects
     for (var i=0; i<subpages.length; i++) {
       var subpage = subpages[i];
-      if (nodes.getIds().indexOf(subpage) == -1) { //Don't add if node exists
-          subnodes.push({id:subpage, label:wordwrap(decodeURIComponent(subpage),15), value:1,
+      var subpageID = getNeutralId(subpage)
+      if (nodes.getIds().indexOf(subpageID) == -1) { //Don't add if node exists
+          subnodes.push({id:subpageID, label:wordwrap(decodeURIComponent(subpage),15), value:1,
                          level:level, color:getColor(level), parent:page}); //Add node
       }
-      var edgeID = page+"-"+subpage
+      var edgeID = page+"-"+subpageID
       if (edges.getIds().indexOf(edgeID) == -1) { //Don't create duplicate edges in same direction
-        newedges.push({id:edgeID, from: page, to: subpage,
+        newedges.push({id:edgeID, from: page, to: subpageID,
                        color:getEdgeColor(level),selectionWidth:2, hoverWidth:0});
       }
     }
