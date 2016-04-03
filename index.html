@@ -4,11 +4,12 @@
   <!-- iOS optimization -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <!-- SEO -->
+  <meta charset="UTF-8">
   <meta name="description" content="Wikipedia Map is a tool for visualizing topics by exploring the connections between Wikipedia pages.">
   <meta name="keywords" content="Wikipedia,Python,Javascript,HTML,CSS,Concepts,Information,Exploration,Visualization,Data,API,Web Scraping">
   <meta name="author" content="Luke Deen Taylor">
   <!-- Page title -->
-  <title>Wikipedia Mapper</title>
+  <title>Wikipedia Map</title>
 
   <!-- Google Analytics -->
   <script>
@@ -27,7 +28,8 @@
   <link rel="stylesheet" href="./css/github-markdown.css" type="text/css"/>
   <!-- Load css for comma input field -->
   <link rel="stylesheet" href="./css/commafield.css" type="text/css"/>
-
+  <!-- Load CSS for vis.js -->
+  <link rel="stylesheet" href="./libraries/vis/vis.min.css" type="text/css" />
 </head>
 
 <body>
@@ -41,7 +43,7 @@
   <!-- The buttons (about, github, etc) -->
   <div class="button-container">
   <a href="http://github.com/The-Penultimate-Defenestrator/wikipedia-map/" target="_blank">
-    <img src="assets/GitHub.png"/>
+    <img alt="GitHub Logo" src="assets/GitHub.png"/>
   </a>
   <button id="about" type="button">?</button>
   </div>
@@ -52,10 +54,10 @@
       <!-- Main menu chooser (modeled after the iOS Settings app) -->
       <div class="menu menu-main" id="menu-main" menuname="Main">
         <ul>
-          <li id="aboutActivator"><img src="assets/information.png"/> About</li>
-          <li id="controlsActivator"><img src="assets/game-controller.png"/> Controls</li>
+          <li id="aboutActivator"><img alt="Information icon" src="assets/information.png"/> About</li>
+          <li id="controlsActivator"><img alt="Controls icon" src="assets/game-controller.png"/> Controls</li>
           <li class="menu-spacer"></li>
-          <li id="readmeActivator"><img src="assets/GitHub.png"/>Github README</li>
+          <li id="readmeActivator"><img alt="GitHub logo" src="assets/GitHub.png"/>Github README</li>
         </ul>
       </div>
       <!-- About -->
@@ -79,18 +81,18 @@
           <p>For more details, see the GitHub README in the Help menu.</p>
 
         </div>
-        <button class="backbutton" type="button"><img src="assets/arrow-back.png"/> Back</button>
+        <button class="backbutton" type="button"><img alt="Back button" src="assets/arrow-back.png"/> Back</button>
       </div>
       <!-- Controls -->
       <div class="menu menu-page" id="menu-controls">
         <div id="controls" class="menu-content markdown-body"></div>
-        <button class="backbutton" type="button"><img src="assets/arrow-back.png"/> Back</button>
+        <button class="backbutton" type="button"><img alt="Back button" src="assets/arrow-back.png"/> Back</button>
       </div>
 
       <!-- README page -->
       <div class="menu menu-page" id="menu-readme">
         <div id="readme" class="menu-content"></div>
-        <button class="backbutton" type="button"><img src="assets/arrow-back.png"/> Back</button>
+        <button class="backbutton" type="button"><img alt="Back button" src="assets/arrow-back.png"/> Back</button>
       </div>
     </div>
   </div>
@@ -110,9 +112,8 @@
 
 
   <!-- 3rd Party -->
-  <!--Load vis.js & its css file-->
+  <!--Load vis.js-->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.15.1/vis.min.js"></script>
-  <link rel="stylesheet" href="./libraries/vis/vis.min.css" type="text/css" />
   <!-- Load marked for rendering README.md -->
   <script type="text/javascript" src="./libraries/marked.js"></script>
 
