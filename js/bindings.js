@@ -95,4 +95,16 @@ window.onload = function() {
   modalcontent.ontouchmove = function(event) {
     event.stopPropagation();
   }
+
+  // Bind twitter button
+  var tweetButton = document.getElementById("twitter");
+  twitter.onclick = function(event) {
+    var url = "https://twitter.com/intent/tweet"
+    + "?text=" + encodeURIComponent("Explore topics with Wikipedia Map! Check out")
+    + "&url="  + encodeURIComponent("http://luke.deentaylor.com/wikipedia/")
+    + "&via="  + encodeURIComponent("1Defenestrator");
+    var top = window.outerHeight/2 - 210;
+    var left = window.outerWidth/2 - 275;
+    window.open(url, 0, "width=550, height=420, toolbar=0, status=0, top="+top+", left="+left);
+  }
 }

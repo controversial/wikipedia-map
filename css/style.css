@@ -79,21 +79,37 @@ button[type=button]:active {
   bottom: 5px;
   right: 5px;
   width: 33px;
-  
+
   z-index: 2;
 }
 
 .button-container button,
-.button-container img {
+.button-container > a > img {
   width:33px;
   height:33px;
   border-radius: 50%; /* Makes things round */
-   
+
   margin: 0;
   margin-top: 5px;
   padding: 0;
-  
+
   /* These were already on buttons but not images */
   border: 1px solid #ccc;
-  background-color: #fff; /* GitHub logo is transparent */
+}
+
+#twitter {
+  background-color: #55acee;
+  border: none;
+  position: relative;
+}
+#twitter img {
+  width:29px;
+  height:29px;
+  /* Elaborate tricks to get the image to center because it's slightly smaller than the parent */
+  margin:auto;
+  position: absolute;
+  top:0;left:0;bottom:0;right:0;
+}
+#github {
+  background-color:#fff;
 }
