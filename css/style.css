@@ -101,6 +101,10 @@ button[type=button]:active {
   background-color: #55acee;
   border: none;
   position: relative;
+  -webkit-appearance:none;
+}
+#twitter:focus {
+  outline:none;
 }
 #twitter img {
   width:29px;
