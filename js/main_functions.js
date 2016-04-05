@@ -16,31 +16,30 @@ function expandNodeCallback(page,data) {
   var level = node.level + 1 //Level for new nodes is one more than parent
   var subpages = data; //Data returned from AJAX call
 
-  if (!subpages) {
-    grayOut(page);
-
-  } else {
-
-    var subnodes = [];
-    var newedges = [];
-    //Create node objects
-    for (var i=0; i<subpages.length; i++) {
-      var subpage = subpages[i];
-      var subpageID = getNeutralId(subpage)
-      if (nodes.getIds().indexOf(subpageID) == -1) { //Don't add if node exists
-          subnodes.push({id:subpageID, label:wordwrap(decodeURIComponent(subpage),15), value:1,
-                         level:level, color:getColor(level), parent:page}); //Add node
-      }
-      var edgeID = page+"-"+subpageID
-      if (edges.getIds().indexOf(edgeID) == -1) { //Don't create duplicate edges in same direction
-        newedges.push({id:edgeID, from: page, to: subpageID,
-                       color:getEdgeColor(level),selectionWidth:2, hoverWidth:0});
-      }
+  // Add all children to network
+  var subnodes = [];
+  var newedges = [];
+  // Where new nodes should be spawned
+  var nodeSpawn = getSpawnPosition(page);
+  //Create node objects
+  for (var i=0; i<subpages.length; i++) {
+    var subpage = subpages[i];
+    var subpageID = getNeutralId(subpage);
+    if (nodes.getIds().indexOf(subpageID) == -1) { //Don't add if node exists
+        subnodes.push({id:subpageID, label:wordwrap(decodeURIComponent(subpage),15), value:1,
+                       level:level, color:getColor(level), parent:page,
+                       x:nodeSpawn[0], y:nodeSpawn[1]}); //Add node
     }
-    //Add the stuff to the nodes array
-    nodes.add(subnodes);
-    edges.add(newedges);
+    var edgeID = page+"-"+subpageID
+    if (edges.getIds().indexOf(edgeID) == -1) { //Don't create duplicate edges in same direction
+      newedges.push({id:edgeID, from: page, to: subpageID,
+                     color:getEdgeColor(level),selectionWidth:2, hoverWidth:0});
+    }
   }
+  //Add the stuff to the nodes array
+  nodes.add(subnodes);
+  edges.add(newedges);
+
 }
 //Expand a node without freezing other stuff
 function expandNode(page) {
