@@ -75,47 +75,43 @@ function getTraceBackEdges(tbnodes) {
 
 //Reset the color of all nodes, and width of all edges.
 function resetProperties() {
+  //console.time("reset");
   if (!isReset) {
     selectedNode = null;
     //Reset node color
-    var nodeids = tracenodes;
-    for (var i=0; i<nodeids.length; i++) {
-      var node = nodes.get(nodeids[i]);
-      var level = node.level;
-      colorNode(node,getColor(level));
-    }
+    var modnodes = tracenodes.map(function(i){return nodes.get(i)});
+    colorNodes(modnodes, 0);
     //Reset edge width and color
-    var edgeids = traceedges;
-    for (var i=0; i<edgeids.length; i++) {
-      var edge = edges.get(edgeids[i]);
-      edge.color = getEdgeColor(nodes.get(edge.to).level);
-      edgeWidth(edge,1);
-    }
+    var modedges = traceedges.map(function(i){
+      var e=edges.get(i);
+      e.color=getEdgeColor(nodes.get(e.to).level);
+      return e;
+    });
+    edgesWidth(modedges, 1);
     tracenodes = [];
     traceedges = [];
   }
+  //console.timeEnd("reset");
 }
 
 //Highlight the path from a given node back to the central node.
 function traceBack(node) {
   if (node != selectedNode) {
+    //console.time("trace");
     selectedNode = node;
     resetProperties();
     tracenodes = getTraceBackNodes(node);
     traceedges = getTraceBackEdges(tracenodes);
-    //Color nodes blue
-    for (var i=0; i<tracenodes.length; i++) {
-      var pagename = tracenodes[i];
-      var node = nodes.get(pagename); //The node we're iterating on
-      var level = node.level;
-      colorNode(node, getBlueColor(level));
-    }
+    //Color nodes yellow
+    var modnodes = tracenodes.map(function(i){return nodes.get(i)});
+    colorNodes(modnodes, 1);
     //Widen edges
-    for (var i=0; i<traceedges.length; i++) {
-      var edgeid = traceedges[i];
-      var edge = edges.get(edgeid); //The node we're iterating on
-      edge.color = {inherit:"to"}
-      edgeWidth(edge,5);
-    }
+    var modedges = traceedges.map(function(i){
+      var e=edges.get(i);
+      e.color={inherit:"to"};
+      return e;
+    });
+    edgesWidth(modedges, 5);
+   // console.timeEnd("trace");
   }
 }

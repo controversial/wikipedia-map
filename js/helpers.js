@@ -34,13 +34,13 @@ function lightenHex(hex,percent) {
   });
   return rgbToHex(newRgb); //and back to hex
 }
-// Get the color for a node, lighten an orange based on level. Subtle.
+// Get the color for a node, lighten a blue based on level. Subtle.
 function getColor(level) {
-  return lightenHex("#40C4FF",5*level); //Gets 10% lighter for each level
+  return lightenHex("#40C4FF",5*level); // Gets 5% lighter for each level
 }
-// Get the highlighted color for a node, lighten a blue based on level. Subtle.
-function getBlueColor(level) {
-  return lightenHex("#FFC400",5*level); //Gets 10% lighter for each level
+// Get the highlighted color for a node, lighten a yellow based on level. Subtle.
+function getYellowColor(level) {
+  return lightenHex("#FFC400",5*level); // Gets 5% lighter for each level
 }
 // Get the color that an edge should be pointing to a certain level
 function getEdgeColor(level) {
@@ -86,21 +86,26 @@ function getNeutralId(id) {
 
 // == NETWORK SHORTCUTS == //
 
-// Color a node
-function colorNode(node,color) {
-  node.color=color;
-  // Prevent snapping
-  delete node.x;
-  delete node.y;
-
-  nodes.update(node);
+// Color nodes from a list based on their level. If color=1, highlight color will be used.
+function colorNodes(ns,color) {
+  var colorFunc = color ? getYellowColor : getColor;
+  
+  for (var i=0; i<ns.length; i++) {
+    ns[i].color=colorFunc(ns[i].level);
+    // Prevent snapping
+    delete ns[i].x;
+    delete ns[i].y
+  }
+  nodes.update(ns);
   isReset = false;
 }
 
-// Set the width of an edge
-function edgeWidth(edge,width) {
-  edge.width = width;
-  edges.update(edge);
+// Set the width of some edges.
+function edgesWidth(es,width) {
+  for (var i=0; i<es.length; i++) {
+    es[i].width = width;
+  }
+  edges.update(es);
   isReset = false;
 }
 
