@@ -2,7 +2,7 @@
 // a function for resetting it to a brand new page.
 
 
-var nodes, edges, network //Global variables
+var nodes, edges, network; //Global variables
 var startpages = [];
 // Tracks whether the network needs to be reset. Used to prevent deleting nodes
 // when multiple nodes need to be created, because AJAX requests are async.
@@ -31,7 +31,7 @@ var options = {
 var nodes = new vis.DataSet();
 var edges = new vis.DataSet();
 var data = {nodes:nodes,edges:edges};
-var initialized = false
+var initialized = false;
 
 
 //Make the network
@@ -44,7 +44,7 @@ function makeNetwork() {
 
 //Reset the network to be new each time.
 function resetNetwork(start) {
-  if (!initialized){makeNetwork()};
+  if (!initialized) makeNetwork();
   var startID = getNeutralId(start);
   startpages = [startID]; // Register the page as an origin node
   tracenodes = [];
@@ -90,7 +90,7 @@ function resetNetworkFromInput() {
   var inputs = getItems(cf);
   // If no input is given, add an item for the page about Wikipedia as a fallback
   if (!inputs[0]) {
-    addItem(cf, "Wikipedia")
+    addItem(cf, "Wikipedia");
     inputs = getItems(cf);
   }
 

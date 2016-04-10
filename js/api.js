@@ -11,7 +11,7 @@ function requestPage(url, onSuccess) {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       onSuccess(xhttp.responseText);
     }
-  }
+  };
   xhttp.open("GET",url,true);
   xhttp.send();
 }
@@ -19,7 +19,9 @@ function requestPage(url, onSuccess) {
 //Make an AJAX request to the server while passing a page
 function apiRequest(api,page,onSuccess) {
   var url="api/"+api+"?page="+page;
-  requestPage(url, function (data){onSuccess(JSON.parse(data))});
+  requestPage(url, function (data){
+    onSuccess(JSON.parse(data));
+  });
 }
 
 
@@ -34,7 +36,7 @@ function getPageName(query,onSuccess) {
 }
 
 function getRandomName(onSuccess) {
-  requestPage("api/random",function(resp){
-    getPageName(resp,onSuccess)
+  requestPage("api/random", function(resp){
+    getPageName(resp,onSuccess);
   });
 }

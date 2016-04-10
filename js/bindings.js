@@ -42,7 +42,9 @@ function bindNetwork(){
     network.on("click", mobileTraceEvent);
   } else { // Device does not have touchscreen
     network.on("click", expandEvent); // Expand on click
-    network.on("hoverNode", function(params){traceBack(params.node)} ); // Highlight on hover
+    network.on("hoverNode", function(params){ // Highlight on hover
+      traceBack(params.node);
+    });
     network.on("blurNode", resetProperties); // Reset on un-hover
   }
 
@@ -55,7 +57,7 @@ window.onload = function() {
   // Prevent iOS scrolling
   document.ontouchmove = function(event){
     event.preventDefault();
-  }
+  };
 
   // Bind actions for search component.
 
@@ -63,8 +65,8 @@ window.onload = function() {
   //Bind the action of pressing the button
   var submitButton = document.getElementById('submit');
   submitButton.onclick = function() {
-    resetNetworkFromInput()
-  }
+    resetNetworkFromInput();
+  };
 
   var randomButton = document.getElementById('random');
   randomButton.onclick = function() {
@@ -73,7 +75,7 @@ window.onload = function() {
       clearItems(cf);
       addItem(cf, decodeURIComponent(data));
     });
-  }
+  };
 
 
   //Bind modal events.
@@ -82,29 +84,29 @@ window.onload = function() {
 
   aboutButton.onclick = function() {
     modal.style.display = "block";
-  }
+  };
 
   modal.onclick = function(event) {
     if (event.target.id == "modal") { //Clicking on modal-content won't hide it
       modal.style.display = "none";
     }
-  }
+  };
 
   //Allow iOS scrolling for the modal
   var modalcontent = document.getElementById("modal-content");
   modalcontent.ontouchmove = function(event) {
     event.stopPropagation();
-  }
+  };
 
   // Bind twitter button
   var tweetButton = document.getElementById("twitter");
   twitter.onclick = function(event) {
-    var url = "https://twitter.com/intent/tweet"
-    + "?text=" + encodeURIComponent("Explore topics with Wikipedia Map! Check out")
-    + "&url="  + encodeURIComponent("http://luke.deentaylor.com/wikipedia/")
-    + "&via="  + encodeURIComponent("1Defenestrator");
+    var url = "https://twitter.com/intent/tweet" +
+    "?text=" + encodeURIComponent("Explore topics with Wikipedia Map! Check out") +
+    "&url="  + encodeURIComponent("http://luke.deentaylor.com/wikipedia/") +
+    "&via="  + encodeURIComponent("1Defenestrator");
     var top = window.outerHeight/2 - 210;
     var left = window.outerWidth/2 - 275;
     window.open(url, 0, "width=550, height=420, toolbar=0, status=0, top="+top+", left="+left);
-  }
-}
+  };
+};

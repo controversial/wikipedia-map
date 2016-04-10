@@ -12,8 +12,8 @@ var tracenodes = [];
 
 // AJAX callback to add to a node once data is recieved
 function expandNodeCallback(page,data) {
-  var node = nodes.get(page) //The node that was clicked
-  var level = node.level + 1 //Level for new nodes is one more than parent
+  var node = nodes.get(page); //The node that was clicked
+  var level = node.level + 1; //Level for new nodes is one more than parent
   var subpages = data; //Data returned from AJAX call
 
   // Add all children to network
@@ -30,7 +30,7 @@ function expandNodeCallback(page,data) {
                        level:level, color:getColor(level), parent:page,
                        x:nodeSpawn[0], y:nodeSpawn[1]}); //Add node
     }
-    var edgeID = page+"-"+subpageID
+    var edgeID = page+"-"+subpageID;
     if (edges.getIds().indexOf(edgeID) == -1) { //Don't create duplicate edges in same direction
       newedges.push({id:edgeID, from: page, to: subpageID,
                      color:getEdgeColor(level),selectionWidth:2, hoverWidth:0});
@@ -46,7 +46,7 @@ function expandNode(page) {
   var label = nodes.get(page).label;
   var pagename = encodeURIComponent(unwrap(label));
   getSubPages(pagename,
-    function(data) {expandNodeCallback(page,data)});
+    function(data) {expandNodeCallback(page,data);});
 }
 
 //Get all the nodes tracing back to the start node.
@@ -75,11 +75,10 @@ function getTraceBackEdges(tbnodes) {
 
 //Reset the color of all nodes, and width of all edges.
 function resetProperties() {
-  //console.time("reset");
   if (!isReset) {
     selectedNode = null;
     //Reset node color
-    var modnodes = tracenodes.map(function(i){return nodes.get(i)});
+    var modnodes = tracenodes.map(function(i){return nodes.get(i);});
     colorNodes(modnodes, 0);
     //Reset edge width and color
     var modedges = traceedges.map(function(i){
@@ -91,7 +90,6 @@ function resetProperties() {
     tracenodes = [];
     traceedges = [];
   }
-  //console.timeEnd("reset");
 }
 
 //Highlight the path from a given node back to the central node.
@@ -103,7 +101,7 @@ function traceBack(node) {
     tracenodes = getTraceBackNodes(node);
     traceedges = getTraceBackEdges(tracenodes);
     //Color nodes yellow
-    var modnodes = tracenodes.map(function(i){return nodes.get(i)});
+    var modnodes = tracenodes.map(function(i){return nodes.get(i);});
     colorNodes(modnodes, 1);
     //Widen edges
     var modedges = traceedges.map(function(i){
