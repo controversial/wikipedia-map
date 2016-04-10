@@ -50,6 +50,8 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 
 ## To Do
 
+### Stuff I'll definitely implement
+
 #### Interface
 - [x] Build a GUI
   - [x] Change input method to something other than prompt
@@ -62,7 +64,6 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
   - [ ] Create a *better* help menu that pops up when a user first visits
 - [x] Allow inputting of multiple starts
   - [x] Build an interface for this
-- [ ] Make the size of nodes reflect the number of backlinks?
 
 #### Interaction
 - [x] Hovering over a node will show a traceback of how you arrived at that node, kind of like breadcrumbs
@@ -79,6 +80,13 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 	- [x] tinycolor
 - [x] Move JavaScript to separate files from HTML
 - [x] Make API requests asynchronous
+
+### Stuff it might be nice to implement sometime in the far future
+- [ ] Autocomplete names of Wikipedia articles in the top bar
+- [ ] Make the size of nodes reflect the number of backlinks
+- [ ] Support for other languages
+- [ ] Support for other MediaWiki wikis
+
 
 ## Cloning
 Note: If you want to clone this, you'll have to replace the `github-markdown.css` file with the file at the link, and you'll have to manually create the `libraries` folder. This repo is designed to reflect only the code that I've actually written, as much as possible. Maybe I'll build a makefile to make cloning easier if I decide I care a lot about contributions.
