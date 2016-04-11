@@ -50,7 +50,7 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 
 ## To Do
 
-### Stuff I'll definitely implement
+### Stuff I'd like to implement soon(ish)
 
 #### Interface
 - [x] Build a GUI
@@ -80,6 +80,7 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 	- [x] tinycolor
 - [x] Move JavaScript to separate files from HTML
 - [x] Make API requests asynchronous
+- [ ] Add some kind of build system to make building local copies and contributing easier
 
 ### Stuff it might be nice to implement sometime in the far future
 - [ ] Autocomplete names of Wikipedia articles in the top bar
