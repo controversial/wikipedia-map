@@ -137,9 +137,25 @@ def get_random_article():
         "rnnamespace": 0  # Limits results to articles
     }
 
-    req = requests.get(_endpoint, payload)
+    req = requests.get(_endpoint, params=payload)
     resp = json.loads(req.text)
     return resp["query"]["random"][0]["title"]
+
+
+def get_suggestions(search):
+    """Get the name of a random Wikipedia article"""
+
+    payload = {
+        "format": "json",
+        "action": "opensearch",
+        "search": search,
+        "limit": 10,
+        "namespace": 0  # Limits results to articles
+    }
+
+    req = requests.get(_endpoint, params=payload)
+    resp = json.loads(req.text)
+    return resp[1]
 
 
 if __name__ == "__main__":
@@ -165,4 +181,8 @@ if __name__ == "__main__":
 
     start = time.time()
     print first_paragraph_links("Peer-to-peer"),  # Test no-link fallback
+    print "({} seconds)\n".format(time.time()-start)
+
+    start = time.time()
+    print get_suggestions("English"),  # Test suggestions
     print "({} seconds)\n".format(time.time()-start)

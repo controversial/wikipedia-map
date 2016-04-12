@@ -28,5 +28,10 @@ def getPageName():
 def randomArticle():
     return get_random_article()
 
+@app.route('/suggest')
+def suggestArticles():
+    text = request.args.get("text")
+    return json.dumps(get_suggestions(text))
+
 if __name__ == "__main__":
     app.run()
