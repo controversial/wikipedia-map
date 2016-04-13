@@ -40,3 +40,9 @@ function getRandomName(onSuccess) {
     getPageName(resp,onSuccess);
   });
 }
+
+function getSuggestions(text, onSuccess) {
+  requestPage("api/suggest"+"?text="+text, function(data) {
+    onSuccess(JSON.parse(data));
+  })
+}
