@@ -82,6 +82,16 @@ function getNeutralId(id) {
   return id;
 }
 
+// A cross-browser compatible alternative to Math.sign, because support is atrocious
+function sign(x) {
+  if (Math.sign) {
+    return Math.sign(x);
+  } else if (x === 0) {
+    return 0;
+  } else {
+    return x > 0 ? 1:-1;
+  }
+}
 
 
 // == NETWORK SHORTCUTS == //
@@ -109,6 +119,16 @@ function edgesWidth(es,width) {
   isReset = false;
 }
 
+// Get the id of the edge connecting two nodes a and b
+function getEdgeConnecting(a, b) {
+  var edge = edges.get({filter:function(edge) {
+    return edge.from === a && edge.to === b;
+  }})[0];
+  if (edge instanceof Object) {
+    return edge.id;
+  }
+}
+
 // Get the network's center of gravity
 function getCenter() {
   var nodePositions = network.getPositions();
@@ -121,17 +141,6 @@ function getCenter() {
     ysum += pos.y;
   }
   return [xsum/keys.length, ysum/keys.length]; // Average is sum divided by length
-}
-
-// A cross-browser compatible solution to Math.sign, because support is atrocious
-function sign(x) {
-  if (Math.sign) {
-    return Math.sign(x);
-  } else if (x === 0) {
-    return 0;
-  } else {
-    return x > 0 ? 1:-1;
-  }
 }
 
 // Get the position in which nodes should be spawned given the id of a parent node.

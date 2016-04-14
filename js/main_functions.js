@@ -30,9 +30,9 @@ function expandNodeCallback(page,data) {
                        level:level, color:getColor(level), parent:page,
                        x:nodeSpawn[0], y:nodeSpawn[1]}); //Add node
     }
-    var edgeID = page+"-"+subpageID;
-    if (edges.getIds().indexOf(edgeID) == -1) { //Don't create duplicate edges in same direction
-      newedges.push({id:edgeID, from: page, to: subpageID,
+
+    if (!getEdgeConnecting(page, subpageID)) { //Don't create duplicate edges in same direction
+      newedges.push({from: page, to: subpageID,
                      color:getEdgeColor(level),selectionWidth:2, hoverWidth:0});
     }
   }
@@ -68,7 +68,7 @@ function getTraceBackEdges(tbnodes) {
   tbnodes.reverse();
   var path = [];
   for (var i=0; i<tbnodes.length-1; i++) { //Don't iterate through the last node
-    path.push(tbnodes[i]+"-"+tbnodes[i+1]);
+    path.push( getEdgeConnecting(tbnodes[i], tbnodes[i+1]) );
   }
   return path;
 }
