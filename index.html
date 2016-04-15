@@ -22,14 +22,19 @@
   </script>
 
   <!-- Load my CSS-->
+  <!-- Load main CSS -->
   <link rel="stylesheet" href="./css/style.css" type="text/css"/>
+  <!-- Load css for the UINavigationController-style help menu -->
   <link rel="stylesheet" href="./css/helpdialog.css" type="text/css"/>
   <!-- Load css for the github README -->
   <link rel="stylesheet" href="./css/github-markdown.css" type="text/css"/>
   <!-- Load css for comma input field -->
   <link rel="stylesheet" href="./css/commafield.css" type="text/css"/>
+
+  <!-- Load 3rd party CSS -->
   <!-- Load CSS for vis.js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.0/vis.css" type="text/css" />
+
 </head>
 
 <body>
@@ -37,7 +42,7 @@
   <div id="formbox">
     <button id="random" type=button title="Random article"></button>
     <button id="submit" type="button" title="Enter the name of a wikipedia page, then press 'Go'">Go</button>
-    <div class="commafield" placeholder="Wikipedia"> </div>
+    <div id="input" class="commafield" data-placeholder="Wikipedia"> </div>
   </div>
 
   <!-- The buttons (about, github, etc) -->
@@ -55,11 +60,11 @@
   <div id="modal" class="fullscreen modal">
     <div id="modal-content" class="modal-content markdown-body">
       <!-- Main menu chooser (modeled after the iOS Settings app) -->
-      <div class="menu menu-main" id="menu-main" menuname="Main">
+      <div class="menu menu-main" id="menu-main">
         <ul>
           <li id="aboutActivator"><img alt="Information icon" src="assets/information.png"/> About</li>
           <li id="controlsActivator"><img alt="Controls icon" src="assets/game-controller.png"/> Controls</li>
-          <li class="menu-spacer"></li>
+          <li class="menu-spacer"> &nbsp; </li>
           <li id="readmeActivator"><img alt="GitHub logo" src="assets/GitHub.png"/>Github README</li>
         </ul>
       </div>
@@ -108,7 +113,7 @@
 
       <h1>Wikipedia Mapper</h1>
       <p>A tool for visualizing the connections between wikipedia pages.<br>
-        Press the <b>?</b> button in the bottom right for more info <p>
+        Press the <b>?</b> button in the bottom right for more info</p>
     </div>
   </div>
 

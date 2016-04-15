@@ -46,15 +46,15 @@ function clearItems(cf) {
 
 // Turn placeholder on for a commafield
 function onPlaceholder(cf) {
-  if (cf.hasAttribute("placeholder")) {
+  if (cf.hasAttribute("data-placeholder")) {
     var inp = cf.getElementsByTagName("input")[0];
-    inp.setAttribute("placeholder",cf.getAttribute("placeholder"));
+    inp.setAttribute("placeholder",cf.getAttribute("data-placeholder"));
   }
 }
 
 // Turn placeholder off for a commafield
 function offPlaceholder(cf) {
-  if (cf.hasAttribute("placeholder")) {
+  if (cf.hasAttribute("data-placeholder")) {
     var inp = cf.getElementsByTagName("input")[0];
     inp.removeAttribute("placeholder");
   }
