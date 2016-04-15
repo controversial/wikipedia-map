@@ -95,7 +95,6 @@ function resetProperties() {
 //Highlight the path from a given node back to the central node.
 function traceBack(node) {
   if (node != selectedNode) {
-    //console.time("trace");
     selectedNode = node;
     resetProperties();
     tracenodes = getTraceBackNodes(node);
@@ -110,6 +109,5 @@ function traceBack(node) {
       return e;
     });
     edgesWidth(modedges, 5);
-   // console.timeEnd("trace");
   }
 }
