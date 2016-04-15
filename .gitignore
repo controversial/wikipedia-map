@@ -1,5 +1,3 @@
-# Don't include libraries
-libraries/*
 # Don't include compiled files
 *.py[cod]
 # Don't include fuse-hidden files
@@ -8,6 +6,7 @@ libraries/*
 *.DS_Store
 # Don't include textastic iCloud stuff
 *.icloud
-
+# Don't include symlink to dev directory
+dev/*
 # Don't include the commafield test file
 commafield.html
