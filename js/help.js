@@ -1,5 +1,9 @@
 // Create the Shepherd tour
 
+var infobox = document.getElementById("info");
+var buttons = document.getElementById("buttons");
+var formbox = document.getElementById("formbox");
+
 var shepherd = new Shepherd.Tour({
   defaults: {
     classes: "shepherd-theme-arrows",
@@ -21,7 +25,10 @@ shepherd.addStep({
     {
       text: "Next",
       classes: "shepbtn",
-      action: shepherd.next
+      action: function(){
+        shepherd.next();
+        buttons.style.opacity = 1;
+      }
     }
   ]
 });
@@ -46,7 +53,11 @@ shepherd.addStep({
     {
       text: "Next",
       classes: "shepbtn",
-      action: shepherd.next
+      action: function(){
+        shepherd.next();
+        buttons.style.opacity = 0.3;
+        formbox.style.opacity = 1;
+      }
     }
   ]
 });
@@ -95,15 +106,19 @@ shepherd.addStep({
 
 // Take away the info box when the tour has started...
 shepherd.on("start", function () {
-  document.getElementById("info").style.display = "none";
+  infobox.style.opacity = 0.3;
+  formbox.style.opacity = 0.3;
+  buttons.style.opacity = 0.3;
 });
+
 // ... and bring it back when the tour goes away
-shepherd.on("complete", function() {
-  document.getElementById("info").style.display = "block";
-});
-shepherd.on("cancel", function() {
-  document.getElementById("info").style.display = "block";
-});
+function opaque () {
+  info.style.opacity = 1;
+  formbox.style.opacity = 1;
+  buttons.style.opacity = 1;
+}
+shepherd.on("complete", opaque);
+shepherd.on("cancel", opaque);
 
 
 
