@@ -21,19 +21,24 @@
   ga('send', 'pageview');
   </script>
 
-  <!-- Load my CSS-->
+  <!-- Load 3rd party CSS -->
+  <!-- Load CSS for vis.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.0/vis.css" type="text/css" />
+  <!-- Load CSS for shepherd.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shepherd/1.7.0/css/shepherd-theme-arrows.css" type="text/css" />
+
+  <!-- Load my CSS -->
   <!-- Load main CSS -->
   <link rel="stylesheet" href="./css/style.css" type="text/css"/>
   <!-- Load css for the UINavigationController-style help menu -->
   <link rel="stylesheet" href="./css/helpdialog.css" type="text/css"/>
+  <!-- Load css for the custom Shepherd styles -->
+  <link rel="stylesheet" href="./css/shepherd-custom.css" type="text/css"/>
   <!-- Load css for the github README -->
   <link rel="stylesheet" href="./css/github-markdown.css" type="text/css"/>
   <!-- Load css for comma input field -->
   <link rel="stylesheet" href="./css/commafield.css" type="text/css"/>
 
-  <!-- Load 3rd party CSS -->
-  <!-- Load CSS for vis.js -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.0/vis.css" type="text/css" />
 
 </head>
 
@@ -72,7 +77,7 @@
       <div class="menu menu-page" id="menu-about">
         <div class="menu-content markdown-body">
 
-          <h1>Wikipedia Mapper</h1>
+          <h1>Wikipedia Map</h1>
 
           <p>A web app for visualizing the connection of wikipedia pages. </p>
           <p>Wikipedia Mapper works based on a concept of <b>nodes</b>, which are dots on the screen.</p>
@@ -109,11 +114,11 @@
   <!-- Will hold the network -->
   <div id="container" class="fullscreen">
     <!-- Welcome message -->
-    <div class="markdown-body" style="position:fixed;top:58px;padding:25px">
-
-      <h1>Wikipedia Mapper</h1>
-      <p>A tool for visualizing the connections between wikipedia pages.<br>
-        Press the <b>?</b> button in the bottom right for more info</p>
+    <div id="info" class="markdown-body">
+      <h1>Wikipedia Map</h1>
+      <p>A tool for visualizing the connections between wikipedia pages.</p>
+      <p>Written by Luke Taylor in 2016.</p>
+      <button id="tourinit" class="shepbtn">Take the tour</button>
     </div>
   </div>
 
@@ -124,6 +129,9 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.0/vis-network.min.js"> </script>
   <!-- Load marked for rendering README.md -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"> </script>
+  <!-- Load Shepherd and Tether for the tour -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.2/js/tether.min.js"> </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/shepherd/1.7.0/js/shepherd.min.js"> </script>
 
   <!-- My Stuff -->
   <!-- Load API functions -->

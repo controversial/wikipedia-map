@@ -1,5 +1,7 @@
 /* == GLOBAL STYLES == */
-*, *:before, *:after{
+*,
+*::before,
+*::after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -14,30 +16,34 @@
   /* Same size as window */
   width: 100vw;
   height: 100vh;
+
   /* No space from top corner */
   position: fixed;
-  top:0;
-  left:0;
-  z-index:0;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
 
 
 
 /* == TOP CONTROLS == */
+
 /* The box that holds the button and input */
 #formbox {
   padding: 10px;
   display: block;
   overflow: hidden;
+
   /* Position */
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   z-index: 1;
+
   /* Appearance */
-  background:rgba(255,255,255,0.5);
-  border-bottom: 1px solid #ccc;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 4px -2px #ccc;
   -webkit-backdrop-filter: blur(5px); /* Blur behind bar */
 }
 
@@ -46,20 +52,24 @@ button[type=button] {
   /* Color */
   color: #666;
   background-color: #fff;
+
   /* Border */
   outline: none;
   border: 1px solid #ccc;
   border-radius: 5px;
+
   /* Other */
   padding: 5px;
   margin: 2px;
-  font-size:18px;
+  font-size: 18px;
 }
+
 button[type=button]:active {
   background-color: #f5f5f5;
 }
+
 #formbox > button[type=button] {
-  float:right;
+  float: right;
 }
 
 /* Code elements */
@@ -70,8 +80,8 @@ code {
 
 /* The random button */
 #random {
-  height:33px;
-  width:33px;
+  height: 33px;
+  width: 33px;
   background: #fff url(../assets/random.png);
   background-size: 31px 31px;
 }
@@ -81,7 +91,19 @@ code {
   background-size: 31px 31px;
 }
 
-/* Buttons all go in the bottom right. They should be round.*/
+/* Container for the info initially presented to the user */
+#info {
+  margin-top: 73px;
+  margin-left: 13px;
+  width: 500px;
+  max-width: 400px;
+  padding: 25px;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Buttons all go in the bottom right. They should be round. */
 .button-container {
   position: fixed;
   bottom: 5px;
@@ -93,8 +115,8 @@ code {
 
 .button-container button,
 .button-container > a > img {
-  width:33px;
-  height:33px;
+  width: 33px;
+  height: 33px;
   border-radius: 50%; /* Makes things round */
 
   margin: 0;
@@ -109,19 +131,26 @@ code {
   background-color: #55acee;
   border: none;
   position: relative;
-  -webkit-appearance:none;
+  -webkit-appearance: none;
 }
-#twitter:focus {
-  outline:none;
+
+#twitter::focus {
+  outline: none;
 }
+
 #twitter img {
-  width:29px;
-  height:29px;
+  width: 29px;
+  height: 29px;
+
   /* Elaborate tricks to get the image to center because it's slightly smaller than the parent */
-  margin:auto;
+  margin: auto;
   position: absolute;
-  top:0;left:0;bottom:0;right:0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
+
 #github {
-  background-color:#fff;
+  background-color: #fff;
 }

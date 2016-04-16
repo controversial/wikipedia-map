@@ -1,0 +1,40 @@
+/* Styles for the Shepherd tour */
+
+.shepherd-theme-arrows {
+  width: 450px;
+  max-width: 450px;
+  z-index: 10;
+}
+
+/* Override Shepherd button colors */
+.shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button,
+.shepbtn {
+  background-color: #55acee;
+}
+
+.shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button:hover,
+.shepbtn:hover {
+  background-color: #6cb7f0;
+}
+
+.shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button.shepherd-button-secondary {
+  background-color: #eee;
+  color: #888;
+}
+
+.shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button.shepherd-button-secondary:hover {
+  background-color: #e9e9e9;
+}
+
+/* Misc */
+.shepbtn {
+  /* Make a normal button match the Shepherd buttons. Most of this was taken from Shepherd. */
+  border-radius: 3px;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8em;
+  padding: 0.75em 2em;
+  color: #fff;
+  margin-top: 10px;
+}

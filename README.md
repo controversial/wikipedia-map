@@ -61,7 +61,11 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
     - [x] The area with the network should contain instructions when it is blank
     - [x] Create a more thorough help dialog explaining controls, etc. which also includes the README
   - [x] Add a "Random Article" button
-  - [ ] Create a *better* help menu that pops up when a user first visits
+  - [x] Create a *better* help menu that pops up when a user first visits.
+  - [ ] Make the tour better
+    - [ ] Show users how to expand and trace back nodes. To do this, create a floating invisible div over a start node. Then, pin the Shepherd step to this div.
+    - [ ] Don't allow users to advance to the next step until they've followed the instruction (entering articles, pressing Go)
+
 - [x] Allow inputting of multiple starts
   - [x] Build an interface for this
 

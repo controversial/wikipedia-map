@@ -65,6 +65,7 @@ window.onload = function() {
   //Bind the action of pressing the button
   var submitButton = document.getElementById('submit');
   submitButton.onclick = function() {
+    shepherd.cancel(); // Dismiss the tour if it is in progress
     resetNetworkFromInput();
   };
 
@@ -98,6 +99,10 @@ window.onload = function() {
     event.stopPropagation();
   };
 
+  // Bind tour start
+  var tourbtn = document.getElementById("tourinit");
+  tourbtn.onclick = function(){shepherd.start();};
+  
   // Bind twitter button
   var tweetButton = document.getElementById("twitter");
   twitter.onclick = function(event) {
