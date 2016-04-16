@@ -91,17 +91,33 @@ code {
   background-size: 31px 31px;
 }
 
+
+
 /* Container for the info initially presented to the user */
 #info {
-  margin-top: 73px;
-  margin-left: 13px;
-  width: 500px;
-  max-width: 400px;
+  margin: 73px 13px 0 13px;
+  max-width: 450px;
   padding: 25px;
 
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
+/* Rules for small screens */
+
+@media (max-width: 750px) { /* Full width on small screens (namely iPhones) */
+  #info {
+    max-width: 100%;
+  }
+}
+
+@media (max-height: 400px) { /* Hide text on iPhones in portrait to prevent button from being cut off */
+  #info p {
+    display: none;
+  }
+}
+
+
 
 /* Buttons all go in the bottom right. They should be round. */
 .button-container {
