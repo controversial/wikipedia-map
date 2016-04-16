@@ -27,6 +27,31 @@ shepherd.addStep({
 });
 
 shepherd.addStep({
+  text: "Wikipedia Map is 100% open source, as are each of the libraries on "+
+        "which it depends. You can visit Wikipedia Map on GitHub.",
+  attachTo: "#github left",
+  buttons: [
+    {
+      text: "Back",
+      classes: "shepherd-button-secondary",
+      action: shepherd.back
+    },
+    { // Add a button to visit on GitHub
+      text: "Visit",
+      classes: "shepherd-button-secondary",
+      action: function() {
+        window.open("https://github.com/The-Penultimate-Defenestrator/wikipedia-map");
+      }
+    },
+    {
+      text: "Next",
+      classes: "shepbtn",
+      action: shepherd.next
+    }
+  ]
+});
+
+shepherd.addStep({
   text: ["Input the name of a Wikipedia article here.",
          " You can start with " + "and compare multiple articles by pressing "+
          "<code>,</code> <code>Tab</code> or <code>Enter</code> after each one."],
@@ -56,7 +81,7 @@ shepherd.addStep({
       action: shepherd.back
     },
     {
-      text: "Next",
+      text: "Let's go!",
       classes: "shepbtn",
       action: shepherd.next
     }
@@ -68,34 +93,17 @@ shepherd.addStep({
   },
 });
 
-shepherd.addStep({
-  text: "Wikipedia Map is 100% open source, as are each of the libraries on "+
-        "which it depends. You can visit Wikipedia Map on GitHub.",
-  attachTo: "#github left",
-  buttons: [
-    {
-      text: "Back",
-      classes: "shepherd-button-secondary",
-      action: shepherd.back
-    },
-    { // Add a button to visit on GitHub
-      text: "Visit",
-      classes: "shepherd-button-secondary",
-      action: function() {
-        window.open("https://github.com/The-Penultimate-Defenestrator/wikipedia-map");
-      }
-    },
-    {
-      text: "Next",
-      classes: "shepbtn",
-      action: shepherd.next
-    }
-  ]
+// Take away the info box when the tour has started...
+shepherd.on("start", function () {
+  document.getElementById("info").style.display = "none";
 });
-
-
-
-
+// ... and bring it back when the tour goes away
+shepherd.on("complete", function() {
+  document.getElementById("info").style.display = "block";
+});
+shepherd.on("cancel", function() {
+  document.getElementById("info").style.display = "block";
+});
 
 
 

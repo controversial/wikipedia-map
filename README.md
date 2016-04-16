@@ -65,6 +65,7 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
   - [ ] Make the tour better
     - [ ] Show users how to expand and trace back nodes. To do this, create a floating invisible div over a start node. Then, pin the Shepherd step to this div.
     - [ ] Don't allow users to advance to the next step until they've followed the instruction (entering articles, pressing Go)
+    - [x] Disappear the info box when the tour is started
 
 - [x] Allow inputting of multiple starts
   - [x] Build an interface for this
