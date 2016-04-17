@@ -113,7 +113,7 @@ shepherd.on("start", function () {
 
 // ... and bring it back when the tour goes away
 function opaque () {
-  info.style.opacity = 1;
+  infobox.style.opacity = 1;
   formbox.style.opacity = 1;
   buttons.style.opacity = 1;
 }
