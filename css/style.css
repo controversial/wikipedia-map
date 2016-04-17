@@ -6,7 +6,13 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 
+  /* Get rid of the default font for everything */
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
+
+  /* Opacity should always animate */
+  -webkit-transition: opacity 0.5s ease-out;
+  -moz-transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out;
 }
 
 
