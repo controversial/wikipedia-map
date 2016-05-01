@@ -2,6 +2,7 @@
 // as well as a more general function which is also used to fetch the README
 // for rendering.
 
+var api_endpoint = "http://luke.deentaylor.com/wikipedia/api/";
 
 //Make a synchronous request and return the response
 function requestPage(url, onSuccess) {
@@ -18,7 +19,7 @@ function requestPage(url, onSuccess) {
 
 //Make an AJAX request to the server while passing a page
 function apiRequest(api,page,onSuccess) {
-  var url="api/"+api+"?page="+page;
+  var url=api_endpoint+api+"?page="+page;
   requestPage(url, function (data){
     onSuccess(JSON.parse(data));
   });
@@ -44,5 +45,5 @@ function getRandomName(onSuccess) {
 function getSuggestions(text, onSuccess) {
   requestPage("api/suggest"+"?text="+text, function(data) {
     onSuccess(JSON.parse(data));
-  })
+  });
 }
