@@ -20,7 +20,7 @@
 }
 
 /* The buttons */
-button[type=button] {
+#formbox button[type=button] {
   /* Color */
   color: #666;
   background-color: #fff;
@@ -37,7 +37,7 @@ button[type=button] {
 }
 
 button[type=button]:active {
-  background-color: #f5f5f5;
+  background-color: #f0f0f0;
 }
 
 #formbox > button[type=button] {

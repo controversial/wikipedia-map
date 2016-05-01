@@ -102,7 +102,13 @@ window.onload = function() {
   // Bind tour start
   var tourbtn = document.getElementById("tourinit");
   tourbtn.onclick = function(){shepherd.start();};
-  
+
+  // Bind GitHub button
+  var ghbutton = document.getElementById("github");
+  ghbutton.onclick = function(event) {
+    window.open("https://github.com/The-Penultimate-Defenestrator/wikipedia-map");
+  };
+
   // Bind twitter button
   var tweetButton = document.getElementById("twitter");
   twitter.onclick = function(event) {

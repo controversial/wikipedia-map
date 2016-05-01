@@ -26,12 +26,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.0/vis.css" type="text/css" />
   <!-- Load CSS for shepherd.js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shepherd/1.7.0/css/shepherd-theme-arrows.css" type="text/css" />
+  <!-- Load ionicons -->
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" type="text/css" />
 
   <!-- Load my CSS -->
   <!-- Load main CSS -->
   <link rel="stylesheet" href="./css/style.css" type="text/css"/>
   <!-- Load CSS for top bar -->
   <link rel="stylesheet" href="./css/bar.css" type="text/css"/>
+  <!-- Load CSS for bottom right buttons -->
+  <link rel="stylesheet" href="./css/buttongroup.css" type="text/css"/>
   <!-- Load css for the UINavigationController-style help menu -->
   <link rel="stylesheet" href="./css/helpdialog.css" type="text/css"/>
   <!-- Load css for the custom Shepherd styles -->
@@ -54,13 +58,15 @@
 
   <!-- The buttons (about, github, etc) -->
   <div id="buttons" class="button-container">
-  <a href="http://github.com/The-Penultimate-Defenestrator/wikipedia-map/" target="_blank">
-    <img id="github" alt="GitHub Logo" src="assets/GitHub.png"/>
-  </a>
-  <button id="twitter">
-    <img alt="Twitter Logo" src="assets/TwitterLogo_white.png" />
+  <button id="github" type="button">
+    <i class="icon ion-social-github"></i>
   </button>
-  <button id="about" type="button">?</button>
+  <button id="twitter" type="button">
+    <i class="icon ion-social-twitter"></i>
+  </button>
+  <button id="about" type="button">
+    <i class="icon ion-help-circled"></i>
+  </button>
   </div>
 
   <!-- Modal help popup -->
@@ -133,7 +139,6 @@
   <!-- Load Shepherd and Tether for the tour -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.2/js/tether.min.js"> </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/shepherd/1.7.0/js/shepherd.min.js"> </script>
-
   <!-- My Stuff -->
   <!-- Load API functions -->
   <script type="text/javascript" src="./js/api.js"> </script>
