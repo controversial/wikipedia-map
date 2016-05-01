@@ -19,6 +19,13 @@ Wikipedia Map also has full support for touch devices and mobile browsers:
 ![](http://i.imgur.com/30TJSBy.jpg)
 
 
+## Cloning
+This project depends on a running Flask server to support the Python API. By default, when you clone this, the `api_endpoint` variable (stored in `js/api.js`) will
+point to the Flask server on my website. This works fine if you don't want to modify the backend. If you *do* want to change the backend, you will need to:
+1. run the Flask server by executing `api/api.py`
+2. Change `api_endpoint` in `js/api.js` to point to your running Flask server (typically `localhost:5000`)
+
+
 ## Design choices
 
 #### Functional
@@ -94,9 +101,6 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 - [ ] Support for other languages
 - [ ] Support for other MediaWiki wikis
 
-
-## Cloning
-Note: If you want to clone this, you'll have to replace the `github-markdown.css` file with the file at the link, and you'll have to manually create the `libraries` folder. This repo is designed to reflect only the code that I've actually written, as much as possible. Maybe I'll build a makefile to make cloning easier if I decide I care a lot about contributions.
 
 ## Credits
 This project is powered by Wikipedia! Wikipedia is one of my favorite things, and its wealth of information makes this project possible.
