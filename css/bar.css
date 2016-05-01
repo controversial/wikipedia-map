@@ -36,23 +36,11 @@
   font-size: 18px;
 }
 
-button[type=button]:active {
-  background-color: #f0f0f0;
-}
-
 #formbox > button[type=button] {
   float: right;
-}
-
-/* The random button */
-#random {
   height: 33px;
-  width: 33px;
-  background: #fff url(../assets/random.png);
-  background-size: 31px 31px;
 }
 
-#random:active {
-  background: #f5f5f5 url(../assets/random.png);
-  background-size: 31px 31px;
+#random {
+  width: 33px;
 }

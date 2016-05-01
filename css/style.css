@@ -10,6 +10,15 @@
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
 }
 
+code {
+  background-color: #eee;
+  padding: 1px 5px;
+}
+
+button[type=button]:active {
+  background-color: #f0f0f0;
+}
+
 /* == Class for making divs strech the full screen == */
 .fullscreen {
   /* Same size as window */
@@ -21,11 +30,6 @@
   top: 0;
   left: 0;
   z-index: 0;
-}
-
-code {
-  background-color: #eee;
-  padding: 1px 5px;
 }
 
 /* Container for the info initially presented to the user */
