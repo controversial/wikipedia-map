@@ -3,14 +3,14 @@
 }
 
 .commafield {
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
 
   border: 1px solid #ccc;
   border-radius: 5px;
   overflow: hidden;
-  height:33px;
-  padding:3px;
+  height: 33px;
+  padding: 3px;
   margin: 2px;
 
   font-family: "Helvetica Neue", Helvetica, sans-serif;
@@ -18,15 +18,17 @@
 
 .commafield input {
   font-size: 1em;
+
   /* Kill default styles */
   outline: none;
   border: none;
   box-shadow: none;
   -webkit-appearance: none;
   background-color: transparent;
+
   /* Layout */
   margin: 2px 5px 3px 0;
-  padding-left:7px;
+  padding-left: 7px;
   flex: 2;
   height: 85%;
 }
@@ -50,15 +52,15 @@
   transition: all 0.1s ease-in-out;
 }
 
-.item:after {
+.item::after {
   /* Add a close button */
   content: "x";
-  padding-left:5px;
+  padding-left: 5px;
 
   /* Font styles */
   font-size: 75%;
   vertical-align: 10%; /* This is about right for centering */
-  color: #EC725D;
+  color: #ec725d;
   font-weight: bold;
 }
 
@@ -66,6 +68,6 @@
   background-color: #fff;
 }
 
-.item:hover:after {
+.item:hover::after {
   color: #f00;
 }
