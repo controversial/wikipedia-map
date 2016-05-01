@@ -37,13 +37,13 @@ function getPageName(query,onSuccess) {
 }
 
 function getRandomName(onSuccess) {
-  requestPage("api/random", function(resp){
+  requestPage(api_endpoint + "random", function(resp){
     getPageName(resp,onSuccess);
   });
 }
 
 function getSuggestions(text, onSuccess) {
-  requestPage("api/suggest"+"?text="+text, function(data) {
+  requestPage(api_endpoint + "suggest?text="+text, function(data) {
     onSuccess(JSON.parse(data));
   });
 }
