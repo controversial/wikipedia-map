@@ -19,7 +19,7 @@ var options = {
     scaling: { min: 20,max: 30,
       label: { min: 14, max: 30, drawThreshold: 9, maxVisible: 20 }
     },
-    font: {size: 12, face: 'Arial'}
+    font: {size: 14, face: 'Helvetica Neue, Helvetica, Arial'}
   },
   interaction: {
     hover: true,

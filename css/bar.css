@@ -14,8 +14,8 @@
   z-index: 1;
 
   /* Appearance */
-  background: rgba(255, 255, 255, 0.5);
   box-shadow: 0 4px 4px -2px #ccc;
+  background: rgba(255, 255, 255, 0.5);
   -webkit-backdrop-filter: blur(5px); /* Blur behind bar */
 }
 

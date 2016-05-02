@@ -5,9 +5,14 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
 
-  /* Get rid of the default font for everything */
-  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+p {
+  font-weight: 300;
 }
 
 code {
@@ -42,6 +47,9 @@ button[type=button]:active {
   border-radius: 5px;
 }
 
+#info h1 {
+  margin-top: 0;
+}
 /* Rules for small screens */
 
 @media (max-width: 750px) { /* Full width on small screens (namely iPhones) */
