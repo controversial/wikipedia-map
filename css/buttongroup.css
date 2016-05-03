@@ -30,5 +30,5 @@
 
 .icon {
   font-size: 20px;
-  color: #000 !important; /* No idea why this is necessary, but it is. */
+  color: #333 !important; /* No idea why this is necessary, but it is. */
 }
