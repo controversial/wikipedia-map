@@ -1,0 +1,28 @@
+/* Container for the info initially presented to the user */
+#info {
+  margin: 55px 13px 0 13px;
+  max-width: 450px;
+  padding: 25px;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#info h1 {
+  margin-top: 0;
+  color: #555;
+}
+
+/* Rules for small screens */
+
+@media (max-width: 750px) { /* Full width on small screens (namely iPhones) */
+  #info {
+    max-width: 100%;
+  }
+}
+
+@media (max-height: 400px) { /* Hide text on iPhones in portrait to prevent button from being cut off */
+  #info p {
+    display: none;
+  }
+}
