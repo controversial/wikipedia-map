@@ -1,23 +1,35 @@
-/* Container for the info initially presented to the user */
+/* Parent of #info, just used to center #info for right now. */
+#container {
+  text-align: center;
+}
+
+/* Contains for the info initially presented to the user */
 #info {
   margin: 55px 13px 0 13px;
   max-width: 450px;
   padding: 25px;
 
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 2px solid #ccc;
+  
+  display: inline-block;
 }
 
 #info h1 {
   margin-top: 0;
-  color: #555;
 }
 
-/* Rules for small screens */
+#info p {
+  
+}
+
+
+/* == Rules for small screens == */
 
 @media (max-width: 750px) { /* Full width on small screens (namely iPhones) */
   #info {
     max-width: 100%;
+    display: block;
+    text-align: left;
   }
 }
 

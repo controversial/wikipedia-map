@@ -15,6 +15,15 @@ p {
   font-weight: 300;
 }
 
+p, h1, button {
+  color: #555; /* Slightly less harsh than a black */
+}
+
+.icon {
+  font-size: 20px;
+  color: #333 !important; /* No idea why !important is necessary, but it is. */
+}
+
 code {
   background-color: #eee;
   padding: 1px 5px;
@@ -23,6 +32,9 @@ code {
 button[type=button]:active {
   background-color: #f0f0f0;
 }
+
+
+/* == HELPER CLASSES == */
 
 /* Class for making semitransparent elements with a blur behind them */
 .transparent-blur {

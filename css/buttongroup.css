@@ -27,8 +27,3 @@
 .button-container button:first-of-type {
   border-top: none;
 }
-
-.icon {
-  font-size: 20px;
-  color: #333 !important; /* No idea why this is necessary, but it is. */
-}
