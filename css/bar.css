@@ -2,7 +2,7 @@
 
 /* The box that holds the button and input */
 #formbox {
-  padding: 10px;
+  padding: 0;
   display: block;
   overflow: hidden;
 
@@ -18,27 +18,30 @@
 }
 
 /* The buttons */
-#formbox button[type=button] {
+#formbox button {
   /* Color */
   color: #666;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.6);
 
   /* Border */
   outline: none;
-  border: 1px solid #ccc;
-  border-radius: 5px;
 
   /* Other */
-  padding: 5px;
-  margin: 2px;
+  padding: 5px 7px;
+  margin: 0;
   font-size: 18px;
-}
-
-#formbox > button[type=button] {
   float: right;
   height: 33px;
+  min-width: 33px;
 }
 
-#random {
-  width: 33px;
+/* To create lines between elements, everything has a right border besides the last element */
+#formbox > * {
+  border: none;
+  border-right: 1px solid #ccc;
+}
+
+#formbox > *:first-child { /* first-child is last because 'float:right;' changes order */
+  border-right: none;
+  padding: 5px 10px;
 }
