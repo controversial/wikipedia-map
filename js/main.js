@@ -49,6 +49,10 @@ function resetNetwork(start) {
   startpages = [startID]; // Register the page as an origin node
   tracenodes = [];
   traceedges = [];
+  
+  // Change "go" button to a refresh icon
+  document.getElementById("submit").innerHTML = '<i class="icon ion-refresh"> </i>'
+  
   // -- CREATE NETWORK -- //
   //Make a container
   nodes = new vis.DataSet([
