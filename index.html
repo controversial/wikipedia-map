@@ -81,14 +81,30 @@
       <!-- Main menu chooser (modeled after the iOS Settings app) -->
       <div class="menu menu-main" id="menu-main">
         <ul>
-          <li id="aboutActivator"><img alt="Information icon" src="assets/information.png"/> About</li>
-          <li id="controlsActivator"><img alt="Controls icon" src="assets/game-controller.png"/> Controls</li>
+          <li id="aboutActivator">
+            <div>
+              <i class="icon ion-ios-information-outline"></i>
+            </div>
+            <span>About</span>
+          </li>
+          <li id="controlsActivator">
+            <div>
+              <i class="icon ion-ios-game-controller-b"></i>
+            </div>
+            <span>Controls</span>
+          </li>
           <li class="menu-spacer"> &nbsp; </li>
-          <li id="readmeActivator"><img alt="GitHub logo" src="assets/GitHub.png"/>Github README</li>
+          <li id="readmeActivator">
+            <div>
+              <i class="icon ion-social-github"></i>
+            </div>
+            <span>Github README</span>
+          </li>
         </ul>
       </div>
       <!-- About -->
       <div class="menu menu-page" id="menu-about">
+        <button class="backbutton" type="button"><i class="icon ion-ios-arrow-back"></i> Back </button>
         <div class="menu-content markdown-body">
 
           <h1>Wikipedia Map</h1>
@@ -108,18 +124,17 @@
           <p>For more details, see the GitHub README in the Help menu.</p>
 
         </div>
-        <button class="backbutton" type="button"><img alt="Back button" src="assets/arrow-back.png"/> Back</button>
       </div>
       <!-- Controls -->
       <div class="menu menu-page" id="menu-controls">
+        <button class="backbutton" type="button"><i class="icon ion-ios-arrow-back"></i> Back</button>
         <div id="controls" class="menu-content markdown-body"></div>
-        <button class="backbutton" type="button"><img alt="Back button" src="assets/arrow-back.png"/> Back</button>
       </div>
 
       <!-- README page -->
       <div class="menu menu-page" id="menu-readme">
+        <button class="backbutton" type="button"><i class="icon ion-ios-arrow-back"></i> Back </button>
         <div id="readme" class="menu-content"></div>
-        <button class="backbutton" type="button"><img alt="Back button" src="assets/arrow-back.png"/> Back</button>
       </div>
     </div>
   </div>
