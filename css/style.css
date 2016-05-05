@@ -5,17 +5,42 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
 
-  /* Get rid of the default font for everything */
-  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
-  /* Opacity should always animate */
-  -webkit-transition: opacity 0.5s ease-out;
-  -moz-transition: opacity 0.5s ease-out;
-  transition: opacity 0.5s ease-out;
+p {
+  font-weight: 300;
+}
+
+p, h1, button {
+  color: #555; /* Slightly less harsh than a black */
+}
+
+.icon {
+  font-size: 20px;
+  color: #333 !important; /* No idea why !important is necessary, but it is. */
+}
+
+code {
+  background-color: #eee;
+  padding: 1px 5px;
+}
+
+button[type=button]:active {
+  background-color: #f0f0f0;
 }
 
 
+/* == HELPER CLASSES == */
+
+/* Class for making semitransparent elements with a blur behind them */
+.transparent-blur {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(5px); /* Blur behind bar */
+}
 
 /* == Class for making divs strech the full screen == */
 .fullscreen {
@@ -28,151 +53,4 @@
   top: 0;
   left: 0;
   z-index: 0;
-}
-
-
-
-/* == TOP CONTROLS == */
-
-/* The box that holds the button and input */
-#formbox {
-  padding: 10px;
-  display: block;
-  overflow: hidden;
-
-  /* Position */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  z-index: 1;
-
-  /* Appearance */
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 4px -2px #ccc;
-  -webkit-backdrop-filter: blur(5px); /* Blur behind bar */
-}
-
-/* The buttons */
-button[type=button] {
-  /* Color */
-  color: #666;
-  background-color: #fff;
-
-  /* Border */
-  outline: none;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-
-  /* Other */
-  padding: 5px;
-  margin: 2px;
-  font-size: 18px;
-}
-
-button[type=button]:active {
-  background-color: #f5f5f5;
-}
-
-#formbox > button[type=button] {
-  float: right;
-}
-
-/* Code elements */
-code {
-  background-color: #eee;
-  padding: 1px 5px;
-}
-
-/* The random button */
-#random {
-  height: 33px;
-  width: 33px;
-  background: #fff url(../assets/random.png);
-  background-size: 31px 31px;
-}
-
-#random:active {
-  background: #f5f5f5 url(../assets/random.png);
-  background-size: 31px 31px;
-}
-
-
-
-/* Container for the info initially presented to the user */
-#info {
-  margin: 73px 13px 0 13px;
-  max-width: 450px;
-  padding: 25px;
-
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-/* Rules for small screens */
-
-@media (max-width: 750px) { /* Full width on small screens (namely iPhones) */
-  #info {
-    max-width: 100%;
-  }
-}
-
-@media (max-height: 400px) { /* Hide text on iPhones in portrait to prevent button from being cut off */
-  #info p {
-    display: none;
-  }
-}
-
-
-
-/* Buttons all go in the bottom right. They should be round. */
-.button-container {
-  position: fixed;
-  bottom: 5px;
-  right: 5px;
-  width: 33px;
-
-  z-index: 2;
-}
-
-.button-container button,
-.button-container > a > img {
-  width: 33px;
-  height: 33px;
-  border-radius: 50%; /* Makes things round */
-
-  margin: 0;
-  margin-top: 5px;
-  padding: 0;
-
-  /* These were already on buttons but not images */
-  border: 1px solid #ccc;
-}
-
-#twitter {
-  background-color: #55acee;
-  border: none;
-  position: relative;
-  -webkit-appearance: none;
-}
-
-#twitter::focus {
-  outline: none;
-}
-
-#twitter img {
-  width: 29px;
-  height: 29px;
-
-  /* Elaborate tricks to get the image to center because it's slightly smaller than the parent */
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-#github {
-  background-color: #fff;
 }

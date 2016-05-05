@@ -26,39 +26,53 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.0/vis.css" type="text/css" />
   <!-- Load CSS for shepherd.js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shepherd/1.7.0/css/shepherd-theme-arrows.css" type="text/css" />
+  <!-- Load ionicons -->
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" type="text/css" />
+  <!-- Load css for the github README -->
+  <link rel="stylesheet" href="https://rawcdn.githack.com/sindresorhus/github-markdown-css/gh-pages/github-markdown.css" type="text/css"/>
 
   <!-- Load my CSS -->
   <!-- Load main CSS -->
   <link rel="stylesheet" href="./css/style.css" type="text/css"/>
+  <!-- Load CSS for top bar -->
+  <link rel="stylesheet" href="./css/bar.css" type="text/css"/>
+  <!-- Load CSS for bottom right buttons -->
+  <link rel="stylesheet" href="./css/buttongroup.css" type="text/css"/>
   <!-- Load css for the UINavigationController-style help menu -->
   <link rel="stylesheet" href="./css/helpdialog.css" type="text/css"/>
   <!-- Load css for the custom Shepherd styles -->
   <link rel="stylesheet" href="./css/shepherd-custom.css" type="text/css"/>
-  <!-- Load css for the github README -->
-  <link rel="stylesheet" href="./css/github-markdown.css" type="text/css"/>
   <!-- Load css for comma input field -->
   <link rel="stylesheet" href="./css/commafield.css" type="text/css"/>
+  <!-- Load css for welcome info box -->
+  <link rel="stylesheet" href="./css/welcome.css" type="text/css"/>
 
 
 </head>
 
 <body>
   <!-- The top bar -->
-  <div id="formbox">
-    <button id="random" type=button title="Random article"></button>
-    <button id="submit" type="button" title="Enter the name of a wikipedia page, then press 'Go'">Go</button>
+  <div id="formbox" class="transparent-blur">
+    <button id="random" type=button title="Random article">
+      <i class="icon ion-shuffle"></i>
+    </button>
+    <button id="submit" type="button" title="Enter the name of a wikipedia page, then press 'Go'">
+      Go
+    </button>
     <div id="input" class="commafield" data-placeholder="Wikipedia"> </div>
   </div>
 
   <!-- The buttons (about, github, etc) -->
-  <div id="buttons" class="button-container">
-  <a href="http://github.com/The-Penultimate-Defenestrator/wikipedia-map/" target="_blank">
-    <img id="github" alt="GitHub Logo" src="assets/GitHub.png"/>
-  </a>
-  <button id="twitter">
-    <img alt="Twitter Logo" src="assets/TwitterLogo_white.png" />
-  </button>
-  <button id="about" type="button">?</button>
+  <div id="buttons" class="button-container transparent-blur">
+    <button id="github" type="button" title="Visit Wikipedia Map on GitHub">
+      <i class="icon ion-social-github"></i>
+    </button>
+    <button id="twitter" type="button" title="Share Wikipedia Map on Twitter">
+      <i class="icon ion-social-twitter"></i>
+    </button>
+    <button id="about" type="button" title="Get help">
+      <i class="icon ion-help-circled"></i>
+    </button>
   </div>
 
   <!-- Modal help popup -->
@@ -67,14 +81,30 @@
       <!-- Main menu chooser (modeled after the iOS Settings app) -->
       <div class="menu menu-main" id="menu-main">
         <ul>
-          <li id="aboutActivator"><img alt="Information icon" src="assets/information.png"/> About</li>
-          <li id="controlsActivator"><img alt="Controls icon" src="assets/game-controller.png"/> Controls</li>
+          <li id="aboutActivator">
+            <div>
+              <i class="icon ion-ios-information-outline"></i>
+            </div>
+            <span>About</span>
+          </li>
+          <li id="controlsActivator">
+            <div>
+              <i class="icon ion-ios-game-controller-b"></i>
+            </div>
+            <span>Controls</span>
+          </li>
           <li class="menu-spacer"> &nbsp; </li>
-          <li id="readmeActivator"><img alt="GitHub logo" src="assets/GitHub.png"/>Github README</li>
+          <li id="readmeActivator">
+            <div>
+              <i class="icon ion-social-github"></i>
+            </div>
+            <span>Github README</span>
+          </li>
         </ul>
       </div>
       <!-- About -->
       <div class="menu menu-page" id="menu-about">
+        <button class="backbutton" type="button"><i class="icon ion-ios-arrow-back"></i> Back </button>
         <div class="menu-content markdown-body">
 
           <h1>Wikipedia Map</h1>
@@ -94,18 +124,17 @@
           <p>For more details, see the GitHub README in the Help menu.</p>
 
         </div>
-        <button class="backbutton" type="button"><img alt="Back button" src="assets/arrow-back.png"/> Back</button>
       </div>
       <!-- Controls -->
       <div class="menu menu-page" id="menu-controls">
+        <button class="backbutton" type="button"><i class="icon ion-ios-arrow-back"></i> Back</button>
         <div id="controls" class="menu-content markdown-body"></div>
-        <button class="backbutton" type="button"><img alt="Back button" src="assets/arrow-back.png"/> Back</button>
       </div>
 
       <!-- README page -->
       <div class="menu menu-page" id="menu-readme">
+        <button class="backbutton" type="button"><i class="icon ion-ios-arrow-back"></i> Back </button>
         <div id="readme" class="menu-content"></div>
-        <button class="backbutton" type="button"><img alt="Back button" src="assets/arrow-back.png"/> Back</button>
       </div>
     </div>
   </div>
@@ -114,7 +143,7 @@
   <!-- Will hold the network -->
   <div id="container" class="fullscreen">
     <!-- Welcome message -->
-    <div id="info" class="markdown-body">
+    <div id="info">
       <h1>Wikipedia Map</h1>
       <p>A tool for visualizing the connections between Wikipedia pages by Luke Taylor</p>
       <button id="tourinit" class="shepbtn">Take the tour</button>
@@ -131,7 +160,6 @@
   <!-- Load Shepherd and Tether for the tour -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.2/js/tether.min.js"> </script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/shepherd/1.7.0/js/shepherd.min.js"> </script>
-
   <!-- My Stuff -->
   <!-- Load API functions -->
   <script type="text/javascript" src="./js/api.js"> </script>

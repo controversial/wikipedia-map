@@ -19,7 +19,7 @@ var options = {
     scaling: { min: 20,max: 30,
       label: { min: 14, max: 30, drawThreshold: 9, maxVisible: 20 }
     },
-    font: {size: 12, face: 'Arial'}
+    font: {size: 14, face: 'Helvetica Neue, Helvetica, Arial'}
   },
   interaction: {
     hover: true,
@@ -49,6 +49,10 @@ function resetNetwork(start) {
   startpages = [startID]; // Register the page as an origin node
   tracenodes = [];
   traceedges = [];
+  
+  // Change "go" button to a refresh icon
+  document.getElementById("submit").innerHTML = '<i class="icon ion-refresh"> </i>'
+  
   // -- CREATE NETWORK -- //
   //Make a container
   nodes = new vis.DataSet([

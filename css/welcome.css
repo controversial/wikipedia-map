@@ -1,0 +1,40 @@
+/* Parent of #info, just used to center #info for right now. */
+#container {
+  text-align: center;
+}
+
+/* Contains for the info initially presented to the user */
+#info {
+  margin: 55px 13px 0 13px;
+  max-width: 450px;
+  padding: 25px;
+
+  border: 2px solid #ccc;
+  
+  display: inline-block;
+}
+
+#info h1 {
+  margin-top: 0;
+}
+
+#info p {
+  
+}
+
+
+/* == Rules for small screens == */
+
+@media (max-width: 750px) { /* Full width on small screens (namely iPhones) */
+  #info {
+    max-width: 100%;
+    display: block;
+    text-align: left;
+  }
+}
+
+@media (max-height: 400px) { /* Hide text on iPhones in portrait to prevent button from being cut off */
+  #info p {
+    display: none;
+  }
+}

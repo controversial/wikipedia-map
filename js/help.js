@@ -204,14 +204,14 @@ var controlspage = document.getElementById("controls");
 // Controls message for desktop devices
 var desktopControls =
 "<h1> Controls </h1>"+
-"<p> You're on a desktop device, so the desktop controls are active. This page" +
+"<p> You're on a desktop device, so the desktop controls are active. This page " +
 "describes the desktop controls, which may be different on mobile touch devices.</p>" +
 
 "<h3> Navigation </h3>" +
 "<p> Click and drag to pan, and scroll to zoom. </p>" +
 
 "<h3> Expanding nodes </h3>" +
-"<p>To expand a node, just click on the node. The node might take a while to" +
+"<p>To expand a node, just click on the node. The node might take a while to " +
 "expand, depending on the speed of my server, Wikipedia's servers, and your " +
 "internet connection. </p> " +
 
@@ -219,33 +219,33 @@ var desktopControls =
 "<p> You can see the path you took to get to a node by mousing-over the node.</p>" +
 
 "<h3> Opening pages </h3>" +
-"<p> You can open the Wikipedia page for a node at any time, simply by" +
-"double-clicking it. Double-clicking the node <em>Cat</em> will open the wikipedia" +
-"page for <em>Cat</em>. In most browsers, the page will open in a new tab. Pop-up" +
+"<p> You can open the Wikipedia page for a node at any time, simply by " +
+"double-clicking it. Double-clicking the node <em>Cat</em> will open the wikipedia " +
+"page for <em>Cat</em>. In most browsers, the page will open in a new tab. Pop-up " +
 "blockers might stop this. </p>";
 
 // Controls message for touch devices
 var touchControls =
 "<h1> Controls </h1>" +
-"<p> You're on a touch device, so the touch controls are active. This page" +
-"describes the touch controls, controls may be different on desktop devices" +
+"<p> You're on a touch device, so the touch controls are active. This page " +
+"describes the touch controls, controls may be different on desktop devices " +
 "without touchscreens. </p>" +
 
 "<h3> Navigation </h3>" +
-"<p> You can use the classic and natural touch controls of pinch to zoom and" +
+"<p> You can use the classic and natural touch controls of pinch to zoom and " +
 "drag to pan. </p>"+
 
 "<h3> Expanding nodes </h3>" +
-"<p>To expand a node, long-press on the node. You won't have to press for more than" +
+"<p>To expand a node, long-press on the node. You won't have to press for more than " +
 "half a second, but the node might take slightly longer than that to expand.</p>" +
 
 "<h3> Tracebacks </h3>" +
-"<p> You can see the path you took to get to a node by lightly tapping the node." +
+"<p> You can see the path you took to get to a node by lightly tapping the node. " +
 "Tap anywhere else to stop highlighting the traceback. </p>" +
 
 "<h3> Opening pages </h3>" +
-"<p> You can open the Wikipedia page for a node at any time, simply by" +
-"double-tapping on it. Double-tapping the node <em>Cat</em> will open the wikipedia" +
+"<p> You can open the Wikipedia page for a node at any time, simply by " +
+"double-tapping on it. Double-tapping the node <em>Cat</em> will open the wikipedia " +
 "page for <em>Cat</em>. The page will open in a new tab.</p>";
 
 

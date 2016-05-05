@@ -1,0 +1,46 @@
+/* Styles for the top bar */
+
+/* The box that holds the button and input */
+#formbox {
+  padding: 0;
+  display: block;
+  overflow: hidden;
+
+  /* Position */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 1;
+
+  /* Appearance */
+  box-shadow: 0 4px 4px -2px #ccc;
+}
+
+/* The buttons */
+#formbox button {
+  /* Color */
+  background-color: rgba(255, 255, 255, 0.6);
+
+  /* Border */
+  outline: none;
+
+  /* Other */
+  padding: 5px 7px;
+  margin: 0;
+  font-size: 18px;
+  float: right;
+  height: 33px;
+  min-width: 33px;
+}
+
+/* To create lines between elements, everything has a right border besides the last element */
+#formbox > * {
+  border: none;
+  border-right: 1px solid #ccc;
+}
+
+#formbox > *:first-child { /* first-child is last because 'float:right;' changes order */
+  border-right: none;
+  padding: 5px 10px;
+}
