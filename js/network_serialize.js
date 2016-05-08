@@ -2,18 +2,6 @@
 // a network as JSON and then loading it back later.
 
 
-
-// GLOBALS //
-
-// In abbreviated JSON data, these replacements are used to keep the data short
-var abbvReplacements = {
-  a: "label",
-  b: "value",
-  c: "parent"
-};
-
-
-
 // DEBUGGING FUNCTIONS //
 
 // Debugging function to see the number of characters saved by only including
