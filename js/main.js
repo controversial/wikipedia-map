@@ -49,10 +49,10 @@ function resetNetwork(start) {
   startpages = [startID]; // Register the page as an origin node
   tracenodes = [];
   traceedges = [];
-  
+
   // Change "go" button to a refresh icon
-  document.getElementById("submit").innerHTML = '<i class="icon ion-refresh"> </i>'
-  
+  document.getElementById("submit").innerHTML = '<i class="icon ion-refresh"> </i>';
+
   // -- CREATE NETWORK -- //
   //Make a container
   nodes = new vis.DataSet([
@@ -101,4 +101,13 @@ function resetNetworkFromInput() {
   for (var i=0; i<inputs.length; i++) {
     getPageName(encodeURI(inputs[i]), addStart);
   }
+}
+
+// Reset the network with content from a JSON string
+function resetNetworkFromJson(data) {
+  var obj = networkFromJson(data);
+  nodes = obj.nodes;
+  edges = obj.edges;
+  startpages = obj.startpages;
+  network.setData({nodes:nodes, edges:edges});
 }

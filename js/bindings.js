@@ -37,15 +37,14 @@ function openPageEvent (params) {
 // Bind the network events
 function bindNetwork(){
   if (isTouchDevice) { // Device has touchscreen
-    network.on("hold", expandEvent);
-    //Highlight traceback on click
-    network.on("click", mobileTraceEvent);
+    network.on("hold", expandEvent); // Long press to expand
+    network.on("click", mobileTraceEvent); // Highlight traceback on click
   } else { // Device does not have touchscreen
     network.on("click", expandEvent); // Expand on click
-    network.on("hoverNode", function(params){ // Highlight on hover
+    network.on("hoverNode", function(params){ // Highlight traceback on hover
       traceBack(params.node);
     });
-    network.on("blurNode", resetProperties); // Reset on un-hover
+    network.on("blurNode", resetProperties); // un-traceback on un-hover
   }
 
   //Bind double-click to open page
