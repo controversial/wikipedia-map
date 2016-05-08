@@ -38,8 +38,21 @@ function howConcise() {
 
 // SERIALIZATION METHODS //
 
-//Remove all properties from a node dictionary which can easily be reconstructed
-function abbreviate(node) {
+// Get all the edges that are not directly from a node to its parent. These
+// are formed at all cases in which expanding a node links it to a pre-existing
+// node.
+function getFloatingEdges() {
+  floatingEdges = [];
+  edges.forEach(function(edge) {
+    if (nodes.get(edge.to).parent != edge.from) {
+      floatingEdges.push(edge);
+    }
+  });
+  return floatingEdges;
+}
+
+//Remove all properties from a node Object which can easily be reconstructed
+function abbreviateNode(node) {
   /* Omits the following properties:
   - node.id, which is inferred from `label` through `getNeutralId`
   - node.color, which is inferred from `level` through `getColor`
@@ -58,6 +71,19 @@ function abbreviate(node) {
   return newnode;
 }
 
+// Remove all properties from an edge Object which can be easily reconstructed
+function abbreviateEdge(edge) {
+  /* Omits the following properties:
+  - edge.color, which is inferred from nodes.get(edge.to).color
+  - edge.selectionWidth, which is always 2
+  - edge.hoverWidth, which is always 0
+  */
+  var newedge = {a: edge.from,
+                 b: edge.to,
+                 c: edge.level};
+  return newedge;
+}
+
 // Concisely JSON-ize the data needed to quickly reconstruct the network
 function networkToJson() {
   var out = {};
@@ -65,7 +91,7 @@ function networkToJson() {
   // Store nodes
   var data = nodes._data; // Retreive an object representing nodes data
   var vals = Object.keys(data).map(function(k){return data[k];});
-  var abbv = vals.map(abbreviate); // Process it
+  var abbv = vals.map(abbreviateNode); // Process it
   out.nodes = abbv; // Store it
 
   // Store startpages
@@ -78,8 +104,9 @@ function networkToJson() {
 
 // DESERIALIZATION METHODS //
 
-// Unabbreviate values
-function unabbreviate(node, startpgs) {
+// Unabbreviate a node Object
+function unabbreviateNode(node, startpgs) {
+  // Make quick substitutions
   var newnode = {label: node.a,
                  level: node.b,
                  parent: node.c};
@@ -87,7 +114,20 @@ function unabbreviate(node, startpgs) {
   newnode.id = getNeutralId(newnode.label);
   newnode.color = getColor(newnode.level);
   newnode.value = startpgs.indexOf(newnode.id) === -1 ? 1:2;
+
   return newnode;
+}
+
+// Unabbreviate an edge Object.
+function unabbreviateEdge(edge) {
+  var newedge = {from: edge.a,
+                 to: edge.b,
+                 level: edge.c};
+  newedge.color = getEdgeColor(newedge.level);
+  newedge.selectionWidth = 2;
+  newedge.hoverWidth = 0;
+
+  return newedge;
 }
 
 // Reconstruct edges given a list of nodes
@@ -95,9 +135,9 @@ function buildEdges (nds) {
   var edgs = new vis.DataSet();
   for (var i = 0; i < nds.length; i++) {
     node = nds[i];
-    if (node.parent != node.id) {
+    if (node.parent != node.id) { // Don't create an edge from start nodes to themselves
       edgs.add({from: node.parent, to: node.id, color: getEdgeColor(node.level),
-                selectionWidth: 2, hoverWidth:0});
+                level: node.level, selectionWidth: 2, hoverWidth:0});
     }
   }
   return edgs;
@@ -114,7 +154,7 @@ function networkFromJson(data) {
   out.startpages = data.startpages;
   // Store nodes
   var nds = data.nodes;
-  var expandedNodes = nds.map(function(x){return unabbreviate(x, out.startpages);});
+  var expandedNodes = nds.map(function(x){return unabbreviateNode(x, out.startpages);});
   out.nodes = new vis.DataSet();
   out.nodes.add(expandedNodes);
   // Store edges

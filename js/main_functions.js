@@ -32,8 +32,8 @@ function expandNodeCallback(page,data) {
     }
 
     if (!getEdgeConnecting(page, subpageID)) { //Don't create duplicate edges in same direction
-      newedges.push({from: page, to: subpageID,
-                     color:getEdgeColor(level),selectionWidth:2, hoverWidth:0});
+      newedges.push({from: page, to: subpageID, color:getEdgeColor(level),
+                     level: level, selectionWidth:2, hoverWidth:0});
     }
   }
   //Add the stuff to the nodes array
