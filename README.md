@@ -105,6 +105,6 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 ## Credits
 This project is powered by Wikipedia! Wikipedia is one of my favorite things, and its wealth of information makes this project possible.
 
-The technical bits are mostly powered just by  [`vis.js`](visjs.org) and [`BeautifulSoup`](crummy.com/software/BeautifulSoup/).
+The technical bits are mostly powered just by  [`vis.js`](http://visjs.org) and [`BeautifulSoup`](http://crummy.com/software/BeautifulSoup/).
 
 Rendering of this document into the help modal is done via a modified version of [`marked`](github.com/chjj/marked) that supports task lists.
