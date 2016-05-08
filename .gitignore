@@ -7,6 +7,6 @@
 # Don't include textastic iCloud stuff
 *.icloud
 # Don't include symlink to dev directory
-dev/*
-# Don't include the commafield test file
-commafield.html
+dev
+# Don't include shared user graphs
+graphs/*
