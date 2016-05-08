@@ -33,6 +33,14 @@ button[type=button]:active {
   background-color: #f0f0f0;
 }
 
+a {
+  color: #5a5;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
 
 /* == HELPER CLASSES == */
 
