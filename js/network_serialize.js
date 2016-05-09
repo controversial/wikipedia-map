@@ -85,6 +85,9 @@ function networkToJson() {
   // Store startpages
   out.startpages = startpages;
 
+  // Store floating edges
+  out.edges = getFloatingEdges();
+
   return JSON.stringify(out);
 }
 
@@ -147,6 +150,7 @@ function networkFromJson(data) {
   out.nodes.add(expandedNodes);
   // Store edges
   out.edges = buildEdges(expandedNodes);
+  out.edges.add(data.edges);
 
   return out;
 }
