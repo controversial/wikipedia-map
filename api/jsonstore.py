@@ -13,7 +13,7 @@ def store(data, directory="/var/www/luke/wikipedia/graphs/"):
 
     with open(tf, "w") as f:
         f.write(data)
-    return tf
+    return os.path.split(tf)[1]
 
 if __name__ == "__main__":
     print(store('{}'))
