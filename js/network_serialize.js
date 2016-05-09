@@ -154,3 +154,15 @@ function networkFromJson(data) {
 
   return out;
 }
+
+
+
+// MAIN FUNCTIONS
+
+function storeGraph(callback) {
+  storeJSON(networkToJson(), callback);
+}
+
+function loadGraph(id) {
+  getJSON(id, resetNetworkFromJson);
+}

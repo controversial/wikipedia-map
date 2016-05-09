@@ -2,29 +2,53 @@
 // as well as a more general function which is also used to fetch the README
 // for rendering.
 
+
+
+// GLOBALS
+
 var api_endpoint = "http://luke.deentaylor.com/wikipedia/api/";
 
-//Make a synchronous request and return the response
+
+
+// BASIC METHODS
+
+//Make an asynchronous GET request and execute the onSuccess callback with the data
 function requestPage(url, onSuccess) {
-  var data = null;
+  onSuccess = onSuccess || function(){};
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       onSuccess(xhttp.responseText);
     }
   };
-  xhttp.open("GET",url,true);
+  xhttp.open("GET", url, true);
   xhttp.send();
 }
 
-//Make an AJAX request to the server while passing a page
-function apiRequest(api,page,onSuccess) {
+// Send an asynchronous POST request to store data
+function postData(url, data, onSuccess) {
+  onSuccess = onSuccess || function(){};
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      onSuccess(xhttp.responseText);
+    }
+  };
+  xhttp.open("POST", url, true);
+  xhttp.send(data);
+}
+
+// Send an AJAX GET request to the server, passing the name of a Wikipedia page
+function apiRequest(api, page, onSuccess) {
   var url=api_endpoint+api+"?page="+page;
   requestPage(url, function (data){
     onSuccess(JSON.parse(data));
   });
 }
 
+// API calls
+
+// WIKIPEDIA PARSING ----------
 
 //Get the name of all pages linked to by a page
 function getSubPages(page,onSuccess) {
@@ -46,4 +70,14 @@ function getSuggestions(text, onSuccess) {
   requestPage(api_endpoint + "suggest?text="+text, function(data) {
     onSuccess(JSON.parse(data));
   });
+}
+
+// GRAPH STORAGE / RETRIEVAL ----------
+
+function storeJSON(data, onSuccess) {
+  postData(api_endpoint + "storejson", data, onSuccess);
+}
+
+function getJSON(id, onSuccess) {
+  requestPage("http://luke.deentaylor.com/wikipedia/graphs/" + id, onSuccess);
 }
