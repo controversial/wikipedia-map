@@ -103,6 +103,37 @@ function resetNetworkFromInput() {
   }
 }
 
+
+// Reset the network with one or more random pages.
+function randomReset() {
+  needsreset = true;
+  clearItems(cf);
+  // Function to add a single random page to the network as a start.
+  var addRandomStart = function() {
+    getRandomName(function(data){
+      addStart(data);
+      addItem(cf, decodeURIComponent(data));
+    });
+  };
+
+  if (Math.random() < 0.3) { // 3 in 10 chance of creating multiple nodes
+    // Add multiple nodes (2 or 3)
+    for (var i=0; i<=Math.ceil(Math.random() * 2); i++) {
+      // Unfortunately, random calls need to be at least 1 second apart due to
+      // what looks like crappy random algorithms on Wikimedia's end. Even with
+      // 1 second, duplicates still occasionally happen, hence the try / catch.
+      // I may eventually be able to fix it by implementing my own page
+      // randomizer.
+      try {
+        setTimeout(addRandomStart, 1000*i);
+      } catch (e) {}
+    }
+  } else {
+    // Add a single random node (most likely)
+    addRandomStart();
+  }
+}
+
 // Reset the network with content from a JSON string
 function resetNetworkFromJson(data) {
   var obj = networkFromJson(data);

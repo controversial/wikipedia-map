@@ -69,13 +69,7 @@ window.onload = function() {
   };
 
   var randomButton = document.getElementById('random');
-  randomButton.onclick = function() {
-    getRandomName(function (data) {
-      resetNetwork(data);
-      clearItems(cf);
-      addItem(cf, decodeURIComponent(data));
-    });
-  };
+  randomButton.onclick = randomReset;
 
 
   //Bind modal events.
