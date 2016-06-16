@@ -2,10 +2,6 @@
 // network, in the search bar, and for the modal popup.
 
 
-// Have changes been made
-var changesmade = false;
-var inputBox;
-
 //Functions that will be used as bindings
 function expandEvent (params) { // Expand a node (with event handler)
   if (params.nodes.length) { //Did the click occur on a node?
