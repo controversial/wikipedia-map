@@ -99,7 +99,7 @@ window.onload = function() {
   };
 
   // Bind twitter button
-  var tweetButton = document.getElementById("twitter");
+  var twitter = document.getElementById("twitter");
   twitter.onclick = function(event) {
     var url = "https://twitter.com/intent/tweet" +
     "?text=" + encodeURIComponent("Explore topics with Wikipedia Map! Check out") +
