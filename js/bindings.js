@@ -99,8 +99,8 @@ window.onload = function() {
   };
 
   // Bind twitter button
-  var twitter = document.getElementById("twitter");
-  twitter.onclick = function(event) {
+  var sharebutton = document.getElementById("share");
+  sharebutton.onclick = function(event) {
     var url = "https://twitter.com/intent/tweet" +
     "?text=" + encodeURIComponent("Explore topics with Wikipedia Map! Check out") +
     "&url="  + encodeURIComponent("http://luke.deentaylor.com/wikipedia/") +
