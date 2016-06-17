@@ -7,7 +7,7 @@
 
   z-index: 2;
   border-radius: 7px;
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid #aaa;
 }
 
@@ -26,4 +26,30 @@
 
 .button-container button:first-of-type {
   border-top: none;
+}
+
+/* Fancy expanding input */
+.button-container div {
+  /* Border on 3 sides */
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  border: 1px solid #aaa;
+  border-right: none;
+
+  right: -100px;
+  width: 150px;
+  height: 40px;
+  padding: 5px;
+
+  position: absolute;
+  display: none;
+}
+
+.button-container.showpopout {
+  border-top-left-radius: 0;
+}
+
+.button-container.showpopout div {
+  right: 40px;
+  display: block;
 }

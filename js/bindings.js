@@ -100,13 +100,14 @@ window.onload = function() {
 
   // Bind twitter button
   var sharebutton = document.getElementById("share");
+  var buttons = document.getElementById("buttons");
   sharebutton.onclick = function(event) {
-    var url = "https://twitter.com/intent/tweet" +
-    "?text=" + encodeURIComponent("Explore topics with Wikipedia Map! Check out") +
-    "&url="  + encodeURIComponent("http://luke.deentaylor.com/wikipedia/") +
-    "&via="  + encodeURIComponent("1Defenestrator");
-    var top = window.outerHeight/2 - 210;
-    var left = window.outerWidth/2 - 275;
-    window.open(url, 0, "width=550, height=420, toolbar=0, status=0, top="+top+", left="+left);
+    // Toggle rounding on the top left corner of the button group
+    buttons.className = buttons.className.indexOf("showpopout") === -1 ?
+      "button-container transparent-blur showpopout" :
+      "button-container transparent-blur";
+    sharebutton.innerHTML = sharebutton.innerHTML.indexOf("close") === -1 ?
+      "<i class=\"icon ion-close\"></i>":
+      "<i class=\"icon ion-android-share\"></i>";
   };
 };
