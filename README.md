@@ -73,16 +73,19 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
     - [ ] Show users how to expand and trace back nodes. To do this, create a floating invisible div over a start node. Then, pin the Shepherd step to this div.
     - [ ] Don't allow users to advance to the next step until they've followed the instruction (entering articles, pressing Go)
     - [x] Disappear the info box when the tour is started
-- [ ] Redo the whole UI using ~~[Semantic UI](http://semantic-ui.com/)~~ [Bootstrap](http://getbootstrap.com) (Semantic-UI uses jQuery 👿)
-
 - [x] Allow inputting of multiple starts
   - [x] Build an interface for this
+- [ ] Implement saving + sharing
+  - [x] Saving a graph
+  - [x] Loading a graph from an id
+  - [ ] Loading a graph from a URL parameter
+  - [ ] Implement sharing UI
 
 #### Interaction
 - [x] Hovering over a node will show a traceback of how you arrived at that node, kind of like breadcrumbs
 - [x] mobile optimization: Implement a separate set of controls for touch devices
 - [x] On both desktop and mobile, double-click (or tap) a node to open the corresponding wikipedia page in a new tab
-- [x] Improve efficiency of highlighting the nodes
+- [ ] Improve efficiency of highlighting the nodes
 
 
 #### Technical
