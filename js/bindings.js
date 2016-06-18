@@ -102,12 +102,6 @@ window.onload = function() {
   var sharebutton = document.getElementById("share");
   var buttons = document.getElementById("buttons");
   sharebutton.onclick = function(event) {
-    // Toggle rounding on the top left corner of the button group
-    buttons.className = buttons.className.indexOf("showpopout") === -1 ?
-      "button-container transparent-blur showpopout" :
-      "button-container transparent-blur";
-    sharebutton.innerHTML = sharebutton.innerHTML.indexOf("close") === -1 ?
-      "<i class=\"icon ion-close\"></i>":
-      "<i class=\"icon ion-android-share\"></i>";
+
   };
 };
