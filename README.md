@@ -108,3 +108,5 @@ This project is powered by Wikipedia! Wikipedia is one of my favorite things, an
 The technical bits are mostly powered just by  [`vis.js`](http://visjs.org) and [`BeautifulSoup`](http://crummy.com/software/BeautifulSoup/).
 
 Rendering of this document into the help modal is done via a modified version of [`marked`](github.com/chjj/marked) that supports task lists.
+
+The colors used in the network come from the [material design color palette](https://material.google.com/style/color.html#color-color-palette). Specifically, the yellow is "Amber A400" (`#FFC400`) and the blue is "Light Blue A200" (`#40C4FF`). Note that the colors *are* adjusted algorithmically, so these colors are only used as a base.
