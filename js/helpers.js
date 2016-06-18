@@ -36,11 +36,11 @@ function lightenHex(hex,percent) {
 }
 // Get the color for a node, lighten a blue based on level. Subtle.
 function getColor(level) {
-  return lightenHex("#40C4FF",5*level); // Gets 5% lighter for each level
+  return lightenHex("#03A9F4",5*level); // Gets 5% lighter for each level
 }
 // Get the highlighted color for a node, lighten a yellow based on level. Subtle.
 function getYellowColor(level) {
-  return lightenHex("#FFC400",5*level); // Gets 5% lighter for each level
+  return lightenHex("#FFC107",5*level); // Gets 5% lighter for each level
 }
 // Get the color that an edge should be pointing to a certain level
 function getEdgeColor(level) {
