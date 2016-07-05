@@ -33,6 +33,13 @@
   height: 33px;
   min-width: 33px;
 }
+i.icon.ion-refresh {
+  display: block;
+  transition: all 0.8s ease-in-out;
+}
+i.icon:hover.ion-refresh {
+  transform: rotate(360deg);
+}
 
 /* To create lines between elements, everything has a right border besides the last element */
 #formbox > * {
