@@ -1,5 +1,7 @@
 # Wikipedia Map
 
+![](http://i.imgur.com/fTzzl0k.png)
+
 A web app for visualizing the connection of wikipedia pages. See it at [luke.deentaylor.com/wikipedia](http://luke.deentaylor.com/wikipedia/)
 
 
@@ -13,7 +15,7 @@ You can also enter multiple articles to "compare" by pressing Comma, Tab, or Ent
 ## Showcase
 
 A map typically looks something like this:
-![](http://i.imgur.com/tJnHSDE.png)
+![Wikipedia Map](http://i.imgur.com/RCH89TL.png)
 
 Wikipedia Map also has full support for touch devices and mobile browsers:
 ![](http://i.imgur.com/30TJSBy.jpg)
@@ -38,7 +40,7 @@ I've chosen to use links only from the first paragraph of an article for 2 reaso
 Note that nodes are lighter in color when they are farther away from the central node. If it took 5 steps to reach *Ancient Greek* from *Penguin*, it will be a lighter color than a node like *Birding*, which only took 2 steps to reach. Thus, a node's color indicates how closely an article is related to the central topic.
 
 Hovering the mouse over a node will highlight the path back to the central node:
-![](http://i.imgur.com/1xH3sri.png)
+![Traceback](http://i.imgur.com/G7sV5AX.png)
 Note that this is not necessarily the shortest path back, but the path that you took to reach the node. Regardless of whether a shorter path back exists, the path by which the node was created will be shown. This is by design.
 
 
