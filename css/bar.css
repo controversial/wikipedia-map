@@ -40,6 +40,10 @@ i.icon.ion-refresh {
 i.icon:hover.ion-refresh {
   transform: rotate(360deg);
 }
+i.icon.ion-refresh:before {
+  position: relative;
+  left: 2px;
+}
 
 /* To create lines between elements, everything has a right border besides the last element */
 #formbox > * {
