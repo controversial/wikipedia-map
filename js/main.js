@@ -42,7 +42,7 @@ function makeNetwork() {
 //Reset the network to be new each time.
 function resetNetwork(start) {
   if (!initialized) makeNetwork();
-  startID = getNeutralId(start);
+  var startID = getNeutralId(start);
   startpages = [startID]; // Register the page as an origin node
   tracenodes = [];
   traceedges = [];
