@@ -94,6 +94,28 @@ shepherd.addStep({
     {
       text: "Let's go!",
       classes: "shepbtn",
+      action: expandNodeNext
+    }
+  ],
+  tetherOptions :{
+      'attachment':'top left',
+      'targetAttachment':'bottom center',
+       'offset':'0px -35px'
+  },
+});
+
+shepherd.addStep({
+  text: ["Here's an example node. Click on it to expand it!"],
+  attachTo: "#tourexpandnode bottom", //change to the new invisible div
+  buttons: [
+    {
+      text: "Back",
+      classes: "shepherd-button-secondary",
+      action: shepherd.next
+    },
+    {
+      text: "Got it!",
+      classes: "shepbtn",
       action: shepherd.next
     }
   ],
@@ -120,7 +142,34 @@ function opaque () {
 shepherd.on("complete", opaque);
 shepherd.on("cancel", opaque);
 
+// Custom action handler to show how to expand node
+function expandNodeNext() {
+  var cf = document.getElementsByClassName("commafield")[0] 
+  addItem(cf, "Cat"); //add example item
+  resetNetworkFromInput(); 
+  //get position of starting node
+  // var startNode = cf.getElementsByClassName("item")[0];
+  // var position = startNode.getBoundingClientRect();  
+  // var startDiv = document.getElementById("tourexpandnode");
+  // startDiv.style.position = "absolute";
+  // startDiv.style.top = position.top;
+  // startDiv.style.left = position.left;
 
+  var position = network.getPosition(startNode.id);
+  var startDiv = document.getElementById("tourexpandnode");
+  startDiv.style.position = "absolute";
+  startDiv.style.top = position.top;
+  startDiv.style.left = position.left;
+  shepherd.next();
+}
+
+// Prompt user for input when none detected
+function noInputDetected() {
+  shepherd.start();
+  shepherd.next();
+  shepherd.next(); //skip to the step explaining how input works
+  formbox.style.opacity = 1;
+}
 
 // Load the modal with the README and other info
 
@@ -197,7 +246,8 @@ for (var i=0;i<backButtons.length;i++) {
   backButtons[i].onclick=animateReturn;
 }
 
-
+// Is the user on a touch device?
+var isTouchDevice = 'd' in document.documentElement;
 
 var controlspage = document.getElementById("controls");
 

@@ -2,14 +2,11 @@
 // a function for resetting it to a brand new page.
 
 
-var nodes, edges, network; //Global variables
+var nodes, edges, network, startID; //Global variables
 var startpages = [];
 // Tracks whether the network needs to be reset. Used to prevent deleting nodes
 // when multiple nodes need to be created, because AJAX requests are async.
 var needsreset = true;
-
-// Is the user on a touch device?
-var isTouchDevice = 'ontouchstart' in document.documentElement;
 
 var container = document.getElementById('container');
 //Global options
@@ -45,7 +42,7 @@ function makeNetwork() {
 //Reset the network to be new each time.
 function resetNetwork(start) {
   if (!initialized) makeNetwork();
-  var startID = getNeutralId(start);
+  startID = getNeutralId(start);
   startpages = [startID]; // Register the page as an origin node
   tracenodes = [];
   traceedges = [];
@@ -92,10 +89,10 @@ function resetNetworkFromInput() {
   var cf = document.getElementsByClassName("commafield")[0];
   // Items entered.
   var inputs = getItems(cf);
-  // If no input is given, add an item for the page about Wikipedia as a fallback
+  // If no input is given, prompt user to enter articles 
   if (!inputs[0]) {
-    addItem(cf, "Wikipedia");
-    inputs = getItems(cf);
+    noInputDetected();
+    return;
   }
 
   for (var i=0; i<inputs.length; i++) {
