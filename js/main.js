@@ -2,7 +2,7 @@
 // a function for resetting it to a brand new page.
 
 
-var nodes, edges, network, startID; //Global variables
+var nodes, edges, network; //Global variables
 var startpages = [];
 // Tracks whether the network needs to be reset. Used to prevent deleting nodes
 // when multiple nodes need to be created, because AJAX requests are async.

@@ -148,18 +148,18 @@ function expandNodeNext() {
   addItem(cf, "Cat"); //add example item
   resetNetworkFromInput(); 
   //get position of starting node
-  // var startNode = cf.getElementsByClassName("item")[0];
-  // var position = startNode.getBoundingClientRect();  
-  // var startDiv = document.getElementById("tourexpandnode");
-  // startDiv.style.position = "absolute";
-  // startDiv.style.top = position.top;
-  // startDiv.style.left = position.left;
-
-  var position = network.getPosition(startNode.id);
+  var startNode = cf.getElementsByClassName("item")[0];
+  var position = startNode.getBoundingClientRect();  
   var startDiv = document.getElementById("tourexpandnode");
   startDiv.style.position = "absolute";
   startDiv.style.top = position.top;
   startDiv.style.left = position.left;
+
+  // var position = network.getPosition(startNode.id);
+  // var startDiv = document.getElementById("tourexpandnode");
+  // startDiv.style.position = "absolute";
+  // startDiv.style.top = position.top;
+  // startDiv.style.left = position.left;
   shepherd.next();
 }
 
