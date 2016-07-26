@@ -39,7 +39,7 @@ function makeNetwork() {
 }
 
 
-//Reset the network to be new each time.
+// Reset the network to be new each time.
 function resetNetwork(start) {
   if (!initialized) makeNetwork();
   var startID = getNeutralId(start);
@@ -89,7 +89,7 @@ function resetNetworkFromInput() {
   var cf = document.getElementsByClassName("commafield")[0];
   // Items entered.
   var inputs = getItems(cf);
-  // If no input is given, prompt user to enter articles 
+  // If no input is given, prompt user to enter articles
   if (!inputs[0]) {
     noInputDetected();
     return;
@@ -133,6 +133,7 @@ function randomReset() {
 
 // Reset the network with content from a JSON string
 function resetNetworkFromJson(data) {
+  if (!initialized) makeNetwork();
   var obj = networkFromJson(data);
   nodes = obj.nodes;
   edges = obj.edges;
