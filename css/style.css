@@ -5,6 +5,7 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  transition: opacity 0.5s ease-out;
 }
 
 body {
