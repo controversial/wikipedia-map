@@ -122,10 +122,9 @@ shepherd.on("cancel", opaque);
 
 // Prompt user for input when none detected
 function noInputDetected() {
-  shepherd.start();
-  shepherd.next();
-  shepherd.next(); //skip to the step explaining how input works
-  formbox.style.opacity = 1;
+  infobox.style.opacity = 0.3;
+  buttons.style.opacity = 0.3;
+  shepherd.show(2);
 }
 
 // Load the modal with the README and other info
