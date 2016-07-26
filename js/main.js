@@ -8,9 +8,6 @@ var startpages = [];
 // when multiple nodes need to be created, because AJAX requests are async.
 var needsreset = true;
 
-// Is the user on a touch device?
-var isTouchDevice = 'ontouchstart' in document.documentElement;
-
 var container = document.getElementById('container');
 //Global options
 var options = {
@@ -92,10 +89,10 @@ function resetNetworkFromInput() {
   var cf = document.getElementsByClassName("commafield")[0];
   // Items entered.
   var inputs = getItems(cf);
-  // If no input is given, add an item for the page about Wikipedia as a fallback
+  // If no input is given, prompt user to enter articles 
   if (!inputs[0]) {
-    addItem(cf, "Wikipedia");
-    inputs = getItems(cf);
+    noInputDetected();
+    return;
   }
 
   for (var i=0; i<inputs.length; i++) {

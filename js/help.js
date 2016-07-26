@@ -120,7 +120,13 @@ function opaque () {
 shepherd.on("complete", opaque);
 shepherd.on("cancel", opaque);
 
-
+// Prompt user for input when none detected
+function noInputDetected() {
+  shepherd.start();
+  shepherd.next();
+  shepherd.next(); //skip to the step explaining how input works
+  formbox.style.opacity = 1;
+}
 
 // Load the modal with the README and other info
 
@@ -197,7 +203,8 @@ for (var i=0;i<backButtons.length;i++) {
   backButtons[i].onclick=animateReturn;
 }
 
-
+// Is the user on a touch device?
+var isTouchDevice = 'd' in document.documentElement;
 
 var controlspage = document.getElementById("controls");
 
