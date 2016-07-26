@@ -59,13 +59,18 @@ shepherd.addStep({
         formbox.style.opacity = 1;
       }
     }
-  ]
+  ],
+  tetherOptions :{
+      'attachment':'bottom right',
+      'targetAttachment':'left center',
+      'offset':'-55px 20px'
+  },
 });
 
 shepherd.addStep({
   text: ["Input the name of a Wikipedia article here.",
-         " You can start with " + "and compare multiple articles by pressing "+
-         "<code>,</code> <code>Tab</code> or <code>Enter</code> after each one."],
+         "You can compare multiple topics by pressing <code>,</code> " +
+         "<code>Tab</code> or <code>Enter</code> after each one."],
   attachTo: "#input bottom",
   buttons: [
     {
@@ -100,7 +105,7 @@ shepherd.addStep({
   tetherOptions :{
       'attachment':'top left',
       'targetAttachment':'bottom center',
-       'offset':'0px -35px'
+      'offset':'0px -35px'
   },
 });
 
