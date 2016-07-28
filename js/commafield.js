@@ -1,6 +1,7 @@
 /* This contains the JavaScript code for the 'commafield,' which is basically
 a tag input. It just gives visual feedback that inputs were 'registered' when a
-user is inputting multiple elements. Running this script will transform all elements with the 'commafield' tag to comma separated input field
+user is inputting multiple elements. Running this script will transform all
+elements with the 'commafield' class name to comma separated input field.
 */
 
 // == HELPER FUNCTIONS == //

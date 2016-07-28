@@ -138,5 +138,10 @@ function resetNetworkFromJson(data) {
   nodes = obj.nodes;
   edges = obj.edges;
   startpages = obj.startpages;
+  // Fill the network
   network.setData({nodes:nodes, edges:edges});
+  // Populate the top bar
+  for (var i=0; i<startpages.length; i++) {
+    addItem(document.getElementById("input"), nodes.get(startpages[i]).label);
+  }
 }
