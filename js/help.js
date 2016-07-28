@@ -2,7 +2,7 @@ var isTouchDevice = 'd' in document.documentElement;
 
 // Create the Shepherd tour
 
-var infobox = document.getElementById("info");
+var container = document.getElementById("container");
 var buttons = document.getElementById("buttons");
 var formbox = document.getElementById("formbox");
 
@@ -113,14 +113,14 @@ shepherd.addStep({
 
 // Take away the info box when the tour has started...
 shepherd.on("start", function () {
-  infobox.style.opacity = 0.3;
+  container.style.opacity = 0.3;
   formbox.style.opacity = 0.3;
   buttons.style.opacity = 0.3;
 });
 
 // ... and bring it back when the tour goes away
 function opaque () {
-  infobox.style.opacity = 1;
+  container.style.opacity = 1;
   formbox.style.opacity = 1;
   buttons.style.opacity = 1;
 }
@@ -129,7 +129,7 @@ shepherd.on("cancel", opaque);
 
 // Prompt user for input when none detected
 function noInputDetected() {
-  infobox.style.opacity = 0.3;
+  container.style.opacity = 0.3;
   buttons.style.opacity = 0.3;
   shepherd.show(2);
 }
