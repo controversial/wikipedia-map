@@ -144,4 +144,6 @@ function resetNetworkFromJson(data) {
   for (var i=0; i<startpages.length; i++) {
     addItem(document.getElementById("input"), nodes.get(startpages[i]).label);
   }
+  // Transform the "go" button to a "refresh" button
+  document.getElementById("submit").innerHTML = '<i class="icon ion-refresh"> </i>';
 }
