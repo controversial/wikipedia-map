@@ -2,7 +2,20 @@
 
 function loadSaved() {
   if (window.location.search) {
+    progressbar = new Progress();
+    modalWindow = new Modal(progressbar.container, false);
+    modalWindow.present();
+    // Make the blank network
     makeNetwork();
+    progressbar.progress(0.02);
+    // Set up event listeners for the loading (starting at 2%)
+    network.on("stabilizationProgress", function(params) {
+      progressbar.progress(params.iterations / params.total + 0.02);
+    });
+    network.once("stabilizationIterationsDone", function() {
+      progressbar.progress(1);
+      setTimeout(300, modalWindow.close());
+    });
     loadGraph(window.location.search.substring(1));
   }
 }
