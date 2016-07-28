@@ -34,37 +34,35 @@
 .item {
   float: left;
 
-  background-color: rgba(255, 255, 255, 0.6);
-  border: 1px solid #ddd;
+  background-color: rgba(220, 220, 220, 0.6);
   font-size: 1em;
 
-  padding: 0 5px;
+  padding: 1px 5px 2px 5px;
   margin: 2px 5px 3px 0;
 
   flex: 0 1 auto;
   height: 85%;
+  line-height: 130%;
 
   cursor: pointer;
 
-  transition: all 0.1s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .item::after {
-  /* Add a close button */
-  content: "x";
-  padding-left: 5px;
-
+  font-family: Ionicons;
   /* Font styles */
-  font-size: 75%;
+  font-size: 90%;
+  line-height: 0;
   vertical-align: 10%; /* This is about right for centering */
   color: #ec725d;
   font-weight: bold;
 }
-
-.item:hover {
-  background-color: #fff;
-}
-
 .item:hover::after {
-  color: #f00;
+  content: "\f12a";
+  /* Add a close button */
+  padding-left: 5px;
+}
+.item:hover {
+  background-color: rgba(255, 200, 200, 0.6);
 }
