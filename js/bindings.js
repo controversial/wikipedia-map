@@ -47,7 +47,7 @@ function bindNetwork(){
   network.on("doubleClick", openPageEvent);
 }
 
-window.onload = function() {
+function bind() {
 
   // Prevent iOS scrolling
   document.ontouchmove = function(event){
@@ -104,4 +104,4 @@ window.onload = function() {
   sharebutton.onclick = function(event) {
 
   };
-};
+}

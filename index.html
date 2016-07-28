@@ -46,6 +46,10 @@
   <link rel="stylesheet" href="./css/commafield.css" type="text/css"/>
   <!-- Load css for welcome info box -->
   <link rel="stylesheet" href="./css/welcome.css" type="text/css"/>
+  <!-- Load css for modals -->
+  <link rel="stylesheet" href="./css/modals.css" type="text/css"/>
+  <!-- Load css for progress bars -->
+  <link rel="stylesheet" href="./css/progress.css" type="text/css"/>
 
 
 </head>
@@ -170,7 +174,7 @@
   <script type="text/javascript" src="./js/helpers.js"> </script>
   <!-- Load main functions -->
   <script type="text/javascript" src="./js/main_functions.js"> </script>
-    <!-- Build help popup -->
+  <!-- Load code for all the user-facing tutorial+information stuff -->
   <script type="text/javascript" src="./js/help.js"> </script>
   <!-- Load the main script -->
   <script type="text/javascript" src="./js/main.js"> </script>
@@ -182,7 +186,17 @@
   <script type="text/javascript" src="./js/commafield.js"> </script>
   <!-- Load a saved graph if one was linked in the URL -->
   <script type="text/javascript" src="./js/loadsaved.js"> </script>
+  <!-- Load micro-libraries for modals and progress bars -->
+  <script type="text/javascript" src="./js/modals.js"> </script>
+  <script type="text/javascript" src="./js/progress.js"> </script>
 
+  <script>
+    // Run events that need to happen on initialization.
+    window.onload = function () {
+      bind();
+      loadSaved();
+    };
+  </script>
 </body>
 
 </html>

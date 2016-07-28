@@ -1,0 +1,15 @@
+.progressbar {
+  width: 50vw;
+  height: 30px;
+
+  background-color: #fff;
+}
+
+.progressbar-indicator {
+  background-color: #55acee;
+  height: 100%;
+  transition: width 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+.progressbar-indicator:hover {
+  background-color: #6cb7f0;
+}
