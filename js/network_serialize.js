@@ -137,7 +137,6 @@ function buildEdges (nds) {
 // Take consise JSON and use it to reconstruct `nodes` and `edges`
 function networkFromJson(data) {
   // Get data
-  console.log(data);
   data = JSON.parse(data);
 
   out = {};
