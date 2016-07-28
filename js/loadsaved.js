@@ -13,8 +13,7 @@ function loadSaved() {
       progressbar.progress(params.iterations / params.total + 0.02);
     });
     network.once("stabilizationIterationsDone", function() {
-      progressbar.progress(1);
-      setTimeout(300, modalWindow.close());
+      modalWindow.close();
     });
     loadGraph(window.location.search.substring(1));
   }
