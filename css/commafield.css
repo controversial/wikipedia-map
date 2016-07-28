@@ -50,19 +50,24 @@
 }
 
 .item::after {
-  font-family: Ionicons;
   /* Font styles */
   font-size: 90%;
-  line-height: 0;
-  vertical-align: 10%; /* This is about right for centering */
+  line-height: 90%;
   color: #ec725d;
-  font-weight: bold;
-}
-.item:hover::after {
-  content: "\f12a";
+
   /* Add a close button */
-  padding-left: 5px;
+  font-family: Ionicons;
+  content: "\00a0\f12a";
+
+  /* Allow animating the unfurl of the close button */
+  transition: max-width 0.3s ease-in-out;
+  overflow: hidden;
+  display: inline-block;
+  max-width: 0;
 }
 .item:hover {
   background-color: rgba(255, 200, 200, 0.6);
+}
+.item:hover::after {
+  max-width: 15px; /* Animate the x unfurling. */
 }
