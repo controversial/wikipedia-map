@@ -23,7 +23,7 @@ function Progress(mainclass, barclass) {
   this.bar.style.width = "0px";
   // Function to set progress
   this.progress = function(amount) {
-    if (amount) {
+    if (amount === undefined) {
       this.bar.style.width = this.elem.offsetWidth * amount + "px";
     } else {
       return this.bar.offsetWidth / this.elem.offsetWidth;
