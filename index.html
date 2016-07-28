@@ -38,8 +38,6 @@
   <link rel="stylesheet" href="./css/bar.css" type="text/css"/>
   <!-- Load CSS for bottom right buttons -->
   <link rel="stylesheet" href="./css/buttongroup.css" type="text/css"/>
-  <!-- Load css for the UINavigationController-style help menu -->
-  <link rel="stylesheet" href="./css/helpdialog.css" type="text/css"/>
   <!-- Load css for the custom Shepherd styles -->
   <link rel="stylesheet" href="./css/shepherd-custom.css" type="text/css"/>
   <!-- Load css for comma input field -->
@@ -78,71 +76,6 @@
       <i class="icon ion-help-circled"></i>
     </button>
   </div>
-
-  <!-- Modal help popup -->
-  <div id="modal" class="fullscreen modal">
-    <div id="modal-content" class="modal-content markdown-body">
-      <!-- Main menu chooser (modeled after the iOS Settings app) -->
-      <div class="menu menu-main" id="menu-main">
-        <ul>
-          <li id="aboutActivator">
-            <div>
-              <i class="icon ion-ios-information-outline"></i>
-            </div>
-            <span>About</span>
-          </li>
-          <li id="controlsActivator">
-            <div>
-              <i class="icon ion-ios-game-controller-b"></i>
-            </div>
-            <span>Controls</span>
-          </li>
-          <li class="menu-spacer"> &nbsp; </li>
-          <li id="readmeActivator">
-            <div>
-              <i class="icon ion-social-github"></i>
-            </div>
-            <span>Github README</span>
-          </li>
-        </ul>
-      </div>
-      <!-- About -->
-      <div class="menu menu-page" id="menu-about">
-        <button class="backbutton" type="button"><i class="icon ion-ios-arrow-back"></i> Back </button>
-        <div class="menu-content markdown-body">
-
-          <h1>Wikipedia Map</h1>
-
-          <p>A web app for visualizing the connection of wikipedia pages. </p>
-          <p>Wikipedia Mapper works based on a concept of <b>nodes</b>, which are dots on the screen.</p>
-          <p>Start by entering a topic into the text box at the top, and pressing <b>Go</b>. Let&#39;s say you entered <em>Cats</em>, a single node will be generated, labeled <em>Cat</em>. This is called the <b>central node</b></p>
-          <p>Nodes can be <b>expanded</b>. On most platforms, this is a single click. If you&#39;re on a touch device, press and hold on the node. (See &ldquo;Controls&rdquo;)</p>
-          <p>Expanding a node creates a new node for <b>each page</b> that  is linked to from the <b>first paragraph</b> of the article. These nodes will be <b>connected</b> to the node from which they were expanded. For example, expanding <em>Cat</em> will create eight nodes, including <em>Fur</em>, <em>Mammal</em>, <em>Carnivore</em>, and <em>Domestication</em>, and these will each be connected to <em>Cat</em>. </p>
-          <p>Each new node can be expanded in the same way. This is how complex networks emerge.</p>
-          <p>Other features include:</p>
-          <ul>
-          <li>A &ldquo;Random Article&rdquo; button</li>
-          <li>Hover over a node to see the path that you took to get there</li>
-          <li>The color of a node indicates how bly it is connected to the central topic. Lighter colored nodes have looser connections to the central topic. </li>
-          </ul>
-          <p>For more details, see the GitHub README in the Help menu.</p>
-
-        </div>
-      </div>
-      <!-- Controls -->
-      <div class="menu menu-page" id="menu-controls">
-        <button class="backbutton" type="button"><i class="icon ion-ios-arrow-back"></i> Back</button>
-        <div id="controls" class="menu-content markdown-body"></div>
-      </div>
-
-      <!-- README page -->
-      <div class="menu menu-page" id="menu-readme">
-        <button class="backbutton" type="button"><i class="icon ion-ios-arrow-back"></i> Back </button>
-        <div id="readme" class="menu-content"></div>
-      </div>
-    </div>
-  </div>
-
 
   <!-- Will hold the network -->
   <div id="container" class="fullscreen">

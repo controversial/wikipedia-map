@@ -1,5 +1,4 @@
-// This script contains the code that binds actions to events, both within the
-// network, in the search bar, and for the modal popup.
+// This script contains (most of) the code that binds actions to events.
 
 
 //Functions that will be used as bindings
@@ -66,27 +65,6 @@ function bind() {
 
   var randomButton = document.getElementById('random');
   randomButton.onclick = randomReset;
-
-
-  //Bind modal events.
-  var aboutButton = document.getElementById('about');
-  var modal = document.getElementById("modal");
-
-  aboutButton.onclick = function() {
-    modal.style.display = "block";
-  };
-
-  modal.onclick = function(event) {
-    if (event.target.id == "modal") { //Clicking on modal-content won't hide it
-      modal.style.display = "none";
-    }
-  };
-
-  //Allow iOS scrolling for the modal
-  var modalcontent = document.getElementById("modal-content");
-  modalcontent.ontouchmove = function(event) {
-    event.stopPropagation();
-  };
 
   // Bind tour start
   var tourbtn = document.getElementById("tourinit");
