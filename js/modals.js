@@ -22,7 +22,7 @@ function Modal(element, clickToDismiss) {
   this.elem.className = "centered";
 
   this.backdrop = document.createElement("div");
-  this.backdrop.className = "modal-background";
+  this.backdrop.className = "modal-background transparent-blur";
 
   this.backdrop.appendChild(this.elem);
 

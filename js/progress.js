@@ -11,21 +11,29 @@
 </script>
 */
 
-function Progress(mainclass, barclass) {
+function Progress(title, mainclass, barclass) {
+  title = title || "";
   mainclass = mainclass || "";
   barclass = barclass || "";
+
   this.container = document.createElement("div");
   // Create the progress bar
   this.elem = document.createElement("div");
   this.elem.className = mainclass + " progressbar";
   this.bar = document.createElement("div");
   this.bar.className = barclass + " progressbar-indicator";
+  // Create the title
+  this.title = document.createElement("h1");
+  // this.title.className = "progressbar-title";
+  this.title.textContent = title;
+
   // Create the label
   this.label = document.createElement("div");
   this.label.className = "progressbar-label";
   this.label.textContent = "0";
 
   this.elem.appendChild(this.bar);
+  this.container.appendChild(this.title);
   this.container.appendChild(this.elem);
   this.container.appendChild(this.label);
 

@@ -2,7 +2,7 @@
 
 function loadSaved() {
   if (window.location.search) {
-    progressbar = new Progress();
+    progressbar = new Progress("Restoring saved graph...");
     modalWindow = new Modal(progressbar.container, false);
     modalWindow.present();
     // Make the blank network

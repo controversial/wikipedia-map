@@ -1,8 +1,8 @@
 .progressbar {
   width: 50vw;
   height: 30px;
-
-  background-color: #fff;
+  margin: 10px 0;
+  background-color: #eee;
 }
 
 .progressbar-indicator {
@@ -15,7 +15,6 @@
 }
 
 .progressbar-label {
-  color: #fff;
   font-size: 20px;
   text-align: right;
   width: 100%;
