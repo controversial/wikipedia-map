@@ -8,8 +8,18 @@
 .progressbar-indicator {
   background-color: #55acee;
   height: 100%;
-  transition: width 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
 }
 .progressbar-indicator:hover {
   background-color: #6cb7f0;
+}
+
+.progressbar-label {
+  color: #fff;
+  font-size: 20px;
+  text-align: right;
+  width: 100%;
+}
+.progressbar-label::after {
+  content: "%";
 }
