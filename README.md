@@ -57,7 +57,7 @@ The underlying script, in `wikipedia_parse.py`, uses `BeautifulSoup` to parse th
 #### The main page
 I suck at JavaScript, which is why I wrote a lot of the underlying code in Python. However, the front-end is written mostly in JavaScript. I use [`vis.js`](http://visjs.org/) to display the graph. Every time a node is double-clicked, JavaScript makes an AJAX `XMLHttpRequest` to the aforementioned Flask API. The results of the query are word-wrapped, and then stuck under nodes which are colored according to their distance from the central node, as described above.
 
-## To Do
+## To Do 
 
 ### Stuff I'd like to implement soon(ish)
 
@@ -80,7 +80,7 @@ I suck at JavaScript, which is why I wrote a lot of the underlying code in Pytho
 - [ ] Implement saving + sharing
   - [x] Saving a graph
   - [x] Loading a graph from an id
-  - [ ] Loading a graph from a URL parameter
+  - [x] Loading a graph from a URL parameter
   - [ ] Implement sharing UI
 
 #### Interaction
