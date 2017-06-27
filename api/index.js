@@ -1,8 +1,8 @@
 const express = require('express');
-const request = require('superagent');
 
 const app = express();
 app.set('json spaces', 2);
+
 
 app.get('/links', (req, res) => {
   const page = res.query.page;
@@ -24,3 +24,6 @@ app.get('/storejson', (req, res) => {
 app.post('/storejson', (req, res) => {
 
 });
+
+
+app.listen(3000, '0.0.0.0');
