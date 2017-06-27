@@ -35,3 +35,13 @@ exports.getPageName = function getPageName(page) {
       })
   });
 }
+
+/**
+Decide whether the name of a wikipedia page is an article, or belongs to another namespace.
+See https://en.wikipedia.org/wiki/Wikipedia:Namespace
+*/
+exports.isArticle = function isArticle(name) {
+  // Pages outside of main namespace have colons in the middle, e.g. 'WP:UA'
+  // Remove any trailing colons and return true if the result still contains a colon
+  return !(name.endsWith(':') ? name.slice(0, -1) : name).includes(':');
+}
