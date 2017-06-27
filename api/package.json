@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.15.3",
+    "superagent": "^3.5.2"
+  }
+}

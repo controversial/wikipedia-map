@@ -10,3 +10,5 @@
 dev
 # Don't include shared user graphs
 graphs/*.json
+
+node_modules
