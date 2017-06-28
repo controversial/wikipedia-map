@@ -1,8 +1,8 @@
-const { URL } = require('url');
 const path = require('path');
 
 const request = require('superagent');
 const cheerio = require('cheerio');
+
 
 const endpoint = 'https://en.wikipedia.org/w/api.php';
 
@@ -14,8 +14,7 @@ This is considered inaccurate because this function not handle redirects, e.g. /
 /wiki/Cat are the same article but produce different outputs with this function.
 */
 function getPageTitle(url) {
-  const p = new URL(url).pathname;
-  return path.basename(p);
+  return path.basename(url);
 }
 exports.getPageTitle = getPageTitle;
 
