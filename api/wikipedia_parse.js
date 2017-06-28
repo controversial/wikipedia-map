@@ -105,6 +105,28 @@ function getWikiLinks($) {
 }
 exports.getWikiLinks = getWikiLinks;
 
+/**
+Get completion suggestions for a query
+*/
+function getSuggestions(search) {
+  return new Promise((resolve, reject) => {
+    request
+      .get(endpoint)
+      .query({
+        format: 'json',
+        action: 'opensearch',
+        search,
+        limit: 10,
+        namespace: 0, // Limits results to articles
+      })
+      .end((err, res) => {
+        if (err) reject(err);
+        else resolve(res.body[1]);
+      })
+  });
+}
+exports.getSuggestions = getSuggestions;
+
 
 
 // Little test case
