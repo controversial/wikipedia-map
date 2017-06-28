@@ -99,3 +99,13 @@ function getWikiLinks($) {
   return links;
 }
 exports.getWikiLinks = getWikiLinks;
+
+
+
+// Little test case
+if (require.main === module) {
+  getPageHtml('Cats')
+    .then(getFirstParagraph)
+    .then(getWikiLinks)
+    .then(console.log);
+}
