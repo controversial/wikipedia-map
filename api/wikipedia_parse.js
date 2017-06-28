@@ -81,3 +81,15 @@ Get a cheerio object for the first body paragraph in page HTML.
 exports.getFirstParagraph = function getFirstParagraph($) {
   return $('.mw-parser-output > p').first();
 }
+
+/**
+Get the name of each Wikipedia article linked.
+@param {cheerio} $ - A cheerio object as returned by `getFirstParagraph`
+*/
+exports.getWikiLinks = function getWikiLinks($) {
+  const links = [];
+  $.find('a').each((i, n) => {
+    links.push(n.attribs.href);
+  });
+  return links;
+}
