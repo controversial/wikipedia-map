@@ -17,6 +17,8 @@ app.get('/links', (req, res) => {
 
 app.get('/pagename', (req, res) => {
   const page = req.query.page;
+  wp.getPageName(page)
+    .then(name => res.send(name));
 });
 
 app.get('/random', (req, res) => {});
