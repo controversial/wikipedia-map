@@ -9,6 +9,10 @@ app.set('json spaces', 2);
 
 app.get('/links', (req, res) => {
   const page = req.query.page;
+  wp.getPageHtml(page)
+    .then(wp.getFirstParagraph)
+    .then(wp.getWikiLinks)
+    .then(links => res.send(links));
 });
 
 app.get('/pagename', (req, res) => {
