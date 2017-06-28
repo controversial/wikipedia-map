@@ -13,15 +13,16 @@ slash and for URLs without.
 This is considered inaccurate because this function not handle redirects, e.g. /wiki/Cats and
 /wiki/Cat are the same article but produce different outputs with this function.
 */
-exports.getPageTitle = function getPageTitle(url) {
+function getPageTitle(url) {
   const p = new URL(url).pathname;
   return path.basename(p);
 }
+exports.getPageTitle = getPageTitle;
 
 /**
 Get the name of a Wikipedia page accurately by following redirects (slow)
 */
-exports.getPageName = function getPageName(page) {
+function getPageName(page) {
   return new Promise((resolve, reject) => {
     request
       .get(endpoint)
@@ -37,16 +38,18 @@ exports.getPageName = function getPageName(page) {
       });
   });
 }
+exports.getPageName = getPageName;
 
 /**
 Decide whether the name of a wikipedia page is an article, or belongs to another namespace.
 See https://en.wikipedia.org/wiki/Wikipedia:Namespace
 */
-exports.isArticle = function isArticle(name) {
+function isArticle(name) {
   // Pages outside of main namespace have colons in the middle, e.g. 'WP:UA'
   // Remove any trailing colons and return true if the result still contains a colon
   return !(name.endsWith(':') ? name.slice(0, -1) : name).includes(':');
 }
+exports.isArticle = isArticle;
 
 
 // --- MAIN FUNCTIONS ---
@@ -55,7 +58,7 @@ exports.isArticle = function isArticle(name) {
 /**
 Get a cheerio object for the HTML of a Wikipedia page.
 */
-exports.getPageHtml = function getPageHtml(pageName) {
+function getPageHtml(pageName) {
   return new Promise((resolve, reject) => {
     request
       .get(endpoint)
@@ -73,23 +76,26 @@ exports.getPageHtml = function getPageHtml(pageName) {
       });
   });
 }
+exports.getPageHtml = getPageHtml;
 
 /**
 Get a cheerio object for the first body paragraph in page HTML.
 @param {cheerio} $ - A cheerio object as returned by `getPageHtml`
 */
-exports.getFirstParagraph = function getFirstParagraph($) {
+function getFirstParagraph($) {
   return $('.mw-parser-output > p').first();
 }
+exports.getFirstParagraph = getFirstParagraph;
 
 /**
 Get the name of each Wikipedia article linked.
 @param {cheerio} $ - A cheerio object as returned by `getFirstParagraph`
 */
-exports.getWikiLinks = function getWikiLinks($) {
+function getWikiLinks($) {
   const links = [];
   $.find('a').each((i, n) => {
     links.push(n.attribs.href);
   });
   return links;
 }
+exports.getWikiLinks = getWikiLinks;
