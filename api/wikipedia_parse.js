@@ -95,7 +95,13 @@ function getWikiLinks($) {
   $.find('a').each((i, n) => {
     links.push(n.attribs.href);
   });
-  return links;
+  return links
+    .filter(link => link.startsWith('/wiki/'))     // Only links to Wikipedia articles
+    .map(getPageTitle)                             // Get the title
+    .map(link => link.split('#')[0])               // Eliminate anchor links
+    .filter(isArticle)                             // Make sure it's an article and not a part of another namespace
+    .map(link => link.replace(/_/g, ' '))          // Replace underscores with spaces for more readable names
+    .filter((n, i, self) => self.indexOf(n) === i) // Remove duplicates
 }
 exports.getWikiLinks = getWikiLinks;
 
