@@ -73,3 +73,11 @@ exports.getPageHtml = function getPageHtml(pageName) {
       });
   });
 }
+
+/**
+Get a cheerio object for the first body paragraph in page HTML.
+@param {cheerio} $ - A cheerio object as returned by `getPageHtml`
+*/
+exports.getFirstParagraph = function getFirstParagraph($) {
+  return $('.mw-parser-output > p').first();
+}
