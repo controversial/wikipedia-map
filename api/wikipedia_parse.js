@@ -1,6 +1,8 @@
-const request = require('superagent');
 const { URL } = require('url');
 const path = require('path');
+
+const request = require('superagent');
+const cheerio = require('cheerio');
 
 const endpoint = 'https://en.wikipedia.org/w/api.php';
 
@@ -32,7 +34,7 @@ exports.getPageName = function getPageName(page) {
       .end((err, res) => {
         if (err) reject(err);
         else resolve(Object.values(res.body.query.pages)[0].title)
-      })
+      });
   });
 }
 
@@ -44,4 +46,30 @@ exports.isArticle = function isArticle(name) {
   // Pages outside of main namespace have colons in the middle, e.g. 'WP:UA'
   // Remove any trailing colons and return true if the result still contains a colon
   return !(name.endsWith(':') ? name.slice(0, -1) : name).includes(':');
+}
+
+
+// --- MAIN FUNCTIONS ---
+
+
+/**
+Get a cheerio object for the HTML of a Wikipedia page.
+*/
+exports.getPageHtml = function getPageHtml(pageName) {
+  return new Promise((resolve, reject) => {
+    request
+      .get(endpoint)
+      .query({
+        format: 'json',
+        action: 'parse',
+        page: pageName,
+        prop: 'text',
+        section: 0,
+        redirects: 1,
+      })
+      .end((err, res) => {
+        if (err) reject(err);
+        else resolve(cheerio.load(res.body.parse.text['*']));
+      });
+  });
 }
