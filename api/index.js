@@ -4,7 +4,20 @@ const wp = require('./wikipedia_parse');
 
 
 const app = express();
-app.set('json spaces', 2);
+app.set('json spaces', 2); // Nice formatting for JSON outputs
+
+
+// Cross-origin resource sharing allows client-side Javascript from other sites to use this API
+
+
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
+
+// API endpoints
 
 
 app.get('/links', (req, res) => {
@@ -36,6 +49,9 @@ app.get('/suggest', (req, res) => {
 // TODO
 app.get('/storejson', (req, res) => {});
 app.post('/storejson', (req, res) => {});
+
+
+// Run
 
 
 app.listen(3000, '0.0.0.0');
