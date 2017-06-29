@@ -21,7 +21,10 @@ app.get('/pagename', (req, res) => {
     .then(name => res.send(name));
 });
 
-app.get('/random', (req, res) => {});
+app.get('/random', (req, res) => {
+  wp.getRandomArticle()
+    .then(page => res.send(page));
+});
 
 app.get('/suggest', (req, res) => {
   const text = req.query.text;

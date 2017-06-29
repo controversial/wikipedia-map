@@ -106,6 +106,28 @@ function getWikiLinks($) {
 exports.getWikiLinks = getWikiLinks;
 
 /**
+Get the name of a random Wikipedia article
+*/
+function getRandomArticle() {
+  return new Promise((resolve, reject) => {
+    request
+      .get(endpoint)
+      .query({
+        format: 'json',
+        action: 'query',
+        list: 'random',
+        rnlimit: 1,
+        rnnamespace: 0, // Limits results to articles
+      })
+      .end((err, res) => {
+        if (err) reject(err);
+        else resolve(res.body.query.random[0].title);
+      })
+  })
+}
+exports.getRandomArticle = getRandomArticle;
+
+/**
 Get completion suggestions for a query
 */
 function getSuggestions(search) {
