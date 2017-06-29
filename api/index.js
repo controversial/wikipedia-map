@@ -28,14 +28,14 @@ app.get('/random', (req, res) => {
 
 app.get('/suggest', (req, res) => {
   const text = req.query.text;
+  wp.getSuggestions(text)
+    .then(suggestions => res.send(suggestions));
 });
 
-app.get('/storejson', (req, res) => {
 
-});
-app.post('/storejson', (req, res) => {
-
-});
+// TODO
+app.get('/storejson', (req, res) => {});
+app.post('/storejson', (req, res) => {});
 
 
 app.listen(3000, '0.0.0.0');
