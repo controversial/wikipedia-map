@@ -6,7 +6,7 @@
 
 // GLOBALS
 
-var api_endpoint = "http://luke.deentaylor.com/wikipedia/api/";
+var api_endpoint = "https://wikipedia-map.now.sh/";
 
 
 
