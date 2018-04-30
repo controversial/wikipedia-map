@@ -82,7 +82,9 @@ Get a cheerio object for the first body paragraph in page HTML.
 @param {cheerio} $ - A cheerio object as returned by `getPageHtml`
 */
 function getFirstParagraph($) {
-  return $('.mw-parser-output > p').first();
+  let out = $('.mw-parser-output > p').first();
+  if (out.find('#coordinates').length) out = out.nextAll('p').first(); // We selected the paragraph with the coordinates
+  return out;
 }
 exports.getFirstParagraph = getFirstParagraph;
 
