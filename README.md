@@ -22,10 +22,19 @@ Wikipedia Map also has full support for touch devices and mobile browsers:
 
 
 ## Cloning
-This project depends on a running Flask server to support the Python API. By default, when you clone this, the `api_endpoint` variable (stored in `js/api.js`) will
-point to the Flask server on my website. This works fine if you don't want to modify the backend. If you *do* want to change the backend, you will need to:
-1. run the Flask server by executing `api/api.py`
-2. Change `api_endpoint` in `js/api.js` to point to your running Flask server (typically `localhost:5000`)
+To use the app locally, simply
+```bash
+git clone https://github.com/controversial/wikipedia-map/
+```
+and open `index.html` in a web browser. No compilation or server is necessary to run the front-end.
+
+This project depends on a Node.js server which serves a back-end API using `express`. In this configuration, all requests to the back-end will still be made to an externally hosted back-end. If you want to modify the backend of your local copy, you will need to:
+1. `npm install` inside the `api` folder to install required dependencies
+2. Run `node index.js` (also inside the `api` folder)
+2. Change the line 9 in `js/api.js` to point to the Node.js server:
+```js
+var api_endpoint = "http://localhost:3000/";
+```
 
 
 ## Design choices
@@ -46,16 +55,16 @@ Note that this is not necessarily the shortest path back, but the path that you 
 
 ## How it works
 
-#### API
-When you click to expand a node, a request is made to a Flask server (under the `api` directory). This Flask server exposes code from my Python script, `wikipedia_parse.py`, to JavaScript `XMLHttpRequests`. This Python API parses and json-izes the results of different calls to the Wikipedia API and serves them. The resulting API is at [luke.deentaylor.com/wikipedia/api](http://luke.deentaylor.com/wikipedia/api).
+#### Server
+When you click to expand a node, a request is made to a Node.js server (found in the `api` directory). This server is an interface between front-end JavaScript `XMLHttpRequest`s and the back-end, which is responsible for downloading and parsing Wikipedia articles. The Node.js server performs requests to the Wikipedia API, processes the responses, and serves digested content to the user. The API runs in production at [wikipedia-map.now.sh](https://wikipedia-map.now.sh) (try [/links?page=Cat](https://wikipedia-map.now.sh/links?page=Cat))
 
-The main functionality is getting "first paragraph links", by making a request like http://luke.deentaylor.com/wikipedia/api/links?page=Cats, but this API also exposes methods like getting the name of a random page (which just consists of a simple wrapper around Wikipedia's API)
+The main functionality of the server is to extract "first paragraph links" from articles, in response to requests like `GET http://luke.deentaylor.com/wikipedia/api/links?page=Cats`. The server also exposes endpoints for actions like retrieving a randomized page name.
 
 #### HTML Parsing
-The underlying script, in `wikipedia_parse.py`, uses `BeautifulSoup` to parse through the HTML of wikipedia pages. This HTML is retrieved from calls to Wikipedia's API. The parser looks for the first `<p>` tag (non-recursively to exclude informational content inside divs), and excludes certain special edge cases. Then the parser simply finds all links within this paragraph, excluding ones outside of [the "Main/Article" namespace](https://en.wikipedia.org/wiki/Wikipedia:Namespace). It extracts the page title from each, and returns a list.
+`wikipedia_parse.js` uses [`cheero`](https://github.com/cheeriojs/cheerio) to parse wikipedia pages’ HTML, which is retrieved from calls to Wikipedia's API. The parser looks for the first first paragraph’s `<p>` tag (considering some edge cases), and extracts all of the `<a>` links within this paragraph. It excludes links outside of [the "Main/Article" namespace](https://en.wikipedia.org/wiki/Wikipedia:Namespace) to ensure all links returned are links to valid Wikipedia articles.
 
 #### The main page
-I suck at JavaScript, which is why I wrote a lot of the underlying code in Python. However, the front-end is written mostly in JavaScript. I use [`vis.js`](http://visjs.org/) to display the graph. Every time a node is double-clicked, JavaScript makes an AJAX `XMLHttpRequest` to the aforementioned Flask API. The results of the query are word-wrapped, and then stuck under nodes which are colored according to their distance from the central node, as described above.
+The front-end uses [`vis.js`](http://visjs.org/) to display the graph. Every time a node is clicked, the app makes a `XMLHttpRequest` to the Node.js server. The resulting links are added as new nodes, colored according to their distance from the central node (as described above).
 
 ## Roadmap
 
