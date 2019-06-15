@@ -16,8 +16,8 @@ const getPageTitle = url => url.split('/').filter(el => el).pop();
 /**
 Get the name of a Wikipedia page accurately by following redirects (slow)
 */
-function getPageName(page) {
-  return new Promise((resolve, reject) => {
+const getPageName = page =>
+  new Promise((resolve, reject) => {
     request
       .get(endpoint)
       .query({
@@ -31,19 +31,14 @@ function getPageName(page) {
         else resolve(Object.values(res.body.query.pages)[0].title)
       });
   });
-}
-exports.getPageName = getPageName;
 
 /**
 Decide whether the name of a wikipedia page is an article, or belongs to another namespace.
 See https://en.wikipedia.org/wiki/Wikipedia:Namespace
 */
-function isArticle(name) {
-  // Pages outside of main namespace have colons in the middle, e.g. 'WP:UA'
-  // Remove any trailing colons and return true if the result still contains a colon
-  return !(name.endsWith(':') ? name.slice(0, -1) : name).includes(':');
-}
-exports.isArticle = isArticle;
+// Pages outside of main namespace have colons in the middle, e.g. 'WP:UA'
+// Remove any trailing colons and return true if the result still contains a colon
+const isArticle = name => !(name.endsWith(':') ? name.slice(0, -1) : name).includes(':');
 
 
 // --- MAIN FUNCTIONS ---
@@ -52,8 +47,8 @@ exports.isArticle = isArticle;
 /**
 Get a cheerio object for the HTML of a Wikipedia page.
 */
-function getPageHtml(pageName) {
-  return new Promise((resolve, reject) => {
+const getPageHtml = pageName =>
+  new Promise((resolve, reject) => {
     request
       .get(endpoint)
       .query({
@@ -69,19 +64,16 @@ function getPageHtml(pageName) {
         else resolve(cheerio.load(res.body.parse.text['*']));
       });
   });
-}
-exports.getPageHtml = getPageHtml;
 
 /**
 Get a cheerio object for the first body paragraph in page HTML.
 @param {cheerio} $ - A cheerio object as returned by `getPageHtml`
 */
-function getFirstParagraph($) {
+const getFirstParagraph = ($) => {
   let out = $('.mw-parser-output > p:not(.mw-empty-elt)').first();
   if (out.find('#coordinates').length) out = out.nextAll('p').first(); // We selected the paragraph with the coordinates
   return out;
 }
-exports.getFirstParagraph = getFirstParagraph;
 
 /**
 Get the name of each Wikipedia article linked.
@@ -100,13 +92,12 @@ function getWikiLinks($) {
     .map(link => link.replace(/_/g, ' '))          // Replace underscores with spaces for more readable names
     .filter((n, i, self) => self.indexOf(n) === i) // Remove duplicates
 }
-exports.getWikiLinks = getWikiLinks;
 
 /**
 Get the name of a random Wikipedia article
 */
-function getRandomArticle() {
-  return new Promise((resolve, reject) => {
+const getRandomArticle = () =>
+  new Promise((resolve, reject) => {
     request
       .get(endpoint)
       .query({
@@ -120,15 +111,13 @@ function getRandomArticle() {
         if (err) reject(err);
         else resolve(res.body.query.random[0].title);
       })
-  })
-}
-exports.getRandomArticle = getRandomArticle;
+  });
 
 /**
 Get completion suggestions for a query
 */
-function getSuggestions(search) {
-  return new Promise((resolve, reject) => {
+const getSuggestions = search =>
+  new Promise((resolve, reject) => {
     request
       .get(endpoint)
       .query({
@@ -143,9 +132,6 @@ function getSuggestions(search) {
         else resolve(res.body[1]);
       })
   });
-}
-exports.getSuggestions = getSuggestions;
-
 
 
 // Little test case
