@@ -108,12 +108,3 @@ const getSuggestions = search =>
     .done(res => resolve(res[1]))
     .fail(reject);
   });
-
-
-// Little test case
-if (require.main === module) {
-  getPageHtml('Cats')
-    .then(getFirstParagraph)
-    .then(getWikiLinks)
-    .then(console.log);
-}
