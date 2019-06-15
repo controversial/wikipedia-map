@@ -1,5 +1,3 @@
-const path = require('path');
-
 const request = require('superagent');
 const cheerio = require('cheerio');
 
@@ -13,10 +11,7 @@ slash and for URLs without.
 This is considered inaccurate because this function not handle redirects, e.g. /wiki/Cats and
 /wiki/Cat are the same article but produce different outputs with this function.
 */
-function getPageTitle(url) {
-  return path.basename(url);
-}
-exports.getPageTitle = getPageTitle;
+const getPageTitle = url => url.split('/').filter(el => el).pop();
 
 /**
 Get the name of a Wikipedia page accurately by following redirects (slow)
