@@ -1,6 +1,4 @@
 const request = require('superagent');
-const cheerio = require('cheerio');
-
 
 const endpoint = 'https://en.wikipedia.org/w/api.php';
 
@@ -67,31 +65,29 @@ const getPageHtml = pageName =>
 
 /**
 Get a cheerio object for the first body paragraph in page HTML.
-@param {cheerio} $ - A cheerio object as returned by `getPageHtml`
+@param {jQuery} $element - A jQuery object as returned by `getPageHtml`
 */
-const getFirstParagraph = ($) => {
-  let out = $('.mw-parser-output > p:not(.mw-empty-elt)').first();
-  if (out.find('#coordinates').length) out = out.nextAll('p').first(); // We selected the paragraph with the coordinates
-  return out;
+const getFirstParagraph = ($element) => {
+  const out = $element.children('p:not(.mw-empty-elt)').first();
+  // Get the correct paragraph if we selected the paragraph with the coordinates
+  return out.find('#coordinates').length ? out.nextAll('p').first() : out;
 }
 
 /**
 Get the name of each Wikipedia article linked.
-@param {cheerio} $ - A cheerio object as returned by `getFirstParagraph`
+@param {jQuery} $element - A jQuery object as returned by `getFirstParagraph`
 */
-function getWikiLinks($) {
-  const links = [];
-  $.find('a').each((i, n) => {
-    links.push(n.attribs.href);
-  });
-  return links
+const getWikiLinks = $element =>
+  $element
+    .find("a")
+    .map((_, link) => link.getAttribute("href"))
+    .get()
     .filter(link => link.startsWith('/wiki/'))     // Only links to Wikipedia articles
     .map(getPageTitle)                             // Get the title
     .map(link => link.split('#')[0])               // Eliminate anchor links
     .filter(isArticle)                             // Make sure it's an article and not a part of another namespace
     .map(link => link.replace(/_/g, ' '))          // Replace underscores with spaces for more readable names
-    .filter((n, i, self) => self.indexOf(n) === i) // Remove duplicates
-}
+    .filter((n, i, self) => self.indexOf(n) === i); // Remove duplicates
 
 /**
 Get the name of a random Wikipedia article
