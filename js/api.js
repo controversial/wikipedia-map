@@ -66,12 +66,6 @@ function getRandomName(onSuccess) {
   });
 }
 
-function getSuggestions(text, onSuccess) {
-  requestPage(api_endpoint + "suggest?text="+text, function(data) {
-    onSuccess(JSON.parse(data));
-  });
-}
-
 // GRAPH STORAGE / RETRIEVAL ----------
 
 function storeJSON(data, onSuccess) {
