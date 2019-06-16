@@ -96,7 +96,7 @@ function resetNetworkFromInput() {
   }
 
   for (var i=0; i<inputs.length; i++) {
-    getPageName(encodeURI(inputs[i]), addStart);
+    getPageName(encodeURI(inputs[i])).then(addStart);
   }
 }
 
@@ -107,7 +107,7 @@ function randomReset() {
   clearItems(cf);
   // Function to add a single random page to the network as a start.
   var addRandomStart = function() {
-    getRandomName(function(data){
+    getRandomArticle().then(function(data){
       addStart(data);
       addItem(cf, decodeURIComponent(data));
     });

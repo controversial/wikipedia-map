@@ -36,6 +36,10 @@ const isArticle = name => !(name.endsWith(':') ? name.slice(0, -1) : name).inclu
 
 // --- MAIN FUNCTIONS ---
 
+const getSubPages = pageName =>
+  getPageHtml(pageName)
+    .then(getFirstParagraph)
+    .then(getWikiLinks);
 
 /**
 Get a cheerio object for the HTML of a Wikipedia page.
