@@ -1,6 +1,13 @@
 const endpoint = 'https://en.wikipedia.org/w/api.php';
 
-const queryApi = query => $.get(endpoint, { format: 'json', origin: '*', ...query });
+const domParser = new DOMParser();
+
+const queryApi = query => {
+  const url = new URL(endpoint);
+  const params = { format: 'json', origin: '*', ...query };
+  Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+  return fetch(url).then(response => response.json());
+};
 
 /**
 Get the title of a page from a URL quickly,but inaccurately. Allows both for URLs with a trailing
@@ -15,15 +22,12 @@ const getPageTitle = url => url.split('/').filter(el => el).pop();
 Get the name of a Wikipedia page accurately by following redirects (slow)
 */
 const getPageName = page =>
-  new Promise((resolve, reject) => {
-    queryApi({
-      action: 'query',
-      titles: page,
-      redirects: 1,
-    })
-    .done(res => resolve(Object.values(res.query.pages)[0].title))
-    .fail(reject);
-  });
+  queryApi({
+    action: 'query',
+    titles: page,
+    redirects: 1,
+  })
+  .then(res => Object.values(res.query.pages)[0].title);
 
 /**
 Decide whether the name of a wikipedia page is an article, or belongs to another namespace.
@@ -45,37 +49,44 @@ const getSubPages = pageName =>
 Get a cheerio object for the HTML of a Wikipedia page.
 */
 const getPageHtml = pageName =>
-  new Promise((resolve, reject) => {
-    queryApi({
-      action: 'parse',
-      page: pageName,
-      prop: 'text',
-      section: 0,
-      redirects: 1,
-    })
-    .done(res => resolve($($.parseHTML(res.parse.text['*']))))
-    .fail(reject);
-  });
+  queryApi({
+    action: 'parse',
+    page: pageName,
+    prop: 'text',
+    section: 0,
+    redirects: 1,
+  })
+  .then(res => domParser.parseFromString(res.parse.text['*'], 'text/html'));
 
 /**
 Get a cheerio object for the first body paragraph in page HTML.
-@param {jQuery} $element - A jQuery object as returned by `getPageHtml`
+@param {HtmlElement} element - An HTML element as returned by `getPageHtml`
 */
-const getFirstParagraph = ($element) => {
-  const out = $element.children('p:not(.mw-empty-elt)').first();
+const getFirstParagraph = (element) => {
+  const out = element.querySelector('p:not(.mw-empty-elt)');
   // Get the correct paragraph if we selected the paragraph with the coordinates
-  return out.find('#coordinates').length ? out.nextAll('p').first() : out;
+  if (out.querySelectorAll('#coordinates').length) {
+    let sibling = out.nextSibling;
+    while(sibling) {
+      if(sibling.tagName && sibling.tagName === 'P') {
+        return sibling;
+      }
+      sibling = out.nextSibling;
+    }
+
+    return;
+  }
+
+  return out;
 }
 
 /**
 Get the name of each Wikipedia article linked.
-@param {jQuery} $element - A jQuery object as returned by `getFirstParagraph`
+@param {HtmlElement} element - An HTML element as returned by `getFirstParagraph`
 */
-const getWikiLinks = $element =>
-  $element
-    .find("a")
-    .map((_, link) => link.getAttribute("href"))
-    .get()
+const getWikiLinks = element =>
+  Array.from(element.querySelectorAll("a"))
+    .map((link) => link.getAttribute("href"))
     .filter(link => link.startsWith('/wiki/'))     // Only links to Wikipedia articles
     .map(getPageTitle)                             // Get the title
     .map(link => link.split('#')[0])               // Eliminate anchor links
@@ -87,28 +98,22 @@ const getWikiLinks = $element =>
 Get the name of a random Wikipedia article
 */
 const getRandomArticle = () =>
-  new Promise((resolve, reject) => {
-    queryApi({
-      action: 'query',
-      list: 'random',
-      rnlimit: 1,
-      rnnamespace: 0, // Limits results to articles
-    })
-    .done(res => resolve(res.query.random[0].title))
-    .fail(reject);
-  });
+  queryApi({
+    action: 'query',
+    list: 'random',
+    rnlimit: 1,
+    rnnamespace: 0, // Limits results to articles
+  })
+  .then(res => res.query.random[0].title);
 
 /**
 Get completion suggestions for a query
 */
 const getSuggestions = search =>
-  new Promise((resolve, reject) => {
-    queryApi({
-      action: 'opensearch',
-      search,
-      limit: 10,
-      namespace: 0, // Limits results to articles
-    })
-    .done(res => resolve(res[1]))
-    .fail(reject);
-  });
+  queryApi({
+    action: 'opensearch',
+    search,
+    limit: 10,
+    namespace: 0, // Limits results to articles
+  })
+  .then(res => res[1]);
