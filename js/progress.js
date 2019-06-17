@@ -11,26 +11,22 @@
 </script>
 */
 
-function Progress(title, mainclass, barclass) {
-  title = title || "";
-  mainclass = mainclass || "";
-  barclass = barclass || "";
-
-  this.container = document.createElement("div");
+function Progress(title = '', mainclass = '', barclass = '') {
+  this.container = document.createElement('div');
   // Create the progress bar
-  this.elem = document.createElement("div");
-  this.elem.className = mainclass + " progressbar";
-  this.bar = document.createElement("div");
-  this.bar.className = barclass + " progressbar-indicator";
+  this.elem = document.createElement('div');
+  this.elem.className = `${mainclass} progressbar`;
+  this.bar = document.createElement('div');
+  this.bar.className = `${barclass} progressbar-indicator`;
   // Create the title
-  this.title = document.createElement("h1");
+  this.title = document.createElement('h1');
   // this.title.className = "progressbar-title";
   this.title.textContent = title;
 
   // Create the label
-  this.label = document.createElement("div");
-  this.label.className = "progressbar-label";
-  this.label.textContent = "0";
+  this.label = document.createElement('div');
+  this.label.className = 'progressbar-label';
+  this.label.textContent = '0';
 
   this.elem.appendChild(this.bar);
   this.container.appendChild(this.title);
@@ -38,14 +34,14 @@ function Progress(title, mainclass, barclass) {
   this.container.appendChild(this.label);
 
   // Start at 0%
-  this.bar.style.width = "0px";
+  this.bar.style.width = '0px';
   // Function to set progress
-  this.progress = function(amount) {
+  this.progress = (amount) => {
     if (amount !== undefined) {
-      this.bar.style.width = amount * 100 + "%";
+      this.bar.style.width = `${amount * 100}%`;
       this.label.textContent = Math.floor(amount * 100);
-    } else {
-      return this.bar.offsetWidth / this.elem.offsetWidth;
+      return amount;
     }
+    return this.bar.offsetWidth / this.elem.offsetWidth;
   };
 }
