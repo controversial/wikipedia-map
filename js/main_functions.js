@@ -44,9 +44,8 @@ function expandNodeCallback(page,data) {
 //Expand a node without freezing other stuff
 function expandNode(page) {
   var label = nodes.get(page).label;
-  var pagename = encodeURIComponent(unwrap(label));
-  getSubPages(pagename,
-    function(data) {expandNodeCallback(page,data);});
+  var pagename = unwrap(label);
+  getSubPages(pagename).then(data => expandNodeCallback(page, data));
 }
 
 //Get all the nodes tracing back to the start node.
