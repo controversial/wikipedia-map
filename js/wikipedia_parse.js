@@ -46,7 +46,7 @@ const getSubPages = pageName =>
     .then(getWikiLinks);
 
 /**
-Get a cheerio object for the HTML of a Wikipedia page.
+Get a DOM object for the HTML of a Wikipedia page.
 */
 const getPageHtml = pageName =>
   queryApi({
@@ -59,25 +59,11 @@ const getPageHtml = pageName =>
   .then(res => domParser.parseFromString(res.parse.text['*'], 'text/html'));
 
 /**
-Get a cheerio object for the first body paragraph in page HTML.
+Get a DOM object for the first body paragraph in page HTML.
 @param {HtmlElement} element - An HTML element as returned by `getPageHtml`
 */
 const getFirstParagraph = (element) => {
-  const out = element.querySelector('p:not(.mw-empty-elt)');
-  // Get the correct paragraph if we selected the paragraph with the coordinates
-  if (out.querySelectorAll('#coordinates').length) {
-    let sibling = out.nextSibling;
-    while(sibling) {
-      if(sibling.tagName && sibling.tagName === 'P') {
-        return sibling;
-      }
-      sibling = out.nextSibling;
-    }
-
-    return;
-  }
-
-  return out;
+  return element.querySelector('p:not(.mw-empty-elt)');
 }
 
 /**
@@ -87,11 +73,11 @@ Get the name of each Wikipedia article linked.
 const getWikiLinks = element =>
   Array.from(element.querySelectorAll("a"))
     .map((link) => link.getAttribute("href"))
-    .filter(link => link.startsWith('/wiki/'))     // Only links to Wikipedia articles
-    .map(getPageTitle)                             // Get the title
-    .map(link => link.split('#')[0])               // Eliminate anchor links
-    .filter(isArticle)                             // Make sure it's an article and not a part of another namespace
-    .map(link => link.replace(/_/g, ' '))          // Replace underscores with spaces for more readable names
+    .filter(link => link.startsWith('/wiki/'))      // Only links to Wikipedia articles
+    .map(getPageTitle)                              // Get the title
+    .map(link => link.split('#')[0])                // Eliminate anchor links
+    .filter(isArticle)                              // Make sure it's an article and not a part of another namespace
+    .map(link => link.replace(/_/g, ' '))           // Replace underscores with spaces for more readable names
     .filter((n, i, self) => self.indexOf(n) === i); // Remove duplicates
 
 /**
