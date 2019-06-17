@@ -1,0 +1,26 @@
+{
+  "extends": ["airbnb"],
+
+  "env": { "browser": true },
+
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
+
+  "rules": {
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "no-param-reassign": ["error", { "props": false }],
+    "no-underscore-dangle": "off",
+    "global-require": "off",
+    "object-curly-newline": ["error", { "consistent": true }],
+    "import/no-webpack-loader-syntax": "off",
+    "import/newline-after-import": "off",
+    "react/no-this-in-sfc": "off",
+    "no-unused-vars": "off",
+    "no-fallthrough": "off"
+  },
+
+  "settings": {
+    "import/resolver": "webpack"
+  }
+}
