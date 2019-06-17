@@ -17,7 +17,8 @@
     "import/newline-after-import": "off",
     "react/no-this-in-sfc": "off",
     "no-unused-vars": "off",
-    "no-fallthrough": "off"
+    "no-fallthrough": "off",
+    "no-empty": ["error", { "allowEmptyCatch": true }]
   },
 
   "settings": {
