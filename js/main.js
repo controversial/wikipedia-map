@@ -1,4 +1,4 @@
-/* global vis, bindNetwork, getNeutralId, wordwrap, getColor, noInputDetected, getItems, clearItems, addItem, getPageName, getRandomArticle, networkFromJson */ // eslint-disable-line max-len
+/* global vis, bindNetwork, getNeutralId, wordwrap, getColor, noInputDetected, getItems, clearItems, addItem, fetchPageTitle, getRandomArticle, networkFromJson */ // eslint-disable-line max-len
 // This script contains the code that creates the central network, as well as
 // a function for resetting it to a brand new page.
 
@@ -115,7 +115,7 @@ function resetNetworkFromInput() {
     return;
   }
 
-  inputs.forEach(inp => getPageName(encodeURI(inp)).then(addStart));
+  inputs.forEach(inp => fetchPageTitle(encodeURI(inp)).then(addStart));
 }
 
 

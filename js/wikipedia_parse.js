@@ -11,14 +11,13 @@ function queryApi(query) {
 
 /**
 Get the title of a page from a URL quickly, but inaccurately (no redirects)
-TODO: rename this and getPageName to be clearer
 */
-const getPageTitle = url => url.split('/').filter(el => el).pop();
+const getPageTitleQuickly = url => url.split('/').filter(el => el).pop();
 
 /**
 Get the name of a Wikipedia page accurately by following redirects (slow)
 */
-function getPageName(page) {
+function fetchPageTitle(page) {
   return queryApi({ action: 'query', titles: page, redirects: 1 })
     .then(res => Object.values(res.query.pages)[0].title);
 }
@@ -60,7 +59,7 @@ function getWikiLinks(element) {
   return Array.from(element.querySelectorAll('a'))
     .map(link => link.getAttribute('href'))
     .filter(link => link.startsWith('/wiki/')) // Only links to Wikipedia articles
-    .map(getPageTitle) // Get the title
+    .map(getPageTitleQuickly) // Get the title from the URL
     .map(link => link.split('#')[0]) // Eliminate anchor links
     .filter(isArticle) // Make sure it's an article and not a part of another namespace
     .map(link => link.replace(/_/g, ' ')) // Replace underscores with spaces for more readable names
