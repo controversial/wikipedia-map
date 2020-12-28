@@ -5,7 +5,7 @@
 
 
 ## Usage
-Start by entering a topic into the text box, i.e. *Cats*. A single “node” will be generated, labeled *Cat*, which appears as a circle on the graph. Click this node to expand it.
+Start by entering a topic into the text box, for example *Cats*. A single “node” will be generated, labeled *Cat*, which appears as a circle on the graph. Click this node to expand it.
 
 Expanding a node creates a **new node for each Wikipedia article linked in the first paragraph of the article you clicked**. These new nodes will be connected to the node from which they were expanded. For example, expanding *Cat* will create eight nodes, including *Fur*, *Mammal*, *Carnivore*, and *Domestication*, each of which will be connected to *Cat*. These new nodes can also be expanded in the same way. By continuing to expand nodes, you can build a complex web of related topics.
 
