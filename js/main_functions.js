@@ -11,6 +11,46 @@ window.tracenodes = [];
 // ---------------------- //
 
 
+// Rename a node, possibly merging it with another node if another node has that ID
+function renameNode(oldId, newName) {
+  const oldNode = nodes.get(oldId);
+  const newId = getNormalizedId(newName);
+  // The node doesn't need to be renamed
+  if (newId === oldId) return oldId;
+  // The node needs to be renamed - the new name doesn't exist on the graph yet.
+  edges.update([
+    // Update all edges that were 'from' oldId to be 'from' newId
+    ...edges.get({
+      filter: e => e.from === oldId,
+    }).map(e => ({ ...e, from: newId })),
+    // Update all edges that were 'to' oldId to be 'to' newId
+    ...edges.get({
+      filter: e => e.to === oldId,
+    }).map(e => ({ ...e, to: newId })),
+  ]);
+  // Actually replace the node
+  // The node already exists! We're just merging it
+  if (nodes.get(newId)) {
+    nodes.remove(oldId);
+    nodes.update({ id: newId, label: newName });
+  // We're actually replacing the node
+  } else {
+    nodes.remove(oldId);
+    nodes.add({ ...oldNode, id: newId, label: newName });
+  }
+  // Update any nodes whose parent was the old node
+  nodes.update(
+    nodes.get({
+      filter: n => n.parent === oldId,
+    }).map(n => ({ ...n, parent: newId })),
+  );
+  // If the old node was highlighted or used as part of a highlight, move the highlight
+  if (window.selectedNode === oldId) window.selectedNode = newId;
+  window.tracenodes = window.tracenodes.map(id => (id === oldId ? newId : id));
+  // Return the new ID
+  return newId;
+}
+
 // Callback to add to a node once data is recieved
 function expandNodeCallback(page, data) {
   const node = nodes.get(page); // The node that was clicked
@@ -26,7 +66,7 @@ function expandNodeCallback(page, data) {
   for (let i = 0; i < subpages.length; i += 1) {
     const subpage = subpages[i];
     const subpageID = getNormalizedId(subpage);
-    if (nodes.getIds().indexOf(subpageID) === -1) { // Don't add if node exists
+    if (!nodes.getIds().includes(subpageID)) { // Don't add if node exists
       subnodes.push({
         id: subpageID,
         label: wordwrap(decodeURIComponent(subpage), 15),
@@ -60,7 +100,8 @@ function expandNodeCallback(page, data) {
 function expandNode(id) {
   const pagename = unwrap(nodes.get(id).label);
   getSubPages(pagename).then(({ redirectedTo, links }) => {
-    expandNodeCallback(id, links);
+    const newId = renameNode(id, redirectedTo);
+    expandNodeCallback(newId, links);
   });
 }
 
@@ -111,8 +152,8 @@ function resetProperties() {
 // Highlight the path from a given node back to the central node.
 function traceBack(node) {
   if (node !== window.selectedNode) {
-    window.selectedNode = node;
     resetProperties();
+    window.selectedNode = node;
     window.tracenodes = getTraceBackNodes(node);
     window.traceedges = getTraceBackEdges(window.tracenodes);
     // Color nodes yellow
