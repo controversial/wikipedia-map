@@ -1,9 +1,9 @@
-const endpoint = 'https://en.wikipedia.org/w/api.php';
+const base = 'https://en.wikipedia.org/w/api.php';
 
 const domParser = new DOMParser();
 
 function queryApi(query) {
-  const url = new URL(endpoint);
+  const url = new URL(base);
   const params = { format: 'json', origin: '*', ...query };
   Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
   return fetch(url).then(response => response.json());
@@ -38,7 +38,10 @@ Get a DOM object for the HTML of a Wikipedia page.
 */
 function getPageHtml(pageName) {
   return queryApi({ action: 'parse', page: pageName, prop: 'text', section: 0, redirects: 1 })
-    .then(res => domParser.parseFromString(res.parse.text['*'], 'text/html'));
+    .then(res => ({
+      document: domParser.parseFromString(res.parse.text['*'], 'text/html'),
+      redirectedTo: res.parse.redirects[0] ? res.parse.redirects[0].to : pageName,
+    }));
 }
 
 /**
@@ -68,9 +71,10 @@ function getWikiLinks(element) {
 
 
 function getSubPages(pageName) {
-  return getPageHtml(pageName)
-    .then(getFirstParagraph)
-    .then(getWikiLinks);
+  return getPageHtml(pageName).then(({ document: doc, redirectedTo }) => ({
+    redirectedTo,
+    links: getWikiLinks(getFirstParagraph(doc)),
+  }));
 }
 
 /**

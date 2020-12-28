@@ -57,10 +57,11 @@ function expandNodeCallback(page, data) {
 }
 
 // Expand a node without freezing other stuff
-function expandNode(page) {
-  const label = nodes.get(page).label;
-  const pagename = unwrap(label);
-  getSubPages(pagename).then(data => expandNodeCallback(page, data));
+function expandNode(id) {
+  const pagename = unwrap(nodes.get(id).label);
+  getSubPages(pagename).then(({ redirectedTo, links }) => {
+    expandNodeCallback(id, links);
+  });
 }
 
 // Get all the nodes tracing back to the start node.
