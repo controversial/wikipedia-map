@@ -68,7 +68,7 @@ function unwrap(text) { return text.replace(/\n/g, ' '); }
 function getNormalizedId(id) {
   return id
     .toLowerCase() // Lowercase
-    .replace(/\s/g, '') // Remove spaces
+    .replace(/\s/g, ' ') // Reduce spaces
     .replace(/[^A-Za-z\d%]/g, '') // Remove non-alphanumeric characters
     .replace(/s$/, ''); // Remove trailing s
 }
