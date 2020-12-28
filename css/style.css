@@ -10,14 +10,16 @@
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 18px;
 }
 
 p {
-  font-weight: 300;
+  font-weight: 400;
 }
 
-p, h1, button {
-  color: #555; /* Slightly less harsh than a black */
+h1 {
+  color: rgba(0, 0, 0, 0.75);
 }
 
 .icon {
