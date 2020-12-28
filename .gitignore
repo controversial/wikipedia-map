@@ -9,6 +9,6 @@
 # Don't include symlink to dev directory
 dev
 # Don't include shared user graphs
-graphs/*.json
+# graphs/*.json
 
 node_modules

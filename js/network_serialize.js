@@ -122,21 +122,18 @@ function buildEdges(nds) {
 
 // Take consise JSON and use it to reconstruct `nodes` and `edges`
 function networkFromJson(data) {
-  // Get data
-  const d = JSON.parse(data);
-
   const out = {};
 
   // Store startpages
-  out.startpages = d.startpages;
+  out.startpages = data.startpages;
   // Store nodes
-  const nds = d.nodes;
+  const nds = data.nodes;
   const expandedNodes = nds.map(x => unabbreviateNode(x, out.startpages));
   out.nodes = new vis.DataSet();
   out.nodes.add(expandedNodes);
   // Store edges
   out.edges = buildEdges(expandedNodes);
-  out.edges.add(d.edges);
+  out.edges.add(data.edges);
 
   return out;
 }
@@ -149,8 +146,8 @@ function storeGraph() {
 }
 
 function loadGraph(id) {
-  fetch(`/graphs/${id}`)
-    .then(r => r.text())
+  fetch(`/graphs/${id}.json`)
+    .then(r => r.json())
     .then(resetNetworkFromJson);
 }
 
