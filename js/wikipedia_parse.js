@@ -2,6 +2,7 @@ const base = 'https://en.wikipedia.org/w/api.php';
 
 const domParser = new DOMParser();
 
+/* Make a request to the Wikipedia API */
 function queryApi(query) {
   const url = new URL(base);
   const params = { format: 'json', origin: '*', ...query };
@@ -10,22 +11,22 @@ function queryApi(query) {
 }
 
 /**
-Get the title of a page from a URL quickly, but inaccurately (no redirects)
-*/
+ * Get the title of a page from a URL quickly, but inaccurately (no redirects)
+ */
 const getPageTitleQuickly = url => url.split('/').filter(el => el).pop();
 
 /**
-Get the name of a Wikipedia page accurately by following redirects (slow)
-*/
+ * Get the name of a Wikipedia page accurately by following redirects (slow)
+ */
 function fetchPageTitle(page) {
   return queryApi({ action: 'query', titles: page, redirects: 1 })
     .then(res => Object.values(res.query.pages)[0].title);
 }
 
 /**
-Decide whether the name of a wikipedia page is an article, or belongs to another namespace.
-See https://en.wikipedia.org/wiki/Wikipedia:Namespace
-*/
+ * Decide whether the name of a wikipedia page is an article, or belongs to another namespace.
+ * See https://en.wikipedia.org/wiki/Wikipedia:Namespace
+ */
 // Pages outside of main namespace have colons in the middle, e.g. 'WP:UA'
 // Remove any trailing colons and return true if the result still contains a colon
 const isArticle = name => !(name.endsWith(':') ? name.slice(0, -1) : name).includes(':');
@@ -34,8 +35,9 @@ const isArticle = name => !(name.endsWith(':') ? name.slice(0, -1) : name).inclu
 // --- MAIN FUNCTIONS ---
 
 /**
-Get a DOM object for the HTML of a Wikipedia page.
-*/
+ * Get a DOM object for the HTML of a Wikipedia page.
+ * Also returns information about any redirects that were followed.
+ */
 function getPageHtml(pageName) {
   return queryApi({ action: 'parse', page: pageName, prop: 'text', section: 0, redirects: 1 })
     .then(res => ({
@@ -45,9 +47,9 @@ function getPageHtml(pageName) {
 }
 
 /**
-Get a DOM object for the first body paragraph in page HTML.
-@param {HtmlElement} element - An HTML element as returned by `getPageHtml`
-*/
+ * Get a DOM object for the first body paragraph in page HTML.
+ * @param {HtmlElement} element - An HTML element as returned by `getPageHtml`
+ */
 const getFirstParagraph = element =>
   // First paragraph that isn't marked as "empty"...
   Array.from(element.querySelectorAll('.mw-parser-output > p:not(.mw-empty-elt)'))
@@ -55,9 +57,9 @@ const getFirstParagraph = element =>
     .find(p => !p.querySelector('#coordinates'));
 
 /**
-Get the name of each Wikipedia article linked.
-@param {HtmlElement} element - An HTML element as returned by `getFirstParagraph`
-*/
+ * Get the name of each Wikipedia article linked.
+ * @param {HtmlElement} element - An HTML element as returned by `getFirstParagraph`
+ */
 function getWikiLinks(element) {
   return Array.from(element.querySelectorAll('a'))
     .map(link => link.getAttribute('href'))
@@ -69,7 +71,10 @@ function getWikiLinks(element) {
     .filter((n, i, self) => self.indexOf(n) === i); // Remove duplicates
 }
 
-
+/**
+ * Given a page title, get the first paragraph links, as well as the name of the page it redirected
+ * to.
+ */
 function getSubPages(pageName) {
   return getPageHtml(pageName).then(({ document: doc, redirectedTo }) => ({
     redirectedTo,
@@ -78,8 +83,8 @@ function getSubPages(pageName) {
 }
 
 /**
-Get the name of a random Wikipedia article
-*/
+ * Get the name of a random Wikipedia article
+ */
 function getRandomArticle() {
   return queryApi({
     action: 'query',
@@ -90,8 +95,8 @@ function getRandomArticle() {
 }
 
 /**
-Get completion suggestions for a query
-*/
+ * Get completion suggestions for a query
+ */
 function getSuggestions(search) {
   return queryApi({
     action: 'opensearch',

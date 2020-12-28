@@ -1,15 +1,15 @@
 // Tiny library for progress bars. Example usage:
 /*
-<div id="progressbar">
-  <div></div>
-</div>
+ * <div id="progressbar">
+ *   <div></div>
+ * </div>
 
-<script>
-  var p_elem = document.getElementById("#progressbar")
-  var p = new Progress(p_elem)
-  p.progress(0.5)
-</script>
-*/
+ * <script>
+ *   var p_elem = document.getElementById("#progressbar")
+ *   var p = new Progress(p_elem)
+ *   p.progress(0.5)
+ * </script>
+ */
 
 function Progress(title = '', mainclass = '', barclass = '') {
   this.container = document.createElement('div');

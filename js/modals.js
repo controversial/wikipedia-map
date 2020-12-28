@@ -1,13 +1,13 @@
 // Tiny library for presenting modal dialogs. Example usage:
 /*
-<div id="popup">
-  Hello!
-</div>
+ * <div id="popup">
+ *   Hello!
+ * </div>
 
-<script>
-  Modal("<div>Hello!</div>").present()
-</script>
-*/
+ * <script>
+ *   Modal("<div>Hello!</div>").present()
+ * </script>
+ */
 
 function Modal(element, clickToDismiss) {
   // Allow clicking to dismiss by default
