@@ -1,25 +1,23 @@
-/* Parent of #info, just used to center #info for right now. */
-#container {
-  text-align: center;
-}
-
 /* Contains for the info initially presented to the user */
 #info {
-  margin: 55px 13px 0 13px;
-  max-width: 450px;
-  padding: 25px;
+  max-width: 440px;
+  text-align: center;
 
-  border: 2px solid #ccc;
-  
-  display: inline-block;
+  position: absolute;
+  padding: 30px 45px 35px;
+  background: rgba(0, 0, 80, 0.04);
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #info h1 {
-  margin-top: 0;
+  margin: 0;
+  position: relative;
 }
 
 #info p {
-  
+  margin: .65em 0 1.25em;
 }
 
 
