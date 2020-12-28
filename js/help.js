@@ -114,7 +114,10 @@ function opaque() {
   formbox.style.opacity = 1;
   buttons.style.opacity = 1;
 }
-shepherd.on('complete', opaque);
+shepherd.on('complete', () => {
+  opaque();
+  document.querySelector('#input input').focus();
+});
 shepherd.on('cancel', opaque);
 
 // Prompt user for input when none detected
