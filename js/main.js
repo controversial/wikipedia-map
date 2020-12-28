@@ -7,7 +7,7 @@ let nodes;
 let edges;
 let network; // Global variables
 
-let startpages = [];
+window.startpages = [];
 // Tracks whether the network needs to be reset. Used to prevent deleting nodes
 // when multiple nodes need to be created, because AJAX requests are async.
 let needsreset = true;
@@ -49,7 +49,7 @@ function makeNetwork() {
 function resetNetwork(start) {
   if (!initialized) makeNetwork();
   const startID = getNormalizedId(start);
-  startpages = [startID]; // Register the page as an origin node
+  window.startpages = [startID]; // Register the page as an origin node
   window.tracenodes = [];
   window.traceedges = [];
 
@@ -85,7 +85,7 @@ function addStart(start, index) {
     needsreset = false;
   } else {
     const startID = getNormalizedId(start);
-    startpages.push(startID);
+    window.startpages.push(startID);
     nodes.add([
       {
         id: startID,
@@ -156,11 +156,11 @@ function resetNetworkFromJson(j) {
   const obj = networkFromJson(j);
   nodes = obj.nodes;
   edges = obj.edges;
-  startpages = obj.startpages;
+  window.startpages = obj.startpages;
   // Fill the network
   network.setData({ nodes, edges });
   // Populate the top bar
-  startpages.forEach((sp) => {
+  window.startpages.forEach((sp) => {
     addItem(document.getElementById('input'), nodes.get(sp).label);
   });
   // Transform the "go" button to a "refresh" button

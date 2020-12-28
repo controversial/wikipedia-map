@@ -1,4 +1,4 @@
-/* global vis, nodes, edges, startpages, resetNetworkFromJson, getEdgeColor, getColor, getNormalizedId */ // eslint-disable-line max-len
+/* global vis, nodes, edges, resetNetworkFromJson, getEdgeColor, getColor, getNormalizedId */ // eslint-disable-line max-len
 // Functions for the serialization of a vis.js network. This allows for storing
 // a network as JSON and then loading it back later.
 
@@ -62,7 +62,7 @@ function networkToJson() {
   out.nodes = abbv; // Store it
 
   // Store startpages
-  out.startpages = startpages;
+  out.startpages = window.startpages;
 
   // Store floating edges
   out.edges = getFloatingEdges();
@@ -161,7 +161,7 @@ function howConcise() {
   // Length of all the data if no abbre
   const unAbbreviatedLength = JSON.stringify(nodes._data).length +
                             JSON.stringify(edges._data).length +
-                            JSON.stringify(startpages).length;
+                            JSON.stringify(window.startpages).length;
   const abbreviatedLength = networkToJson().length;
   const bytesSaved = unAbbreviatedLength - abbreviatedLength;
   const percentSaved = (bytesSaved / unAbbreviatedLength) * 100;

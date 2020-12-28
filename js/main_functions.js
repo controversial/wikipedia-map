@@ -1,4 +1,4 @@
-/* global nodes, edges, startpages, getSpawnPosition, getNormalizedId, wordwrap, unwrap, getColor, getEdgeColor, getEdgeConnecting, getSubPages, colorNodes, edgesWidth */ // eslint-disable-line max-len
+/* global nodes, edges, getSpawnPosition, getNormalizedId, wordwrap, unwrap, getColor, getEdgeColor, getEdgeConnecting, getSubPages, colorNodes, edgesWidth */ // eslint-disable-line max-len
 // This script contains the big functions that implement a lot of the core
 // functionality, like expanding nodes, and getting the nodes for a traceback.
 
@@ -48,6 +48,8 @@ function renameNode(oldId, newName) {
   // If the old node was highlighted or used as part of a highlight, move the highlight
   if (window.selectedNode === oldId) window.selectedNode = newId;
   window.tracenodes = window.tracenodes.map(id => (id === oldId ? newId : id));
+  // If the node was a start node, replace it
+  window.startpages = window.startpages.map(id => (id === oldId ? newId : id));
   // Return the new ID
   return newId;
 }
@@ -114,7 +116,7 @@ function getTraceBackNodes(node) {
   const path = [];
   while (!finished) { // Add parents of nodes until we reach the start
     path.push(currentNode);
-    if (startpages.indexOf(currentNode) !== -1) { // Check if we've reached the end
+    if (window.startpages.indexOf(currentNode) !== -1) { // Check if we've reached the end
       finished = true;
     }
     currentNode = nodes.get(currentNode).parent; // Keep exploring with the node above.
