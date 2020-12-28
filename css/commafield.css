@@ -1,15 +1,13 @@
-* {
-  box-sizing: border-box;
-}
-
 .commafield {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
 
   overflow: hidden;
   height: 33px;
-  padding: 3px;
+  padding: 3px 8px;
   margin: 0;
+  font-size: 17px;
 
   font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
@@ -26,23 +24,22 @@
 
   /* Layout */
   margin: 2px 5px 3px 0;
-  padding: 0 5px;
+  padding: 0;
   flex: 2;
   height: 85%;
 }
 
 .item {
-  float: left;
+  background-color: rgba(139, 205, 255, 0.6);
+  color: #333;
 
-  background-color: rgba(204, 230, 249, 0.6);
-  font-size: 1em;
+  padding: 2px 8px;
+  margin: -1px 5px 0 0;
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
 
-  padding: 1px 5px 2px 5px;
-  margin: 2px 5px 3px 0;
-
-  flex: 0 1 auto;
-  height: 85%;
-  line-height: 130%;
+  flex: 0 0 auto;
 
   cursor: pointer;
 
@@ -51,23 +48,25 @@
 
 .item::after {
   /* Font styles */
-  font-size: 90%;
-  line-height: 90%;
-  color: #ec725d;
+  font-size: 0.8em;
+  line-height: 0.8em;
+  color: rgb(241, 62, 34);
 
   /* Add a close button */
   font-family: Ionicons;
   content: "\00a0\f12a";
 
   /* Allow animating the unfurl of the close button */
-  transition: max-width 0.3s ease-in-out;
+  transition: max-width 0.3s ease-in-out, padding-left 0.1s 0.2s ease-in-out;
   overflow: hidden;
   display: inline-block;
   max-width: 0;
 }
 .item:hover {
-  background-color: rgba(255, 200, 200, 0.6);
+  background-color: rgba(255, 121, 100, 0.6);
 }
 .item:hover::after {
-  max-width: 15px; /* Animate the x unfurling. */
+  max-width: 16px; /* Animate the x unfurling. */
+  padding-left: 2px;
+  transition: max-width 0.3s ease-in-out, padding-left 0.1s ease-in-out;
 }
