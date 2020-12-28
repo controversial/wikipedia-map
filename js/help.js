@@ -102,13 +102,15 @@ shepherd.addStep({
 // Take away the info box when the tour has started...
 shepherd.on('start', () => {
   document.getElementById('container').style.opacity = 0.3;
+  document.getElementById('container').style.pointerEvents = 'none';
   formbox.style.opacity = 0.3;
   buttons.style.opacity = 0.3;
 });
 
 // ... and bring it back when the tour goes away
 function opaque() {
-  document.getElementById('container').style.opacity = 1;
+  document.getElementById('container').style.opacity = '';
+  document.getElementById('container').style.pointerEvents = '';
   formbox.style.opacity = 1;
   buttons.style.opacity = 1;
 }
