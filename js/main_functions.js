@@ -1,4 +1,4 @@
-/* global nodes, edges, isReset, startpages, getSpawnPosition, getNormalizedId, wordwrap, unwrap, getColor, getEdgeColor, getEdgeConnecting, getSubPages, colorNodes, edgesWidth */ // eslint-disable-line max-len
+/* global nodes, edges, startpages, getSpawnPosition, getNormalizedId, wordwrap, unwrap, getColor, getEdgeColor, getEdgeConnecting, getSubPages, colorNodes, edgesWidth */ // eslint-disable-line max-len
 // This script contains the big functions that implement a lot of the core
 // functionality, like expanding nodes, and getting the nodes for a traceback.
 
@@ -90,7 +90,7 @@ function getTraceBackEdges(tbnodes) {
 
 // Reset the color of all nodes, and width of all edges.
 function resetProperties() {
-  if (!isReset) {
+  if (!window.isReset) {
     window.selectedNode = null;
     // Reset node color
     const modnodes = window.tracenodes.map(i => nodes.get(i));

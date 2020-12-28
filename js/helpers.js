@@ -1,4 +1,4 @@
-/* global vis, network, nodes, edges, isReset:writable */
+/* global vis, network, nodes, edges */
 // This script contains helper functions that are used by other scripts to
 // perform simple common actions.
 
@@ -93,7 +93,7 @@ function colorNodes(ns, color) {
     delete ns[i].y;
   }
   nodes.update(ns);
-  isReset = false;
+  window.isReset = false;
 }
 
 // Set the width of some edges.
@@ -102,7 +102,7 @@ function edgesWidth(es, width) {
     es[i].width = width;
   }
   edges.update(es);
-  isReset = false;
+  window.isReset = false;
 }
 
 // Get the id of the edge connecting two nodes a and b
