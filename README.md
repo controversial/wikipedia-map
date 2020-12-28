@@ -12,6 +12,20 @@ Expanding a node creates a **new node for each Wikipedia article linked in the f
 You can also enter multiple articles to "compare" by pressing Comma, Tab, or Enter after each one you enter.
 
 
+## How it works
+
+#### API
+When you click to expand a node, a request is made to the Wikipedia API to download the full content of the Wikipedia article corresponding to that node. Wikipedia map uses this data to find the links in the first paragraph of the article.
+
+#### HTML Parsing
+`wikipedia_parse.js` uses the [`DOMParser` API](https://developer.mozilla.org/en-US/docs/Web/API/DOMParser) to parse wikipedia pages’ HTML (retrieved from calls to Wikipedia's API). The parser looks for the `<p>` tag corresponding to the first paragraph of the article, then extracts all of the `<a>` tag links within this paragraph. It then filters the links to include only those which link to other wikipedia articles.
+
+You can see this in action yourself in your browser’s console. If you have Wikipedia Map open, open your browser’s developer tools and type `await getSubPages('Cat')`. After a second, you should see an array with the names of other related articles.
+
+#### The graph
+The front-end uses [`vis.js`](https://visjs.org/) to display the graph. Every time a node is clicked, the app makes a `XMLHttpRequest` to the Node.js server. The resulting links are added as new nodes, colored according to their distance from the central node (as described above).
+
+
 ## Cloning
 To use the app locally, simply
 ```bash
@@ -35,19 +49,6 @@ Hovering the mouse over a node will highlight the path back to the central node:
 ![Traceback](screenshots/traceback.png)
 This is not necessarily the shortest path back; it is the path that you took to reach the node.
 
-
-## How it works
-
-#### API
-When you click to expand a node, a request is made to the Wikipedia API to download the full content of the Wikipedia article corresponding to that node. Wikipedia map uses this data to find the links in the first paragraph of the article.
-
-#### HTML Parsing
-`wikipedia_parse.js` uses the [`DOMParser` API](https://developer.mozilla.org/en-US/docs/Web/API/DOMParser) to parse wikipedia pages’ HTML (retrieved from calls to Wikipedia's API). The parser looks for the `<p>` tag corresponding to the first paragraph of the article, then extracts all of the `<a>` tag links within this paragraph. It then filters the links to include only those which link to other wikipedia articles.
-
-You can see this in action yourself in your browser’s console. If you have Wikipedia Map open, open your browser’s developer tools and type `await getSubPages('Cat')`. After a second, you should see an array with the names of other related articles.
-
-#### The graph
-The front-end uses [`vis.js`](https://visjs.org/) to display the graph. Every time a node is clicked, the app makes a `XMLHttpRequest` to the Node.js server. The resulting links are added as new nodes, colored according to their distance from the central node (as described above).
 
 ## Roadmap
 
