@@ -48,7 +48,7 @@ Get a DOM object for the first body paragraph in page HTML.
 */
 const getFirstParagraph = element =>
   // First paragraph that isn't marked as "empty"...
-  Array.from(element.querySelectorAll('p:not(.mw-empty-elt)'))
+  Array.from(element.querySelectorAll('.mw-parser-output > p:not(.mw-empty-elt)'))
     // ...and isn't the "coordinates" container
     .find(p => !p.querySelector('#coordinates'));
 
