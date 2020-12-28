@@ -1,4 +1,4 @@
-/* global vis, nodes, edges, startpages, getJSON, storeJSON, resetNetworkFromJson, getEdgeColor, getColor, getNeutralId */ // eslint-disable-line max-len
+/* global vis, nodes, edges, startpages, resetNetworkFromJson, getEdgeColor, getColor, getNeutralId */ // eslint-disable-line max-len
 // Functions for the serialization of a vis.js network. This allows for storing
 // a network as JSON and then loading it back later.
 
@@ -144,12 +144,14 @@ function networkFromJson(data) {
 
 // MAIN FUNCTIONS
 
-function storeGraph(callback) {
-  storeJSON(networkToJson(), callback);
+function storeGraph() {
+  throw new Error('storeGraph is no longer implemented.');
 }
 
 function loadGraph(id) {
-  getJSON(id, resetNetworkFromJson);
+  fetch(`/graphs/${id}`)
+    .then(r => r.text())
+    .then(resetNetworkFromJson);
 }
 
 
