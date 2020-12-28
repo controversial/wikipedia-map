@@ -1,4 +1,4 @@
-/* global vis, bindNetwork, getNeutralId, wordwrap, getColor, noInputDetected, getItems, clearItems, addItem, fetchPageTitle, getRandomArticle, networkFromJson */ // eslint-disable-line max-len
+/* global vis, bindNetwork, getNormalizedId, wordwrap, getColor, noInputDetected, getItems, clearItems, addItem, fetchPageTitle, getRandomArticle, networkFromJson */ // eslint-disable-line max-len
 // This script contains the code that creates the central network, as well as
 // a function for resetting it to a brand new page.
 
@@ -48,7 +48,7 @@ function makeNetwork() {
 // Reset the network to be new each time.
 function resetNetwork(start) {
   if (!initialized) makeNetwork();
-  const startID = getNeutralId(start);
+  const startID = getNormalizedId(start);
   startpages = [startID]; // Register the page as an origin node
   window.tracenodes = [];
   window.traceedges = [];
@@ -84,7 +84,7 @@ function addStart(start, index) {
     resetNetwork(start);
     needsreset = false;
   } else {
-    const startID = getNeutralId(start);
+    const startID = getNormalizedId(start);
     startpages.push(startID);
     nodes.add([
       {

@@ -1,4 +1,4 @@
-/* global nodes, edges, isReset, startpages, getSpawnPosition, getNeutralId, wordwrap, unwrap, getColor, getEdgeColor, getEdgeConnecting, getSubPages, colorNodes, edgesWidth */ // eslint-disable-line max-len
+/* global nodes, edges, isReset, startpages, getSpawnPosition, getNormalizedId, wordwrap, unwrap, getColor, getEdgeColor, getEdgeConnecting, getSubPages, colorNodes, edgesWidth */ // eslint-disable-line max-len
 // This script contains the big functions that implement a lot of the core
 // functionality, like expanding nodes, and getting the nodes for a traceback.
 
@@ -25,7 +25,7 @@ function expandNodeCallback(page, data) {
   // Create node objects
   for (let i = 0; i < subpages.length; i += 1) {
     const subpage = subpages[i];
-    const subpageID = getNeutralId(subpage);
+    const subpageID = getNormalizedId(subpage);
     if (nodes.getIds().indexOf(subpageID) === -1) { // Don't add if node exists
       subnodes.push({
         id: subpageID,

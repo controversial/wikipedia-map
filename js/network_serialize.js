@@ -1,4 +1,4 @@
-/* global vis, nodes, edges, startpages, resetNetworkFromJson, getEdgeColor, getColor, getNeutralId */ // eslint-disable-line max-len
+/* global vis, nodes, edges, startpages, resetNetworkFromJson, getEdgeColor, getColor, getNormalizedId */ // eslint-disable-line max-len
 // Functions for the serialization of a vis.js network. This allows for storing
 // a network as JSON and then loading it back later.
 
@@ -21,7 +21,7 @@ function getFloatingEdges() {
 // Remove all properties from a node Object which can easily be reconstructed
 function abbreviateNode(node) {
   /* Omits the following properties:
-  - node.id, which is inferred from `label` through `getNeutralId`
+  - node.id, which is inferred from `label` through `getNormalizedId`
   - node.color, which is inferred from `level` through `getColor`
   - node.value, which is inferred from `startpages` (included separately)
   - node.x, which doesn't matter at all for reconstruction
@@ -82,7 +82,7 @@ function unabbreviateNode(node, startpgs) {
     parent: node.c,
   };
   // Infer omitted properties
-  newnode.id = getNeutralId(newnode.label);
+  newnode.id = getNormalizedId(newnode.label);
   newnode.color = getColor(newnode.level);
   newnode.value = startpgs.indexOf(newnode.id) === -1 ? 1 : 2;
 

@@ -63,9 +63,9 @@ function wordwrap(text, limit) {
 // Un-word wrap a sentence by replacing line breaks with spaces.
 function unwrap(text) { return text.replace(/\n/g, ' '); }
 
-// Get a "neutral" form of a page name to use as an ID. This is designed to
+// Get a "normalized" form of a page name to use as an ID. This is designed to
 // minimize the number of duplicate nodes found in the network.
-function getNeutralId(id) {
+function getNormalizedId(id) {
   return id
     .toLowerCase() // Lowercase
     .replace(/\s/g, '') // Remove spaces
