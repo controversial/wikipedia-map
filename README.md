@@ -1,24 +1,24 @@
 # Wikipedia Map
 
-![](http://i.imgur.com/fTzzl0k.png)
+![](https://i.imgur.com/fTzzl0k.png)
 
-A web app for visualizing the connection of wikipedia pages. See it at [luke.deentaylor.com/wikipedia](http://luke.deentaylor.com/wikipedia/)
+A web app for visualizing the connection of wikipedia pages. See it at [wikipedia.luk.ke](https://wikipedia.luk.ke/).
 
 
 ## Usage
-Start by entering a topic into the text box, i.e. *Cats*. A single node will be generated, labeled *Cat*. Click this node to expand it.
+Start by entering a topic into the text box, i.e. *Cats*. A single “node” will be generated, labeled *Cat*, which appears as a circle on the graph. Click this node to expand it.
 
-Expanding a node creates a new node for each page that is linked to from the first paragraph of the article. These nodes will be connected to the node from which they were expanded. For example, expanding *Cat* will create eight nodes, including *Fur*, *Mammal*, *Carnivore*, and *Domestication*, each of which will be connected to *Cat*. Each of these nodes can also be expanded in the same way.
+Expanding a node creates a **new node for each Wikipedia article linked in the first paragraph of the article you clicked**. These new nodes will be connected to the node from which they were expanded. For example, expanding *Cat* will create eight nodes, including *Fur*, *Mammal*, *Carnivore*, and *Domestication*, each of which will be connected to *Cat*. These new nodes can also be expanded in the same way. By continuing to expand nodes, you can build a complex web of related topics.
 
-You can also enter multiple articles to "compare" by pressing Comma, Tab, or Enter after each one. I've built a custom input to give users visual feedback on this style of input, which behaves similarly to many "tag inputs" found elsewhere.
+You can also enter multiple articles to "compare" by pressing Comma, Tab, or Enter after each one you enter.
 
 ## Showcase
 
 A map typically looks something like this:
-![Wikipedia Map](http://i.imgur.com/RCH89TL.png)
+![Wikipedia Map](https://i.imgur.com/RCH89TL.png)
 
 Wikipedia Map also has full support for touch devices and mobile browsers:
-![](http://i.imgur.com/30TJSBy.jpg)
+![Wikipedia Map on phone](https://i.imgur.com/30TJSBy.jpg)
 
 
 ## Cloning
@@ -28,43 +28,35 @@ git clone https://github.com/controversial/wikipedia-map/
 ```
 and open `index.html` in a web browser. No compilation or server is necessary to run the front-end.
 
-This project depends on a Node.js server which serves a back-end API using `express`. In this configuration, all requests to the back-end will still be made to an externally hosted back-end. If you want to modify the backend of your local copy, you will need to:
-1. `npm install` inside the `api` folder to install required dependencies
-2. Run `node index.js` (also inside the `api` folder)
-2. Change the line 9 in `js/api.js` to point to the Node.js server:
-```js
-var api_endpoint = "http://localhost:3000/";
-```
-
 
 ## Design choices
 
 #### Functional
-I've chosen to use links only from the first paragraph of an article for 2 reasons:
+Expanding a node creates nodes for each article linked in the _first paragraph_ of the article for the node you expand. I've chosen to use links only from the first paragraph of an article for 2 reasons:
 
 1. There is usually a manageable number of these links, about 5-10 per page.
-2. They tend to be more directly relevant to the article than links further down in the page.
+2. These links tend to be more directly relevant to the article than links further down in the page.
 
 #### Visual
-Note that nodes are lighter in color when they are farther away from the central node. If it took 5 steps to reach *Ancient Greek* from *Penguin*, it will be a lighter color than a node like *Birding*, which only took 2 steps to reach. Thus, a node's color indicates how closely an article is related to the central topic.
+Nodes are lighter in color when they are farther away from the central node. If it took 5 steps to reach *Ancient Greek* from *Penguin*, it will be a lighter color than a node like *Birding*, which only took 2 steps to reach. Thus, a node's color indicates how closely an article is related to the central topic.
 
 Hovering the mouse over a node will highlight the path back to the central node:
-![Traceback](http://i.imgur.com/G7sV5AX.png)
-Note that this is not necessarily the shortest path back, but the path that you took to reach the node. Regardless of whether a shorter path back exists, the path by which the node was created will be shown. This is by design.
+![Traceback](https://i.imgur.com/G7sV5AX.png)
+This is not necessarily the shortest path back; it is the path that you took to reach the node.
 
 
 ## How it works
 
-#### Server
-When you click to expand a node, a request is made to a Node.js server (found in the `api` directory). This server is an interface between front-end JavaScript `XMLHttpRequest`s and the back-end, which is responsible for downloading and parsing Wikipedia articles. The Node.js server performs requests to the Wikipedia API, processes the responses, and serves digested content to the user. The API runs in production at [wikipedia-map.now.sh](https://wikipedia-map.now.sh) (try [/links?page=Cat](https://wikipedia-map.now.sh/links?page=Cat))
-
-The main functionality of the server is to extract "first paragraph links" from articles, in response to requests like `GET http://luke.deentaylor.com/wikipedia/api/links?page=Cats`. The server also exposes endpoints for actions like retrieving a randomized page name.
+#### API
+When you click to expand a node, a request is made to the Wikipedia API to download the full content of the Wikipedia article corresponding to that node. Wikipedia map uses this data to find the links in the first paragraph of the article.
 
 #### HTML Parsing
-`wikipedia_parse.js` uses [`cheero`](https://github.com/cheeriojs/cheerio) to parse wikipedia pages’ HTML, which is retrieved from calls to Wikipedia's API. The parser looks for the first first paragraph’s `<p>` tag (considering some edge cases), and extracts all of the `<a>` links within this paragraph. It excludes links outside of [the "Main/Article" namespace](https://en.wikipedia.org/wiki/Wikipedia:Namespace) to ensure all links returned are links to valid Wikipedia articles.
+`wikipedia_parse.js` uses the [`DOMParser` API](https://developer.mozilla.org/en-US/docs/Web/API/DOMParser) to parse wikipedia pages’ HTML (retrieved from calls to Wikipedia's API). The parser looks for the `<p>` tag corresponding to the first paragraph of the article, then extracts all of the `<a>` tag links within this paragraph. It then filters the links to include only those which link to other wikipedia articles.
 
-#### The main page
-The front-end uses [`vis.js`](http://visjs.org/) to display the graph. Every time a node is clicked, the app makes a `XMLHttpRequest` to the Node.js server. The resulting links are added as new nodes, colored according to their distance from the central node (as described above).
+You can see this in action yourself in your browser’s console. If you have Wikipedia Map open, open your browser’s developer tools and type `await getSubPages('Cat')`. After a second, you should see an array with the names of other related articles.
+
+#### The graph
+The front-end uses [`vis.js`](https://visjs.org/) to display the graph. Every time a node is clicked, the app makes a `XMLHttpRequest` to the Node.js server. The resulting links are added as new nodes, colored according to their distance from the central node (as described above).
 
 ## Roadmap
 
@@ -117,10 +109,6 @@ The front-end uses [`vis.js`](http://visjs.org/) to display the graph. Every tim
 
 
 ## Credits
-This project is powered by Wikipedia! Wikipedia is one of my favorite things, and its wealth of information makes this project possible.
+This project is powered by Wikipedia, whose wealth of information makes this project possible.
 
-The technical bits are mostly powered just by  [`vis.js`](http://visjs.org) and [`BeautifulSoup`](http://crummy.com/software/BeautifulSoup/).
-
-Rendering of this document into the help modal is done via a modified version of [`marked`](github.com/chjj/marked) that supports task lists.
-
-The colors used in the network come from the [material design color palette](https://material.google.com/style/color.html#color-color-palette). Specifically, I got them from [here](http://www.materialpalette.com/light-blue/amber).
+The presentation of the graph is powered by [`vis.js`](https://visjs.org).
