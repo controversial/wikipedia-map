@@ -1,8 +1,7 @@
-# Wikipedia Map
+<h1 align="center">Wikipedia Map</h1>
+<p align="center">A web app for visualizing the connections between Wikipedia pages. Try it at <a href="https://wikipedia.luk.ke/">wikipedia.luk.ke</a>.</p>
 
-![](https://i.imgur.com/fTzzl0k.png)
-
-A web app for visualizing the connection of wikipedia pages. See it at [wikipedia.luk.ke](https://wikipedia.luk.ke/).
+![Screenshot of Wikipedia Map](screenshots/wikipedia-map-safari.png)
 
 
 ## Usage
@@ -11,14 +10,6 @@ Start by entering a topic into the text box, i.e. *Cats*. A single “node” wi
 Expanding a node creates a **new node for each Wikipedia article linked in the first paragraph of the article you clicked**. These new nodes will be connected to the node from which they were expanded. For example, expanding *Cat* will create eight nodes, including *Fur*, *Mammal*, *Carnivore*, and *Domestication*, each of which will be connected to *Cat*. These new nodes can also be expanded in the same way. By continuing to expand nodes, you can build a complex web of related topics.
 
 You can also enter multiple articles to "compare" by pressing Comma, Tab, or Enter after each one you enter.
-
-## Showcase
-
-A map typically looks something like this:
-![Wikipedia Map](https://i.imgur.com/RCH89TL.png)
-
-Wikipedia Map also has full support for touch devices and mobile browsers:
-![Wikipedia Map on phone](https://i.imgur.com/30TJSBy.jpg)
 
 
 ## Cloning
@@ -41,7 +32,7 @@ Expanding a node creates nodes for each article linked in the _first paragraph_ 
 Nodes are lighter in color when they are farther away from the central node. If it took 5 steps to reach *Ancient Greek* from *Penguin*, it will be a lighter color than a node like *Birding*, which only took 2 steps to reach. Thus, a node's color indicates how closely an article is related to the central topic.
 
 Hovering the mouse over a node will highlight the path back to the central node:
-![Traceback](https://i.imgur.com/G7sV5AX.png)
+![Traceback](screenshots/traceback.png)
 This is not necessarily the shortest path back; it is the path that you took to reach the node.
 
 
