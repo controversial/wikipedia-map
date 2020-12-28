@@ -35,3 +35,11 @@
 .shepherd-element.shepherd-theme-arrows .shepherd-content footer .shepherd-buttons li .shepherd-button.shepherd-button-secondary:hover {
   background-color: #e9e9e9;
 }
+
+
+/* Hide image (assumed to be square) on mobile or if it would push the shepherd buttons too far off screen */
+@media (max-height: 700px), (max-width: 450px) {
+  .shepherd-content img {
+    display: none;
+  }
+}

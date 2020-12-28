@@ -1,6 +1,6 @@
 /* Contains for the info initially presented to the user */
 #info {
-  max-width: 440px;
+  width: 440px;
   text-align: center;
 
   position: absolute;
@@ -25,9 +25,12 @@
 
 @media (max-width: 750px) { /* Full width on small screens (namely iPhones) */
   #info {
-    max-width: 100%;
-    display: block;
-    text-align: left;
+    width: 100%;
+    padding: 0 20px 0;
+    background: none;
+    top: 35%;
+    left: 0;
+    transform: translateY(-50%);
   }
 }
 
