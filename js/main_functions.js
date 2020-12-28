@@ -28,13 +28,14 @@ function renameNode(oldId, newName) {
       filter: e => e.to === oldId,
     }).map(e => ({ ...e, to: newId })),
   ]);
-  // Actually replace the node
   // The node already exists! We're just merging it
   if (nodes.get(newId)) {
     nodes.remove(oldId);
     nodes.update({ id: newId, label: newName });
-  // We're actually replacing the node
+    console.log(`Merging ${oldId} with ${newId}`);
+    // We're actually replacing the node
   } else {
+    console.log(`Re-identifying ${oldId} as ${newId}`);
     nodes.remove(oldId);
     nodes.add({ ...oldNode, id: newId, label: newName });
   }
@@ -109,6 +110,7 @@ function expandNode(id) {
 function getTraceBackNodes(node) {
   let currentNode = node;
   let finished = false;
+  let iterations = 0;
   const path = [];
   while (!finished) { // Add parents of nodes until we reach the start
     path.push(currentNode);
@@ -116,6 +118,9 @@ function getTraceBackNodes(node) {
       finished = true;
     }
     currentNode = nodes.get(currentNode).parent; // Keep exploring with the node above.
+    // Failsafe: avoid infinite loops in case something got messed up with parents in the graph
+    if (iterations > 100) return [];
+    iterations += 1;
   }
   return path;
 }
