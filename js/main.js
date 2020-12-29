@@ -1,4 +1,4 @@
-/* global vis, bindNetwork, getNormalizedId, wordwrap, getColor, noInputDetected, getItems, unlockAll, addItem, fetchPageTitle, getRandomArticle, networkFromJson */ // eslint-disable-line max-len
+/* global vis, bindNetwork, getNormalizedId, wordwrap, getColor, noInputDetected, getItems, addItem, clearItems, unlockAll, fetchPageTitle, getRandomArticle, networkFromJson */ // eslint-disable-line max-len
 // This script contains the code that creates the central network, as well as
 // a function for resetting it to a brand new page.
 
@@ -119,34 +119,12 @@ function go() {
 
 
 // Reset the network with one or more random pages.
-function randomReset() {
-  needsreset = true;
+function goRandom() {
   const cf = document.getElementsByClassName('commafield')[0];
-  clearItems(cf);
-  // Function to add a single random page to the network as a start.
-  const addRandomStart = () => {
-    getRandomArticle().then((ra) => {
-      addStart(ra);
-      addItem(cf, decodeURIComponent(ra));
-    });
-  };
-
-  if (Math.random() < 0.3) { // 3 in 10 chance of creating multiple nodes
-    // Add multiple nodes (2 or 3)
-    for (let i = 0; i <= Math.ceil(Math.random() * 2); i += 1) {
-      // Unfortunately, random calls need to be at least 1 second apart due to
-      // what looks like crappy random algorithms on Wikimedia's end. Even with
-      // 1 second, duplicates still occasionally happen, hence the try / catch.
-      // I may eventually be able to fix it by implementing my own page
-      // randomizer.
-      try {
-        setTimeout(addRandomStart, i * 1000);
-      } catch (e) {}
-    }
-  } else {
-    // Add a single random node (most likely)
-    addRandomStart();
-  }
+  getRandomArticle().then((ra) => {
+    addItem(cf, decodeURIComponent(ra));
+    go();
+  });
 }
 
 // Reset the network with content from a JSON string
