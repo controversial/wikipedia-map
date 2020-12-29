@@ -10,7 +10,6 @@ let network; // Global variables
 window.startpages = [];
 // Tracks whether the network needs to be reset. Used to prevent deleting nodes
 // when multiple nodes need to be created, because AJAX requests are async.
-let needsreset = true;
 
 const container = document.getElementById('container');
 // Global options
@@ -37,74 +36,52 @@ let data = { nodes, edges };
 let initialized = false;
 
 
-// Make the network
+// Set up the network
 function makeNetwork() {
+  if (initialized) throw new Error('Network is already initialized');
   network = new vis.Network(container, data, options);
   bindNetwork();
+
+  window.startpages = [];
+  window.tracenodes = [];
+  window.traceedges = [];
+  nodes = new vis.DataSet();
+  edges = new vis.DataSet();
+  data = { nodes, edges };
+  network.setData(data);
+
   initialized = true;
 }
 
+// Get the object to represent a "start node" for a given page name
+const getStartNode = pageName => ({
+  id: getNormalizedId(pageName),
+  label: wordwrap(decodeURIComponent(pageName), 20),
+  value: 2,
+  level: 0,
+  color: getColor(0),
+  x: 0,
+  y: 0,
+  parent: getNormalizedId(pageName), // Parent is self
+});
 
-// Reset the network to be new each time.
-function resetNetwork(start) {
+// Add and remove "start nodes" to make the list of start nodes match the list passed
+function setStartPages(starts) {
+  const newStartPages = starts.map(getNormalizedId);
   if (!initialized) makeNetwork();
-  const startID = getNormalizedId(start);
-  window.startpages = [startID]; // Register the page as an origin node
-  window.tracenodes = [];
-  window.traceedges = [];
+  const toRemove = window.startpages.filter(id => !newStartPages.includes(id));
+  const toAdd = starts.filter((pageName, i) => !window.startpages.includes(newStartPages[i]));
 
-  // -- CREATE NETWORK -- //
-  // Make a container
-  nodes = new vis.DataSet([
-    {
-      id: startID,
-      label: wordwrap(decodeURIComponent(start), 20),
-      value: 2,
-      level: 0,
-      color: getColor(0),
-      x: 0,
-      y: 0,
-      parent: startID,
-    }, // Parent is self
-  ]);
-  edges = new vis.DataSet();
-  // Put the data in the container
-  data = { nodes, edges };
-  network.setData(data);
-}
-
-
-// Add a new start node to the map.
-function addStart(start) {
-  if (needsreset) {
-    // Delete everything only for the first call to addStart by tracking needsreset
-    resetNetwork(start);
-    needsreset = false;
-  } else {
-    const startID = getNormalizedId(start);
-    window.startpages.push(startID);
-    nodes.add([
-      {
-        id: startID,
-        label: wordwrap(decodeURIComponent(start), 20),
-        value: 2,
-        level: 0,
-        color: getColor(0),
-        x: 0,
-        y: 0,
-        parent: startID, // Parent is self
-      },
-    ]);
-  }
+  nodes.remove(toRemove);
+  nodes.add(toAdd.map(getStartNode));
+  window.startpages = newStartPages;
 }
 
 
 // Reset the network with the content from the input box.
-function resetNetworkFromInput() {
-  // Network should be reset
-  needsreset = true;
+function go() {
+  // Get items entered
   const cf = document.getElementById('input');
-  // Items entered.
   const inputs = getItems(cf);
   // If no input is given, prompt user to enter articles
   if (!inputs[0]) {
@@ -112,11 +89,15 @@ function resetNetworkFromInput() {
     return;
   }
 
-  inputs.forEach((inp, i) => fetchPageTitle(inp).then((pageTitle) => {
-    // Record on the commafield item which node the input corresponds to
-    cf.getElementsByClassName('item')[i].dataset.nodeId = getNormalizedId(pageTitle);
-    addStart(pageTitle);
-  }));
+  Promise.all(inputs.map(fetchPageTitle))
+    .then((pageTitles) => {
+      // Record on the commafield item which node the input corresponds to
+      pageTitles.forEach((pageTitle, i) => {
+        cf.getElementsByClassName('item')[i].dataset.nodeId = getNormalizedId(pageTitle);
+      });
+      // Make the network‘s start pages the pages from the inputs
+      setStartPages(pageTitles);
+    });
 }
 
 

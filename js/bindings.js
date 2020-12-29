@@ -1,5 +1,5 @@
 /* global nodes, network, isTouchDevice, shepherd */
-/* global expandNode, traceBack, resetProperties, resetNetworkFromInput, randomReset, unwrap */
+/* global expandNode, traceBack, resetProperties, go, randomReset, unwrap */
 // This script contains (most of) the code that binds actions to events.
 
 
@@ -57,7 +57,7 @@ function bind() {
   const submitButton = document.getElementById('submit');
   submitButton.addEventListener('click', () => {
     shepherd.cancel(); // Dismiss the tour if it is in progress
-    resetNetworkFromInput();
+    go();
   });
 
   const randomButton = document.getElementById('random');
