@@ -48,8 +48,7 @@
 
 .item::after {
   /* Font styles */
-  font-size: 0.8em;
-  line-height: 0.8em;
+  font-size: 0.75em;
   color: rgb(241, 62, 34);
 
   /* Add a close button */
@@ -57,16 +56,25 @@
   content: "\00a0\f12a";
 
   /* Allow animating the unfurl of the close button */
-  transition: max-width 0.3s ease-in-out, padding-left 0.1s 0.2s ease-in-out;
+  transition: max-width 0.3s ease-in-out, padding 0.1s 0.2s ease-in-out;
   overflow: hidden;
   display: inline-block;
+  transform: translateY(7%);
   max-width: 0;
 }
-.item:hover {
+
+.item:not(.locked):hover {
   background-color: rgba(255, 121, 100, 0.6);
 }
-.item:hover::after {
-  max-width: 16px; /* Animate the x unfurling. */
-  padding-left: 2px;
+
+.item:not(.locked):hover::after {
+  max-width: 17px; /* Animate the x unfurling. */
+  padding-left: 3px;
+  padding-right: 1px;
   transition: max-width 0.3s ease-in-out, padding-left 0.1s ease-in-out;
+}
+
+.item.locked {
+  cursor: not-allowed;
+  background-color: rgba(140, 161, 175, 0.6);
 }

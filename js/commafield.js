@@ -25,7 +25,7 @@ function offPlaceholder(cf) {
 // An onclick function that removes the element clicked
 function removeThis() {
   const parent = this.parentElement;
-  parent.removeChild(this);
+  if (!this.classList.contains('locked')) parent.removeChild(this);
   // If this was the last element, turn on the placeholder
   if (parent.getElementsByClassName('item').length === 0) {
     onPlaceholder(parent);
@@ -70,19 +70,23 @@ function addItem(cf, itemtext) {
 
 // Remove the last item from a commafield
 function removeLast(cf) {
-  const items = cf.getElementsByClassName('item');
+  const items = cf.querySelectorAll('.item:not(.locked)');
   if (items.length) cf.removeChild(items[items.length - 1]);
   // Turn the placeholder back on only if no tags are entered
   if (!getRegisteredItems(cf).length) onPlaceholder(cf);
+}
+
+function lockItem(cf, idx) {
+  cf.getElementsByClassName('item')[idx].classList.add('locked');
 }
 
 // Clear all items from a commafield
 function clearItems(cf) {
   // Clear input
   cf.getElementsByTagName('input')[0].value = '';
-  while (cf.getElementsByClassName('item').length) {
-    removeLast(cf);
-  }
+  const items = [...cf.getElementsByClassName('item')];
+  items.forEach(el => cf.removeChild(el));
+  onPlaceholder(cf);
 }
 
 // == Keybindings function == //
