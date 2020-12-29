@@ -112,6 +112,9 @@ function go() {
       // Make the network‘s start pages the pages from the inputs
       setStartPages(pageTitles);
     });
+
+  // Show 'clear' button
+  document.getElementById('clear').style.display = '';
 }
 
 
