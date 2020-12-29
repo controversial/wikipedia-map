@@ -115,7 +115,7 @@ function resetNetworkFromInput() {
     return;
   }
 
-  inputs.forEach(inp => fetchPageTitle(encodeURI(inp)).then(addStart));
+  inputs.forEach(inp => fetchPageTitle(inp).then(addStart));
 }
 
 
