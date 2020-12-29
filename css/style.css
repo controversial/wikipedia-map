@@ -9,7 +9,7 @@
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   color: rgba(0, 0, 0, 0.6);
   font-size: 18px;
 }
@@ -39,6 +39,10 @@ kbd,
   padding: 0.25em 0.4em;
   border-radius: 0.2em;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+}
+
+button {
+  font-family: inherit;
 }
 
 button[type=button]:active {
