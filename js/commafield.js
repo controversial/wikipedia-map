@@ -6,11 +6,6 @@ elements with the 'commafield' class name to comma separated input field.
 
 // == HELPER FUNCTIONS == //
 
-// An onclick function that removes the element clicked
-function removeThis() {
-  this.parentElement.removeChild(this);
-}
-
 // Turn placeholder on for a commafield
 function onPlaceholder(cf) {
   if (cf.hasAttribute('data-placeholder')) {
@@ -24,6 +19,16 @@ function offPlaceholder(cf) {
   if (cf.hasAttribute('data-placeholder')) {
     const inp = cf.getElementsByTagName('input')[0];
     inp.removeAttribute('placeholder');
+  }
+}
+
+// An onclick function that removes the element clicked
+function removeThis() {
+  const parent = this.parentElement;
+  parent.removeChild(this);
+  // If this was the last element, turn on the placeholder
+  if (parent.getElementsByClassName('item').length === 0) {
+    onPlaceholder(parent);
   }
 }
 
