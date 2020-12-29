@@ -1,4 +1,4 @@
-/* global vis, bindNetwork, getNormalizedId, wordwrap, getColor, noInputDetected, getItems, clearItems, addItem, fetchPageTitle, getRandomArticle, networkFromJson */ // eslint-disable-line max-len
+/* global vis, bindNetwork, getNormalizedId, wordwrap, getColor, noInputDetected, getItems, unlockAll, addItem, fetchPageTitle, getRandomArticle, networkFromJson */ // eslint-disable-line max-len
 // This script contains the code that creates the central network, as well as
 // a function for resetting it to a brand new page.
 
@@ -64,6 +64,20 @@ const getStartNode = pageName => ({
   y: 0,
   parent: getNormalizedId(pageName), // Parent is self
 });
+
+// Reset everything to its initial state
+function clearNetwork() {
+  window.startpages = [];
+  window.tracenodes = [];
+  window.traceedges = [];
+  nodes = new vis.DataSet();
+  edges = new vis.DataSet();
+  data = { nodes, edges };
+  network.setData(data);
+
+  const cf = document.getElementById('input');
+  unlockAll(cf);
+}
 
 // Add and remove "start nodes" to make the list of start nodes match the list passed
 function setStartPages(starts) {

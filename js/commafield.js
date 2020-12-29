@@ -76,8 +76,15 @@ function removeLast(cf) {
   if (!getRegisteredItems(cf).length) onPlaceholder(cf);
 }
 
+// Locked items can only be removed by clearItems
 function lockItem(cf, idx) {
   cf.getElementsByClassName('item')[idx].classList.add('locked');
+}
+function unlockItem(cf, idx) {
+  cf.getElementsByClassName('item')[idx].classList.remove('locked');
+}
+function unlockAll(cf) {
+  for (let i = 0; i < cf.getElementsByClassName('item').length; i += 1) unlockItem(cf, i);
 }
 
 // Clear all items from a commafield

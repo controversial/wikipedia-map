@@ -1,5 +1,5 @@
 /* global nodes, network, isTouchDevice, shepherd */
-/* global expandNode, traceBack, resetProperties, go, randomReset, unwrap */
+/* global expandNode, traceBack, resetProperties, go, randomReset, clearNetwork, unwrap */
 // This script contains (most of) the code that binds actions to events.
 
 
@@ -62,6 +62,9 @@ function bind() {
 
   const randomButton = document.getElementById('random');
   randomButton.addEventListener('click', randomReset);
+
+  const clearButton = document.getElementById('clear');
+  clearButton.addEventListener('click', clearNetwork);
 
   // Bind tour start
   const tourbtn = document.getElementById('tourinit');
