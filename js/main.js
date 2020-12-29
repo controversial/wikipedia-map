@@ -130,6 +130,7 @@ function goRandom() {
 // Reset the network with content from a JSON string
 function resetNetworkFromJson(j) {
   if (!initialized) makeNetwork();
+  clearNetwork();
   const obj = networkFromJson(j);
   nodes = obj.nodes;
   edges = obj.edges;
@@ -137,9 +138,12 @@ function resetNetworkFromJson(j) {
   // Fill the network
   network.setData({ nodes, edges });
   // Populate the top bar
+  const cf = document.getElementById('input');
+  clearItems(cf);
   window.startpages.forEach((sp) => {
-    addItem(document.getElementById('input'), nodes.get(sp).label);
+    console.log(sp, nodes.get(sp));
+    addItem(cf, nodes.get(sp).label.replace(/\s+/g, ' '));
+    // TODO: set node IDs on commafield items
+    // TODO: lock commafield items that have been expanded
   });
-  // Transform the "go" button to a "refresh" button
-  document.getElementById('submit').innerHTML = '<i class="icon ion-refresh"> </i>';
 }
