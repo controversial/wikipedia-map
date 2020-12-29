@@ -78,7 +78,7 @@ function resetNetwork(start) {
 
 
 // Add a new start node to the map.
-function addStart(start, index) {
+function addStart(start) {
   if (needsreset) {
     // Delete everything only for the first call to addStart by tracking needsreset
     resetNetwork(start);

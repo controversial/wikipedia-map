@@ -1,3 +1,4 @@
+/* global getNormalizedId */
 const base = 'https://en.wikipedia.org/w/api.php';
 
 const domParser = new DOMParser();
@@ -61,13 +62,16 @@ const getFirstParagraph = element =>
  * @param {HtmlElement} element - An HTML element as returned by `getFirstParagraph`
  */
 function getWikiLinks(element) {
-  return Array.from(element.querySelectorAll('a'))
+  const links = Array.from(element.querySelectorAll('a'))
     .map(link => link.getAttribute('href'))
     .filter(href => href && href.startsWith('/wiki/')) // Only links to Wikipedia articles
     .map(getPageTitleQuickly) // Get the title from the URL
     .filter(isArticle) // Make sure it's an article and not a part of another namespace
-    .map(title => title.replace(/_/g, ' ')) // Replace underscores with spaces for more readable names
-    .filter((n, i, self) => self.indexOf(n) === i); // Remove duplicates
+    .map(title => title.replace(/_/g, ' ')); // Replace underscores with spaces
+  // Remove duplicates after normalizing
+  const ids = links.map(getNormalizedId);
+  const isUnique = ids.map((n, i) => ids.indexOf(n) === i); // 'true' in every spot that's unique
+  return links.filter((n, i) => isUnique[i]);
 }
 
 /**
