@@ -94,7 +94,7 @@ function expandNodeCallback(page, data) {
     }
   }
 
-  // Add the stuff to the nodes array
+  // Add the new components to the datasets for the graph
   nodes.add(subnodes);
   edges.add(newedges);
 }
@@ -106,6 +106,10 @@ function expandNode(id) {
     const newId = renameNode(id, redirectedTo);
     expandNodeCallback(newId, links);
   });
+  // Mark the expanded node as 'locked' if it's one of the commafield items
+  const cf = document.getElementById('input');
+  const cfItem = cf.querySelector(`.item[data-node-id="${id}"]`);
+  if (cfItem) cfItem.classList.add('locked');
 }
 
 // Get all the nodes tracing back to the start node.
