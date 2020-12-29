@@ -37,7 +37,7 @@ function renameNode(oldId, newName) {
   } else {
     console.log(`Re-identifying ${oldId} as ${newId}`);
     nodes.remove(oldId);
-    nodes.add({ ...oldNode, id: newId, label: newName });
+    nodes.add({ ...oldNode, id: newId, label: wordwrap(newName, oldNode.level === 0 ? 20 : 15) });
   }
   // Update any nodes whose parent was the old node
   nodes.update(
