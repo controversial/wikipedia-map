@@ -124,5 +124,5 @@ shepherd.on('cancel', opaque);
 function noInputDetected() {
   document.getElementById('container').style.opacity = 0.3;
   buttons.style.opacity = 0.3;
-  shepherd.show(2);
+  shepherd.show();
 }
