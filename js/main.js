@@ -103,7 +103,7 @@ function addStart(start) {
 function resetNetworkFromInput() {
   // Network should be reset
   needsreset = true;
-  const cf = document.getElementsByClassName('commafield')[0];
+  const cf = document.getElementById('input');
   // Items entered.
   const inputs = getItems(cf);
   // If no input is given, prompt user to enter articles
@@ -112,7 +112,11 @@ function resetNetworkFromInput() {
     return;
   }
 
-  inputs.forEach(inp => fetchPageTitle(inp).then(addStart));
+  inputs.forEach((inp, i) => fetchPageTitle(inp).then((pageTitle) => {
+    // Record on the commafield item which node the input corresponds to
+    cf.getElementsByClassName('item')[i].dataset.nodeId = getNormalizedId(pageTitle);
+    addStart(pageTitle);
+  }));
 }
 
 
